@@ -1,0 +1,386 @@
+<!DOCTYPE html><!--声明文档的类型为html-->
+<html>
+	<head>
+		<meta charset="UTF-8"><!--设置编码为utf-8   =是赋值的意思-->
+		<title></title>
+	</head>
+	<body>
+		<p>
+				01 	简介软件 浏览器 编辑器hBuder,ps
+  					 简介语言 HTML CSS JS 
+
+				02 HTML 超文本标记语言
+
+				03 CSS  层叠样式表
+				   1找到元素,给元素添加样式
+				   添加元素格式  元素=" ;"
+				   width 宽
+				   height 高
+				   background 背景色
+				   设置图片背景格式
+				   background: url(图片地址)
+				
+				
+				   border边框
+				   边框格式  像素+线的类型+颜色
+				04 JavaScript脚本语言
+				
+				   onclick 点击事件
+				   格式onclick=" "
+				
+				   已存!
+				05-06
+				   ps hb  
+				 
+				   ps未学
+				 	
+				07 CSS出现的位置-行间
+				
+				   html注释快捷键Ctrl+Shift+?
+				
+				08 CSS出现的位置-内部
+				   
+				   <style></style>标签对里面写CSS内部样式表
+				    元素+{  }   容器
+				
+				09 CSS出现的位置-外部
+				
+				
+				  Ctrl+n   html文件内建外部CSS文件
+				 
+				<link rel="stylesheet" href="CSS的地址"/>
+				引入  文件  类型为样式表+地址
+				
+				10 设置边框的第一种方式
+				   
+				   复合样式
+				   border 边框
+				   
+				   border:像素+边框线的类型+颜色;
+				   边框线的类型:
+				               solid 实线
+				               dashed 虚线
+				               dotted  点划线
+				
+				               颜色的表示方法:
+				               英文单词
+				               十六进制
+				                rgb
+				
+				11 设置边框的第二种方式
+				  单一样式
+				  border-width: 宽度 1px 2px 3px 4px
+				  border-style:类型
+				  border-color:颜色
+				  
+				  四个值排序:
+				  它的排序方式默认是: 上 右 下 左    顺时针
+				  
+				  两个值的排序:
+				  上下公用一个值,左右公用一个值 
+				  
+				   三个值的排序:
+				   
+				   上 左右公用  下,  
+				      
+				 
+				  
+				12 设置边框的第三种方式
+				
+				   边框的方向
+				   border-top:        上;
+				   border-righ:       右;
+				   border-bottom :    下;
+				   border-left:       左;
+				   用方向来设置它.
+				   border-left-width: ;
+				   border-left-style: ;
+				   border-left-color: ;
+				   浏览器显示更精确的命令
+				
+				13 边框的特征
+				   
+				   边框是什么形状?
+				   边框是一个非矩形
+				   边框不是矩形
+				   边框的形状是由你的宽高来决定的
+				   宽高大的话是梯形
+				   宽高小的话是三角形
+				   
+				   用CSS设置三角形
+				 
+				   *********在多学一遍 没学会原理
+				
+				14 背景色
+				   
+				   background 背景             复合属性
+				   background-color 背景色     单一属性
+				   background-image 背景图片
+				   background-repeat 背景平铺是否重复 / 重复
+				   background-position 背景图片位置
+				   background-attachment 背景图片是否滚动
+				  
+				   内容可以把宽高撑开
+				   背景不会占用容器的宽高
+				   rgba修改透明度
+				   transparent 背景透明 (默认值)
+				
+				15 背景图片与背景图平铺
+				
+				   background-image 背景图片
+				   image的值url()
+				
+				   背景图撑不开容器.内容可以
+				
+				   none 没有(默认值)
+				   
+				   background-repeat  背景图是否重复
+				   
+				   background-repeat:no-repeat;
+				           背景色的     值 
+				
+				   坐标轴 浏览器左上角为坐标轴起点
+				          横向为X轴
+				          竖向为Y轴
+				  background-repeat:repeat-x; 横向平铺
+				  background-repeat:repeat-y; 纵向平铺
+				  repeat 全部平铺 默认值
+				 
+				16 背景图片的位置
+				 
+				 background-position 背景图片的位置
+				 
+				 坐标起点在容器左上角
+				 
+				 利用坐标轴移动位置
+				 
+				 background-position 的值有X,Y两个值
+				 
+				 background-position:20px 20px;
+				  传数值             x     y   
+				  x,y 有正值和负值   20px   -20px
+				  传关键字
+				  
+				  X关键字有:
+				           左  left
+				           中心 center    X 轴的中心
+				           右    right 
+				   Y关键字有:
+				           上  top
+				           中心 center    Y 轴的中心
+				           下   bottom
+				
+				   传一个值的时候,另一个值默认居中
+				   
+				    10px,center,为默认
+				   
+				   一个值都不写的话为左上角
+				
+				17 背景滚动与background复合属性写法
+				
+				  background-attachment  背景图片是否滚动
+				  
+				  background-attachment的两个值:
+				     scroll  背景图片跟随滚动条滚动(默认)
+				     fixed   背景图片不会跟随滚动条滚动
+				  
+				   在学一次
+				  
+				   背景图片是复合属性
+				 background:颜色+ 图片地址+位置+是否平铺+是否滚动;
+				 
+				  可以写在一起
+				
+				18 文字的样式
+				
+				 font        文字
+				 font-weight: 文字着重; 
+				   weight  加粗
+				   normal 正常
+				 font-style : 文字倾斜;
+				   italic   斜体
+				   normal 正常
+				  
+				 font-size   :文字大小"(一遍为偶数)
+				  50px     数字加单位
+				 line-height :文字行高:
+				 font-family :字体 (字体家族)/中文默认为宋体
+				 
+				 每一个标签都属性
+				 默认字体大小16
+				
+				 字体在学一次,迷***************
+				
+				font-family :arial,   "华文行楷",   "宋体",   "楷体"
+				            英文字体   首选字体     次选字体   依次类推
+				
+				19 行高
+				 
+				行高代表了这段文字在这个容器内占的高度
+				
+				 line-height:30px
+				 如果行高的值与容器的高度相等,文字就会垂直居中.
+				
+				20检测多行文字行高及文字的复合样式
+				
+				 测两多行文字行高的方法:
+				   1,首先要知道文字的大小 放大,啦选框确定文字大小
+				   2,啦(量)一下两行文字之间的距离,.
+				  
+				    行高在学一遍*****************
+				   
+				   文字复合属性
+				   
+				   font:是否加粗+斜体+字体大小/行高+微软雅黑 ;
+				         bold italic  26px/50px   字形
+				   font:font-weight font-style(必须) font-size/line-height font-family(必须);
+				   顺序不能变
+				 
+				 21 文本
+				
+				   文本
+				   color 颜色
+				   text-algin: 文本的对齐方式
+				   三个值 left  左对齐(默认)
+				          center  居中对齐
+				          right   右对齐
+				
+				   text-indent :首行缩进(em缩进字符)
+				   
+				   值是数字加单位  32px
+				   
+				   em等于字体大小 
+				   如 1em  2em
+				   
+				   text-decoration 文本修饰
+				    下划线3种
+				    在字的中间  line-through 中划线
+				    在字的下方  underline  下划线
+				    在子的上面  overline   上划线
+				                none  没有划线
+				    
+				   
+				   latter-spacing:  字母的间距
+				   
+				   值为数字加单位  10px
+				   
+				  
+				   word-spacing 单词的间距(以空格来解析)
+				  
+				   值为数字加单位  10px  中文英文词中间都要加空格浏览器才能解析
+				  
+				   词中间要加空格
+				   
+				    
+				   
+				    
+				   white-space  强制不换行
+				     容器宽度不够也不换行
+				     值
+				     nowrap    不换行
+				     normal    正常
+				   
+				   英文与数字换行
+				   
+				   特性英文如果没有结束的话是不会换行的(没有打空格)
+				 
+				   
+				
+				
+				22 文本设置-1
+				
+				在上面
+				
+				23 文本设置-2
+				 
+				 word-bread:  词内换行
+				 
+				 值   break-word  让单词换行
+				      break-all   所有都不换行
+				      normal  正常  
+				
+				  文本空格的大小?
+				  宋体下,空格大小是一个字体大小的一半
+				 
+				
+				   tetx不是复合属性不能合在一起写
+				
+				  ********************
+				
+				24 padding内填充
+				
+				 内填充(元素的最外面和内容之间的距离)
+				 在原有DIV基础上四个方向都加padding值
+				
+				 注意:设置padding后会把原来的容器撑大
+				  四个值
+				 padding-top
+				 padding-right
+				 padding-bottom
+				 padding-left
+				 
+				 顺序上右下左
+				 
+				 可以写复合样式
+				 
+				一个值  四个方向值都一样
+				两个值  第一个代表上下  第二个代表左右
+				三个值   第一个代表上,第二个值代表左右 第三个值代表下
+				四个值  上 右 下 左  顺时针次序
+				
+				 
+				25 margin外边距
+				 margin外边距  (标签与标签之间的距离)
+				
+				
+				  margin-top
+				  margin-right
+				  margin-bottom
+				  margin-left
+				 
+				可以写复合样式 写法和padding一样
+				
+				padding与margin的区别
+				
+				
+				padding作用在元素的里面,拉开的距离会显示元素的背景色.
+				
+				margin作用在元素的外面,拉开的距离不会显示元素的背景色
+				
+				什么时候用?
+				
+				父子级元素之间的距离,可以通过给父级加padding来设置
+				同级元素之间的距离,通过添加margin来设置
+				***************************************
+				26 margin的问题
+				
+				margin的问题
+				
+				1,margin传递(只有上下会传递左右不会传递)
+				
+				  子级会把之间的margin-TOP与margin-bottom传递给父级
+				  解决办法:给父级加上一个边框(其中一个方法)
+				
+				2.margin上下叠压(只有上下会叠压,左右不会叠压)
+				  上边元素的margin-bottom与下边元素的margin-top叠在了一起(他会取达到值)
+				  解决办法:只用给一个元素设置margin就可以 (给一个设置为0就可以)
+				
+				居中显示
+				margin-left
+				值 :auto   自动
+				margin-left:auto; 元素居右显示
+				margin-right:auto; 元素居左显示
+				
+				元素居中显示
+				margin:0 auto  ;(只有左右有居中,上下没有)
+				***********************
+				27 盒子模型
+				
+				盒模型大小计算方式
+				
+				宽度:border(左右)+width+padding(左右)
+				
+				高度:border(上下)+height+padding(上下)
+		</p>
+	</body>
+</html>
