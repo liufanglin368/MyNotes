@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<p>
+
+1 标签类型-块元素特征
+  <br /> 
+  标签的类型<br /> 
+        &nbsp; 1.块元素(block)<br /> 
+        &nbsp; 2.行内元素(inline)<br /> 
+     
+   块元素的特征<br /> 
+        &nbsp; 1.默认独占一行<br /> 
+        &nbsp; 2.没有宽度的时候,宽度是auto,撑满一行(宽度就是父级的宽度)<br /> 
+        &nbsp; 3.支持所有的css命令
+		<hr />    
+
+2 标签类型-行内元素特征<br />
+
+    行内元素的特征<br />
+        &nbsp;&nbsp;1.内容撑开宽高<br /> 
+        &nbsp;宽高的值都是auto,只不过选出来的宽高是由内容撑开的<br /> 
+        &nbsp;&nbsp;2.不支持设置宽高<br /> 
+        &nbsp;&nbsp;3.不支持上下的margin与上下的padding<br /> 
+        &nbsp;上下的padding是有问题 虽然吧背景撑出来了,这个只是表面现象,他不会对其他的元素有影响<br /> 
+        &nbsp;&nbsp;4.所有行内元素都会在一行显示<br /> 
+        &nbsp;&nbsp;5.代码换行会被解析成一个空格<br /> 
+ 		<hr />
+3 块元素与行内元素<br />
+
+  块元素<br />
+        &nbsp;div,h1-h6,p,ul,li,ol,dt.dl,dd,header,nav,footer,section,article,aside<br />
+
+  行内元素<br />
+         &nbsp;a.span,strong,em,mark,img,time<br />
+  		<hr />  
+4 元素类型转换<br />
+
+  &nbsp;块元素转行内元素    display:inline<br />
+      		 &nbsp;&nbsp;转换后块元素就具有了行内元素的特征(只是显示为行内元素,本身还是块元素)<br />
+   &nbsp;行内元素转块元素   display:block<br />
+       		&nbsp;&nbsp;转换后行内元素就具有了块元素元素的特征(只是显示为块元素,本身还是行内元素)<br />
+		<hr />  
+5 inline-block<br />
+    
+ &nbsp; display:inline-block;  行内块元素<br />
+
+            &nbsp;特征:<br />
+            &nbsp;&nbsp; 1.行内元素支持宽高<br />
+            &nbsp;&nbsp; 2.块元素可以在行中显示<br />
+            &nbsp;&nbsp;3.不给宽度的话,宽度会有内容撑开,<br />
+            &nbsp;&nbsp; 4.代码换行会被解析成一个空格<br />
+            &nbsp;&nbsp;5.IE6,7不支持块元素的inline-block <br />
+            &nbsp;  IE6.7不认识inline-block,给行内元素加上这个属性后会触发IE的haslayout特点,会让行内元素具有与inline-block一样的特征,所以它不支持块元素的inline-block <br />
+                  <hr />  
+6 标签嵌套规则<br />
+
+   &nbsp;标签嵌套规则<br />
+            &nbsp;&nbsp; 1.行内标签不能嵌套快标签,快标签可以嵌套行内标签<br />
+            &nbsp;&nbsp;  2.a标签不能嵌套a标签<br />
+            &nbsp;&nbsp; 3.h1-h6,dt这些标签的性质是标题,那里面就不能嵌套块计标签(可以嵌套行内)<br />
+            &nbsp;&nbsp; 4.p标签不能嵌套块标签(可以嵌套行内标签)<br />
+            &nbsp;&nbsp; 5.ul和li,以及ol与li,以及dl和dt,dd他们是固定的嵌套规则<br />
+            &nbsp;&nbsp;   1.ul个ol下边只能跟li,li的父级只能是ul或者ol<br />
+            &nbsp;&nbsp;   2.li中可以嵌套任何标签,升值可以再放一个ul或者ol<br />
+            &nbsp;&nbsp;   3.dl和dt.dd可以擦考ul和li<br />
+             <hr />  
+
+		</p>
+	</body>
+</html>
