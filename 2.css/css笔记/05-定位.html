@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			/*
+			 *  定位
+
+1 相对定位
+
+  position         定位
+     relative      相对定位
+                   移动的方向
+                   top right bottom left
+      特点   
+          1.只加相对定位,不设置元素移动的位置,元素和之前是没有变化
+          2.更具之间原来的位置计算移动的位置
+          3.不脱离文档流,元素移走以后,原来的位置还会被保留
+          4.加上相对定位后对原来的元素本身的特征没有影响
+           5.提升层级
+
+2  绝对定位
+ 
+   position
+       absolute    绝对定位
+                   移动的方向
+                   top right bottom left
+   特点    
+       1.完全脱离文档流
+       2.行内元素支持所有样式(与加上浮动或者inline-block以后的效果是一样的)
+       3.如果父级有定位,那位置会根据父级移动.如果父级没有定位,那位置根据可视区移动
+    ****(一般情况下,要用到绝对定位的时候,都会给父级来一个相对定位)****
+        4.提升层级
+        5.触发BFC
+3.可视区与固定定位
+  
+  想让一个元素的看稿撑满一个屏幕,就要给这个元素包括他的父级宽高都设置100%
+   
+   position               定位        
+         fixed            固定定位
+   特点 
+       1.完全脱离文档流
+       2.行内元素支持所有样式
+       3.相对可视区来移动位置
+       4.提升层级
+       5.触发BFC
+   注意
+       IE6不支持
+       
+           statc    默认值,不定位
+           
+4 层级
+
+  在正常情况下层级的大小由顺序决定,后面的元素要比前面的元素的层级要高
+  
+  有定位元素的层级要比没有定位元素层级要高
+  在都有定位的情况下,层级还是取决与书写顺序
+  
+  z-index        层级
+      他的值是一个数字,数字越大层级越高(在同一个层里)
+
+5 半透明
+
+  opacity                     透明度
+      opacity(0-1)            标准浏览器
+      filter:alpha(opacity=0-100)  IE67
+      rgba(0,0,0,0.5)         最后一个参数代表透明度(0-1)
+      
+6  居中(定位例子)
+
+   居中方法
+   1.  position:absolute;
+       left:50%;
+       top:50%;
+       margin-left:-150px (宽的一半)
+       margin-top:-150px (高的一半)
+
+   2.  position:absolute;
+       top:0;
+       right:0;
+       bottom:0;
+       left:0;
+       margin:auto;
+
+   
+       resize   设置元素的大小可以拖动改变    
+       必须配合overflow:auto;使用
+
+       格式    
+           resize:both;
+           overflow:auto;
+            
+			 */
+		</style>
+	</head>
+	<body>
+	</body>
+</html>
