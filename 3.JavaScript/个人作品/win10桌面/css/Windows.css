@@ -1,0 +1,45 @@
+/*Windows下的样式*/
+#Windows{
+	width: 48px;
+	height: 36px;
+	position: relative;
+}
+#Windows .btn{
+	width: 48px;
+	height: 36px;
+	background-image: url(../ico/windows_ico.gif);
+	display: inline-block;
+}
+#Windows .btn:hover{
+	background-image: url(../ico/windows_hover.gif);
+}
+#Windows .WindPopup{
+	width: 960px;
+	height:530px;
+	border-top: 1px solid #2b3845;
+	border-right: 1px solid #2b3845;
+	background: #141a20;
+	opacity: 0.96;
+	position: absolute;
+	top: -530px;
+	display: none;
+}
+#Windows .WindPopup .WindPopupLeft{
+	width: 48px;
+	height: 100%;
+}
+#Windows .WindPopup .WindPopupLeft ul{
+	width: 48px;
+	height: 100%;
+}
+#Windows .WindPopup .WindPopupLeft ul li{
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+}
+#Windows .WindPopup .WindPopupLeft ul li:hover{
+	background: #333538;
+}
+#Windows .WindPopup .WindPopupLeft li:nth-child(2){
+	margin-top: 330px;
+}
