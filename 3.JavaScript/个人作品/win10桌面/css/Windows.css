@@ -28,18 +28,26 @@
 	width: 48px;
 	height: 100%;
 }
-#Windows .WindPopup .WindPopupLeft ul{
+#Windows .WindPopup .WindPopupLeft .start{
 	width: 48px;
 	height: 100%;
 }
 #Windows .WindPopup .WindPopupLeft ul li{
 	height: 50px;
-	text-align: center;
+	font-size: 16px;
 	line-height: 50px;
+	overflow: hidden;
+}
+#Windows .WindPopup .WindPopupLeft ul li img{
+	margin-left: 16px;
+	margin-right: 16px;
 }
 #Windows .WindPopup .WindPopupLeft ul li:hover{
 	background: #333538;
+	
 }
 #Windows .WindPopup .WindPopupLeft li:nth-child(2){
 	margin-top: 330px;
+	position: relative;
 }
+
