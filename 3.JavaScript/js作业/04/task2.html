@@ -1,0 +1,333 @@
+<html lang="en"><head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background: #ecf9fc;
+		}
+		p {
+			margin: 0;
+		}
+		p span{
+			background: yellow;
+		}
+		#wrap {
+			width: 680px;
+			margin: 50px auto;
+			position: relative;
+			box-shadow: 0 0 20px #2d2d2d;
+			border-radius: 10px;
+			background: #fff;
+			padding: 30px;
+			overflow: hidden;
+		}
+		.top{
+			overflow: hidden;
+		}
+		#wrap p{
+			border:1px solid #abdde7;
+			background: #eef8fa;
+			border-radius: 3px;
+			width: 500px;
+			padding: 20px;
+			font-family: '微软雅黑';
+			font-size: 20px;
+			line-height: 36px;
+			float: left;
+		}
+		#buttons {
+			float: right;
+		}
+		#buttons a {
+			text-decoration: none;
+			margin-bottom: 5px;
+			color: #fff;
+			width: 120px;
+			line-height: 70px;
+			
+			text-align: center;
+			font-family: '微软雅黑';
+			font-size: 20px;
+			display: block;
+			background: #90e2f2;
+			border-radius: 5px;
+		}
+		#buttons a:hover {
+			background: #90e2f2;
+		}
+		#buttons span{
+			display: none;
+		}
+		#buttons span a{
+			background: #90e2f2;
+		}
+		#buttons span a:nth-of-type(1){
+			background: #a8a6f5;
+		}
+		#buttons span a:nth-of-type(2){
+			background: #9fe7a9;
+			margin-bottom: 0px;
+		}
+		
+		#toolbox {
+			width: 640px;
+			padding: 20px;
+			background: #E7E7B5;
+			font-size: 0;
+			display: none;
+			position: relative;
+			margin-top: 50px;
+			border: 1px solid #abdde7;
+    		background: #eef8fa;
+    		border-radius: 5px;
+		}
+		
+		#search, #replace {
+			border-top: 1px solid #90e2f2;
+			margin-top: 5px;
+			display: none;
+		}
+		
+		.search #search{
+			display: block;
+		}
+		.search #replace{
+			display: none;
+		}
+		.search span:nth-of-type(1){
+			background: #a8a6f5;
+			color: #fff;
+		}
+		
+		.replace #search{
+			display: none;
+		}
+		.replace #replace{
+			display: block;
+		}
+		.replace span:nth-of-type(2){
+			background: #9fe7a9;
+			color: #fff;
+		}
+		
+		
+		#toolbox span {
+			font-family: '微软雅黑';
+			font-size: 20px;
+			width: 80px;
+			line-height: 40px;
+			display: inline-block;
+			cursor: pointer;
+			text-align: center;
+		}
+		#search input[type="text"]{
+			width: 400px;
+		}
+		#replace input[type="text"]{
+			width: 190px;
+		}
+		#search input[type="text"], #replace input[type="text"] {
+			margin: 20px 0px;
+			padding: 2px;
+			font-size: 24px;
+			margin-right: 10px;
+			border: 1px solid #abdde7;
+			background: #fff;
+		    height: 48px;
+		    padding-left: 10px;
+		    vertical-align: middle;
+		}
+		#search input[type="button"]{
+			background: #a8a6f5;
+		}
+		#replace input[type="button"]{
+			background: #9fe7a9;
+		}
+		#search input[type="button"], #replace input[type="button"] {
+			margin: 20px 0;
+			height: 30px;
+			width: 56px;
+			font-size: 20px;
+			width: 96px;
+			height: 52px;
+			color: #fff;
+			font-size: 20px;
+			border: none;
+			vertical-align: middle;
+			font-family: "微软雅黑";
+		}
+		#close {
+			font-size: 24px;
+			position: absolute;
+			right: 10px;
+			top: 10px;
+			cursor: pointer;
+			color: #90e2f2;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var show=document.getElementById("show");
+			var span=document.querySelector("#buttons span");
+			var as=span.querySelectorAll('a');
+			var toolbox=document.getElementById("toolbox");
+			var spans=toolbox.querySelectorAll("span");
+			var close=document.getElementById("close");
+			var inputs=toolbox.querySelectorAll("input");
+			var p=document.querySelector("#wrap p");
+			
+			//右侧点击展开
+			show.onclick=function(){
+				span.style.display='block';
+			};
+			
+			//右侧查找点击功能
+			as[0].onclick=spans[0].onclick=function(){
+				toolbox.style.display='block';
+				toolbox.className='search';
+				
+				removeSpan();
+			};
+			
+			//右侧替换点击功能
+			as[1].onclick=spans[1].onclick=function(){
+				toolbox.style.display='block';
+				toolbox.className='replace';
+				
+				removeSpan();
+			};
+			
+			//关闭
+			close.onclick=function(){
+				toolbox.style.display=span.style.display='none';
+			};
+			
+			
+			//下面查找功能
+			inputs[1].onclick=function(){
+				var val=inputs[0].value;
+				
+				//用户没有输入内容
+				if(!val){
+					//这个条件成立说明用户什么都没有输入
+					alert('请输入内容');
+					return;		//用户什么东西都没有输入的时候，只用弹个框提示一下就行了，后面的代码就不用走了
+				}
+				
+				/*
+				 * 以下是用户输入内容的时候
+				 * 	1、用户输入的内容没找到，弹一下
+				 * 	2、用户输入的内容找到了，标个黄
+				 * 
+				 */
+				
+				//用户输入的内容没找到
+				if(p.innerHTML.indexOf(val)==-1){
+					//这个条件成立，说明用户输入的内容没有找到
+					alert('你输入的内容没有找到');
+					inputs[0].value='';
+					return;		//用户输入的内容没有找到的时候，也只用弹一个框提示一下就行了，下面的代码也不用走了
+				}
+				
+				//用户输入的内容找到了，标个黄
+				removeSpan();
+				var result=p.innerHTML.split(val);
+				p.innerHTML=result.join('<span>'+val+'</span>');
+				inputs[0].value='';
+			};
+			
+			
+			
+			//下面替换的功能
+			inputs[4].onclick=function(){
+				var val1=inputs[2].value;
+				var val2=inputs[3].value;
+				
+				//第一个框里没有输入内容
+				if(!val1){
+					alert('请输入要替换的内容');
+					return;
+				}
+				
+				//第一个框里有输入的内容了，但是没有找到
+				if(p.innerHTML.indexOf(val1)==-1){
+					alert('你输入的内容没有找到');
+					inputs[2].value='';
+					return;
+				}
+				
+				//第一个框里的内容找到了，但是第二个框里没有输入内容，要做一个删除的功能
+				if(!val2){
+					var result=confirm('你确定要删除么');
+					
+					if(!result){
+						//这个条件成立了说明用户点击了取消按钮
+						inputs[2].value='';
+						return;
+					}
+				}
+				
+				var text=p.innerHTML.split(val1);
+				p.innerHTML=text.join(val2);
+				inputs[2].value=inputs[3].value='';
+			};
+			
+			
+			//去除span标签
+			function removeSpan(){
+				//清除掉所有的input里的内容
+				var inputs=document.querySelectorAll("#toolbox input[type=text]");
+				for(var i=0;i<inputs.length;i++){
+					inputs[i].value='';
+				}
+				
+				//去除span标签
+				var strArr=p.innerHTML.split('<span>');
+				strArr=strArr.join('');
+				
+				strArr=strArr.split('</span>');
+				strArr=strArr.join('');
+				
+				p.innerHTML=strArr;
+				
+				/*
+				 * 用来给<span>HTML</span>网页增加动态功能
+				 * ["用来给","HTML</span>网页增加动态功能"]
+				 * 用来给HTML</span>网页增加动态功
+				 * ["用来给HTML","网页增加动态功"]
+				 * 用来给HTML网页增加动态功
+				 */
+			}
+		};
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<div class="top">
+			<p>JavaScript一种直译式脚本语言，是一种动态类型、弱类型、基于原型的语言，内置支持类型。它的解释器被称为JavaScript引擎，为浏览器的一部分，广泛用于客户端的脚本语言，最早是在HTML（标准通用标记语言下的一个应用）网页上使用，用来给HTML网页增加动态功能</p>
+			<div id="buttons">
+				<a href="javascript:" id="show">展开</a>
+				<span style="display: block;">
+					<a href="javascript:">查找</a>
+					<a href="javascript:">替换</a>
+				</span>
+			</div>
+		</div>
+		
+		<div id="toolbox" class="search" style="display: block;">
+			<div id="close">×</div>
+			<span>查找</span>
+			<span>替换</span>
+			<div id="search">
+				<input type="text"><input type="button" value="查找">
+			</div>
+			<div id="replace">
+				<input type="text"><input type="text">
+				<input type="button" value="替换">
+			</div>
+		</div>
+	</div>
+
+</body></html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#demo{
+				width: 524px;
+				height: 320px;
+				border: 1px solid #8A2BE2;
+				position: relative;
+				margin: 50px auto;
+			}
+			#demo #order{
+				width: 100px;
+				height: 30px;
+				color: #fff;
+				background: blueviolet;
+				border: none;
+				position: absolute;
+				left:150px ;
+			}
+			#demo #random{
+				width: 100px;
+				height: 30px;
+				color: #fff;
+				background: blueviolet;
+				border: none;
+				position: absolute;
+				left:280px ;
+			}
+			#demo div li{
+				list-style: none;
+				/*float: left;
+				margin-top: 40px;
+				margin-left: 10px;
+				*/
+				position: absolute;
+			}
+			#demo div li p{
+				margin-top: 6px;
+			}
+		</style>
+	    <script src="js/move.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="demo">
+			
+		
+		<input type="button" id="order" value="从大到小" />
+		<input type="button" id="random" value="打乱顺序" />
+		<div>
+			<ul>
+				<li style="left:4px;top:80px;"><img src="img/1.jpg"/><p>1</p></li>
+				<li style="left:130px;top:80px;"><img src="img/2.jpg"/><p>2</p></li>
+				<li style="left:250px;top:80px;"><img src="img/3.jpg"/><p>3</p></li>
+				<li style="left:370px;top:80px;"><img src="img/4.jpg"/><p>4</p></li>
+				<li style="left:1px;top:200px;"><img src="img/5.jpg"/><p>5</p></li>
+				<li style="left:122px;top:200px;"><img src="img/6.jpg"/><p>6</p></li>
+				<li style="left:244px;top:200px;"><img src="img/7.jpg"/><p>7</p></li>
+				<li style="left:364px;top:200px;"><img src="img/9.jpg"/><p>8</p></li>
+			</ul>
+		</div>
+		</div>
+		<script type="text/javascript">
+		var order=document.getElementById("order");
+		var random=document.getElementById("random");
+		var lis=document.querySelectorAll("li");
+		
+		//var on=true;
+		var shunxu=[];
+		var suiji=[];
+		for(var i=0;i<lis.length;i++){
+			shunxu.push({"left":getComputedStyle(lis[i]).left,"top":getComputedStyle(lis[i]).top});
+			suiji.push({"left":getComputedStyle(lis[i]).left,"top":getComputedStyle(lis[i]).top});
+		}
+		
+		var n=0;
+		//顺序排序
+		order.onclick=function(){
+			/*if(on==true){
+				this.value="从小到大";
+				on=false;
+			}else{
+				this.value="从大到小";
+				on=true;
+			}	*/
+			n++;
+			this.value=n%2?"从小到大":"从大到小";
+			shunxu.reverse();
+			lmove(shunxu);
+		}
+		//随机排序
+		random.onclick=function(){
+	
+	        suiji.sort(function(){
+						return 0.5-Math.random();
+					});
+			lmove(suiji);
+		}
+	
+		function lmove(arr){
+			for(var i=0;i<lis.length;i++){  //让所有的图片都改变left，和top值
+						move(lis[i],{left:parseFloat(arr[i].left),top:parseFloat(arr[i].top)},600,'linear');
+					}
+				}
+		
+		</script>
+	</body>
+</html>
