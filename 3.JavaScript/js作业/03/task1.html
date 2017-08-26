@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		    body{
+				margin: 0;
+				padding: 0;
+				background: url(img/9999.jpg) no-repeat;
+				background-size:1500px 1000px;
+			}
+			#demo{
+				width: 790px;
+				height: 340px;
+				margin: 30px auto;
+				position: relative;
+				overflow: hidden;
+			}
+			#demo ul{
+				position: absolute;
+				left: 0;
+				padding: 0;
+			}
+			#demo li{
+				list-style: none;
+				float: left;
+			}
+			#demo div{
+				height: 70px;
+				width: 100%;
+				background: rgba(0,0,0,0.6);
+				position: absolute;
+				bottom: 0;
+				font-family: "微软雅黑";
+				color: #fff;
+				text-indent: 20px;
+			}
+			#demo div h3{
+				line-height: 40px;
+			}
+		</style>
+		<script src="js/move.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload=function(){
+				var ul=document.querySelector("ul");
+				var div=document.querySelector("#demo div");
+				var n=0;
+				var timer;
+				var textArr=[
+				{"title":'标题1',"content":'内容一'},
+				{"title":'标题2',"content":'内容二'},
+				{"title":'标题2',"content":'内容二'},
+				{"title":'标题2',"content":'内容二'},
+				{"title":'标题2',"content":'内容二'},
+				{"title":'标题2',"content":'内容二'},
+				{"title":'标题2',"content":'内容二'},
+				{"title":'标题3',"content":'内容三'}
+				];
+				
+				ul.innerHTML+=ul.innerHTML;
+				
+				var lis=document.querySelectorAll("li");
+				var w=parseInt(getComputedStyle(lis[0]).width);
+				ul.style.width=w*lis.length+"px";
+				//console.log(w);
+				div.innerHTML='</h3>'+textArr[0].title+'</h3><p>'+textArr[0].content+'</p>';
+				
+				timer=setInterval(pic,3000);
+				//pic();
+				function pic(){
+					n++; //调一次让图片加个1
+					move(div,{bottom:-70},500,'linear',function(){
+						move(ul,{left:-790*n},1000,'linear',function(){
+							if(n==lis.length/2){
+								ul.style.left=0;
+								n=0;
+							}
+							div.innerHTML='</h3>'+textArr[n].title+'</h3><p>'+textArr[n].content+'</p>';
+							move(div,{bottom:0},500,'linear')
+						});
+					});
+				}
+			    
+			}
+		</script>
+	</head>
+	<body>
+		<div id="demo">
+			<ul>
+				<li><img src="img/ico_1.jpg"/></li>
+				<li><img src="img/ico_2.jpg"/></li>
+				<li><img src="img/ico_3.jpg"/></li>
+				<li><img src="img/ico_4.jpg"/></li>
+				<li><img src="img/ico_5.jpg"/></li>
+				<li><img src="img/ico_6.jpg"/></li>
+				<li><img src="img/ico_7.jpg"/></li>
+				<li><img src="img/ico_8.jpg"/></li>
+			</ul>
+			<div>
+				<h3></h3>
+				<p></p>
+			</div>
+		</div>
+	</body>
+</html>
