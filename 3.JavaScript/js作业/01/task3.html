@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.demo{
+				width: 1110px;
+				height: 252px;	
+				border: 1px solid #000000;
+			}
+			.rollimg{
+				display: inline-block;
+				position: relative;
+			}
+			.last{
+			    position: absolute;
+			    top: 120px;
+			    left: 0px;
+			}
+			.next{
+				position: absolute;
+			    top: 120px;
+			    right: 0px;
+			}
+			/*.ico1{
+				position: absolute;
+			    top: 220px;
+			    left: 300px;
+			    border-radius: 50%;
+			    transition: All 0.4s ease-in-out;
+			}
+			.ico1:hover{
+				transform: scale(1.4);
+			}
+			.ico2{
+				position: absolute;
+			    top: 220px;
+			    left: 330px;
+			    border-radius: 50%;
+			    transition: All 0.4s ease-in-out;
+			}
+			.ico2:hover{
+				transform: scale(1.4);
+			}
+			.ico3{
+				position: absolute;
+			    top: 220px;
+			    left: 360px;
+			    border-radius: 50%;
+			    transition: All 0.4s ease-in-out;
+			}
+			.ico3:hover{
+				transform: scale(1.4);
+			}
+			.ico4{
+				position: absolute;
+			    top: 220px;
+			    left: 390px;
+			    border-radius: 50%;
+			    transition: All 0.4s ease-in-out;
+			}
+			.ico4:hover{
+				transform: scale(1.4);
+			}
+			.ico5{
+				position: absolute;
+			    top: 220px;
+			    left: 420px;
+			    border-radius: 50%;
+			    transition: All 0.4s ease-in-out;
+			}
+			.ico5:hover{
+				transform: scale(1.4);
+			}*/
+			ul{
+				position: absolute;
+			    top: 220px;
+			    left: 420px;
+			    transition: All 0.4s ease-in-out;
+			    background:rgba(255,255,255,0.1) ;
+			}
+			li{
+				list-style: none;
+				float: left;
+				background:rgba(255,255,255,0.1) ;
+				margin-left: 15px;
+			}
+			.ico1{
+				border-radius: 50%;
+			}
+			ul li:nth-child(1){
+				transform: scale(1.4);
+			}
+			.tnt{
+				width: 150px;
+				height: 250px;
+				display: inline-block;	
+			}
+			@keyframes hint{
+				0%{transform: scale(1);}
+				15%{transform: scale(1.3);}
+				30%{transform: scale(1);}
+				45%{transform: scale(1.6);}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="demo">
+			<div class="rollimg">
+				<img src="img/timg.jpg"/>
+				<input type="button" class="last" id="last" value="上一张" />
+				<input type="button" class="next" value="下一张" />
+				<ul>
+				<li><input type="image" src="img/ico.png" class="ico1"/></li>
+				<li><input type="image" src="img/ico.png" class="ico1"/></li>
+				<li><input type="image" src="img/ico.png" class="ico1"/></li>
+				<li><input type="image" src="img/ico.png" class="ico1"/></li>
+				<li><input type="image" src="img/ico.png" class="ico1"/></li>
+				</ul>
+			</div>
+		    <div class="tnt">
+			<h4> 图片数量<span>1/5</span></h4>
+			<p>1就 行间 课件好就 行间 课件好就 行间 课件好 </p>
+			<p>
+			<input type="button" class="order" value="顺序切换" />
+			</p>
+			<input type="button" class="cycle" value="循环切换" />
+			</div>
+		</div>
+		
+		
+		<script type="text/javascript">
+			window.onload=function(){
+			var last=document.querySelector('.last');
+			var next=document.querySelector('.next');
+			
+			var imgs=document.querySelector('img');
+			var imgs1=['timg','timg2','timg3','timg4','timg5'];
+			
+			var ps=document.querySelector('p');
+			var texts=['1就 行间 课件好就 行间 课件好就 行间 课件好','2就 行间 课件好就 行间 课件好就 行间 课件好','3就 行间 课件好就 行间 课件好就 行间 课件好','4就 行间 课件好就 行间 课件好就 行间 课件好','5就 行间 课件好就 行间 课件好就 行间 课件好',]
+			
+			var spans=document.querySelector('span');
+			var spanarr=['1/5','2/5','3/5','4/5','5/5',];
+			var n=0;
+			 var lis=document.querySelectorAll('li');
+			 
+			//顺序切换下一张
+			function las(){
+				n++;
+				if(n>4){
+					n=4;
+					order.style.animation='0.3s hint';
+				}
+				imgs.src='img/'+imgs1[n]+'.jpg';
+				ps.innerHTML='<p>'+texts[n]+'<p>';
+				spans.innerHTML='<span>'+spanarr[n]+'<span>';
+				lis[n].style.transform='scale(1.4)';
+				lis[n-1].style.transform='scale(1.0)';
+				
+			}
+			//顺序切换上一张
+			function net(){
+				n--;
+				if(n<0){
+					n=0;
+					order.style.animation='0.3s hint';
+				}
+				imgs.src='img/'+imgs1[n]+'.jpg';
+				ps.innerHTML='<p>'+texts[n]+'<p>';
+				spans.innerHTML='<span>'+spanarr[n]+'<span>';
+				lis[n].style.transform='scale(1.4)';
+				lis[n+1].style.transform='scale(1.0)';
+				
+			}
+			
+			
+			next.onclick=function (){
+				  las();
+			}
+			last.onclick=function (){
+			      net();
+			}
+			
+			
+			var order=document.querySelector('.order');
+			var cycle=document.querySelector('.cycle');
+			order.style.background='red';
+			//循环切换下一张
+			function ord(){
+				n++;
+				if(n>4){
+					n=0;	
+					order.style.animation='0.3s hint';
+				}
+				imgs.src='img/'+imgs1[n]+'.jpg';
+				ps.innerHTML='<p>'+texts[n]+'<p>';
+				spans.innerHTML='<span>'+spanarr[n]+'<span>';
+				
+				for(i=0;i<5;i++){
+					lis[i].style.transform='scale(1.0)';
+				}
+				lis[n].style.transform='scale(1.4)';
+				
+				
+			}
+			//循环切换上一张
+			function cyc(){
+				n--;
+				if(n<0){
+					n=4;	
+				}
+				imgs.src='img/'+imgs1[n]+'.jpg';
+				ps.innerHTML='<p>'+texts[n]+'<p>';
+				spans.innerHTML='<span>'+spanarr[n]+'<span>';
+				for(i=0;i<5;i++){
+					lis[i].style.transform='scale(1.0)';
+				}
+				lis[n].style.transform='scale(1.4)';
+				
+			}
+			//点击顺序切换按钮后,点击上一张和下一张按钮,图片切换方式变为顺序切换
+			order.onclick=function (){
+				next.onclick=function (){
+				  las();
+			}
+			    last.onclick=function (){
+			      net();
+			}
+			    cycle.style.background='';
+			    order.style.background='red';
+			}
+			//点击循环切换按钮后,点击上一张和下一张按钮,图片切换方式变为循环切换
+			cycle.onclick=function (){
+				
+				next.onclick=function (){
+				  ord();
+			}
+			    last.onclick=function (){
+			      cyc();
+			}
+			    order.style.background='';
+			    cycle.style.background='red';
+			}
+			
+		     //点击小圆点
+		    
+		   
+		     for(var i=0;i<lis.length;i++){
+		     	lis[i].index=i;
+		     	lis[i].onclick=function(){
+		     		for(var i=0;i<lis.length;i++){
+		     			imgs.src='';
+				        ps.innerHTML='';
+				        spans.innerHTML='';
+				        lis[i].style.transform='scale(1.0)';
+		     		}
+		     		i=this.index;
+		     		imgs.src='img/'+imgs1[i]+'.jpg';
+				    ps.innerHTML='<p>'+texts[i]+'<p>';
+				    spans.innerHTML='<span>'+spanarr[i]+'<span>';
+				    lis[i].style.transform='scale(1.4)';
+				   
+		     	}
+		     }
+		      
+		      }
+		</script>
+	</body>
+</html>

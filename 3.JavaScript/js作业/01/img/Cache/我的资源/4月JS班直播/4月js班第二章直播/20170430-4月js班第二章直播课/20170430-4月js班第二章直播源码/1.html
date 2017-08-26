@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				font-family: 'Microsoft YaHei',Helvetica; 
+				text-align:center;
+			}
+			#arrayBox{
+				width:500px; 
+				height:80px; 
+				margin-bottom:10px; 
+				padding:10px; 
+				border:1px solid #ccc; 
+				font-size:14px; 
+				margin: 0 auto;
+				text-align: left;
+				word-spacing: 10px;
+				font-family: 'Microsoft YaHei';
+			}
+			#wrap button{
+				display:block; 
+				width:100px; 
+				height:30px; 
+				margin:20px auto 50px auto; 
+				font-size:14px; 
+				border:1px solid #ccc; 
+				color:#666; 
+				background:#fff;
+			}
+			#wrap button:hover{
+				cursor:pointer; 
+				color:#fff; 
+				background:#666; 
+				transition:0.3s all linear;
+			}
+			#wrap strong{
+				font-size: 20px;
+				display: inline-block;
+				width: 190px;
+				text-align: right;
+			}
+			#wrap p{
+				margin: 40px 0;
+			}
+			#wrap input{
+				width:350px; 
+				height:35px; 
+				line-height:35px; 
+				padding:0 10px; 
+				border:1px solid #ccc; 
+				font-size:14px;
+				color: #f00;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<h3>默认数据</h3>
+			<div id="arrayBox">[-27, 'kaivon', 6-'20%', [], -5900, '800km', function(){alert('陈学辉');}, , 'xyz'-90, null, 66, document, [], true, '198px'-30, '49.9元', 5, function(){alert(3);}, Number('abc')]</div>
+			<button id="submit">查看结果</button>
+			<p id="text">
+				<strong>所有数字：</strong>
+				<input type="text" value="数组里的某个数据本身就是数字">
+			</p>
+			<p>
+				<strong>可以转成数字的值：</strong>
+				<input type="text" value="除了数组里的对象类型与布尔值类型"></h4>
+			</p>
+			<p>
+				<strong>转换后的最大数值：</strong>
+				<input type="text" value="把所有数据转成数字以后，找出最大值"></h4>
+			</p>
+			<p>
+				<strong>数组中NaN的位置：</strong>
+				<input type="text" value="每个数据运算后的值为NaN"></h4>
+			</p>
+		</div>
+		<script>
+			/*  1、找到arr里所有的数字(数组里的某个数据本身就是数字)：-27 , -5900 , 5
+			*	2、找到可以转成数字的(除了对象类型与布尔值类型)：-27 , -5900 , 800km , 66 , 49.9元 , 5
+			*	3、把所有数据转成数字以后，找出最大值：66
+			*	4、把NaN(每个数据运算后的值为NaN)所在的位置找出来：2 , 8 , 14 , 18
+			*/
+			var arr=[-27,'kaivon', 6-'20%',[],-5900,'800km',function(){alert('陈学辉');},,'xyz'-90,null,'66',document,[],true,'198px'-30,'49.9元',5,function(){alert(3);},Number('abc')];
+			
+			var submit=document.getElementById("submit");
+			var inputs=document.querySelectorAll("input");
+			var arr3=[];
+			
+			submit.onclick=function(){
+				for(var i=0;i<inputs.length;i++){
+					inputs[i].value='';
+					inputs[i].style.color='#032cec';
+				}
+				
+				for(var i=0;i<arr.length;i++){
+					//1
+					//console.log(typeof arr[i]);
+					
+					if(typeof arr[i]=='number'){
+						if(isNaN(arr[i])==false){
+							//console.log(arr[i]);
+							inputs[0].value+=arr[i]+', ';
+						}
+					}
+					
+					//2
+					/*
+					 * 转数字的方法
+					 * 	Number()
+					 * 	parseInt()
+					 * 	parseFloat()
+					 */
+					
+					if(isNaN(parseInt(arr[i]))==false){
+						//console.log(arr[i]);
+						inputs[1].value+=arr[i]+', ';
+					}
+					
+					
+					//3
+					if(isNaN(arr[i])==false){
+						arr3.push(Number(arr[i]));
+					}
+					
+					
+					//4
+					if(arr[i]!=arr[i]){
+						inputs[3].value+=i+', ';
+					}
+				}
+				
+				
+				//找最大值
+				//[-27,0,-5900,0,66,0,1,5]
+				var max=-Infinity;
+				
+				/*for(var i=0;i<arr3.length;i++){
+					if(arr3[i]>max){
+						max=arr3[i];
+					}
+				}*/
+				
+				/*arr3.sort(function(a,b){
+					return b-a;
+				});
+				max=arr3[0];
+				console.log(arr3);*/
+				
+				max=Math.max.apply(Math,arr3);
+				
+				inputs[2].value=max;
+			};
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,30 @@
+#box{
+	position: relative;
+	top: 25px;
+	eft: 200px;
+	}
+			
+#box div{
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	transition: 0.5s;
+	opacity: 0.2;
+	background: #f00;
+	color: #fff;
+		}
+#box{
+	position: relative;
+	top: 25px;
+	left: 200px;
+	}
+			
+#box div{
+		width: 100px;
+		height: 100px;
+		position: absolute;
+		transition: 0.5s;
+		opacity: 0.2;
+		background: #f00;
+		color: #fff;
+		}
