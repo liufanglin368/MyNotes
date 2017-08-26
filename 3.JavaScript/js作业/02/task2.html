@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				margin: 0;
+				padding: 0;
+				
+			}
+			ul,li,p{
+				padding: 0px;
+				margin: 0px;
+			}
+			li{
+				list-style: none;
+			}
+			a{
+				text-decoration: none;
+			}
+			#demo{
+				width: 1000px;
+				height: 584px;
+				margin: 20px 100px;
+				border: 1px solid #000000;
+			}
+			/*头部*/
+			#demo #top{
+				width: 998px;
+				height: 48px;
+				border: 1px solid #dddddd;
+				background:url(img/ico_1.gif) repeat-x;
+				position: relative;
+			}
+			#demo #top #checkall{
+				width: 18px;
+				height: 18px;
+				position: absolute;
+				top: 16px;
+				left: 10px;
+			}
+			#demo #top li:nth-child(2){
+				position: absolute;
+				top: 15px;
+				left: 44px;
+			}
+			#demo #top li:nth-child(3){
+				position: absolute;
+				top: 15px;
+				left: 188px;
+			}
+			#demo #top li:nth-child(4){
+				position: absolute;
+				top: 15px;
+				left: 494px;
+			}
+			#demo #top li:nth-child(5){
+				position: absolute;
+				top: 15px;
+				left: 690px;
+			}
+			#demo #top li:nth-child(6){
+				position: absolute;
+				top: 15px;
+				right: 80px;
+			}
+			/*中间*/
+			#cart{
+				width: 998;
+				height: 440px;
+				border: 1px solid #DDDDDD;
+				margin: 20px 0px;
+			}
+			#cart .goods{
+				width: 100%;
+				height: 110px;
+				border-bottom: 1px dashed #DDDDDD;
+				position: relative;
+			}
+			#cart .goods:hover{
+				background: #ccffff;
+			}
+			#cart .goods .check{
+				width: 16px;
+				height: 16px;
+				position: absolute;
+				top: 48px;
+				left: 10px;
+			}
+			#cart .goods .img1{
+				width: 80px;
+				height: 80px;
+				position: absolute;
+				top: 16px;
+				left: 48px;
+			}
+			#cart .goods .p1{
+				font-size: 12px;
+				color: #926991;
+				position: absolute;
+				top: 40px;
+				left:188px;
+			}
+			#cart .goods .acolour{
+				font-size: 12px;
+				color: #b7a487;
+				position: absolute;
+				top: 60px;
+				left:188px;
+			}
+			#cart .goods .price{
+				font-size: 14px;
+				color: #d90909;
+				position: absolute;
+				top: 50px;
+				left: 494px;
+			}
+			#cart .goods .subtract{
+				width: 24px;
+				height: 24px;
+				border: 1px solid #DDDDDD;
+				text-align: center;
+				position: absolute;
+				top: 50px;
+				left:650px;
+			}
+			#cart .goods .quantity{
+				width: 60px;
+				height: 24px;
+				border-bottom: 1px solid #DDDDDD;
+				border-top: 1px solid #DDDDDD;
+				text-align: center;
+				position: absolute;
+				top: 50px;
+				left:674px;
+			}
+			#cart .goods .plus{
+				width: 24px;
+				height: 24px;
+				border: 1px solid #DDDDDD;
+				text-align: center;
+				position: absolute;
+				top: 50px;
+				left:734px;
+			}
+			#cart .goods .subtotal{
+				font-size: 14px;
+				color: #d90909;
+				position: absolute;
+				top: 50px;
+				right:70px;
+			}
+			#cart .goods:nth-child(4){
+				border-bottom: none;
+			}
+			
+			/*底部*/
+			#base{
+				width: 998;
+				height: 50px;
+				border: 1px solid #DDDDDD;
+				background:url(img/ico_1.gif) repeat-x;
+				position: relative;
+			}
+			#base .p2{
+				font-size: 14px;
+				position: absolute;
+				top: 24px;
+				left: 12px;
+			}
+			#base .p3{
+				font-size: 14px;
+				position: absolute;
+				top: 12px;
+				right: 10px;
+			}
+			#base .p4{
+				font-size: 12px;
+				color: #baa6a7;
+				position: absolute;
+				top: 36px;
+				right: 10px;
+			}
+			#rental{
+				color: #e01f26;
+			}
+			/*隐藏层*/
+			.colour{
+				width: 370px;
+				height: 140px;
+				border: 1px solid #DDDDDD;
+				display: none;
+				background:#FFFFFF;
+				position:relative;
+				left: 188px;
+				top:84px;
+				z-index: 1;
+			}
+			.colour .bcolour{
+				font-size: 12px;
+				color: #b7a487;
+				position: absolute;
+				top: 40px;
+				left: 35px;
+			}
+			.colour .classify ul{
+				width: 300px;
+				height: 50px;
+				position: absolute;
+				top: 20px;
+				left: 74px;
+				
+			}
+			.colour .classify ul li{
+				width: 50px;
+				height: 50px;
+				border: 1px solid #DDDDDD;
+				background: #f4f4f4;
+				margin-right: 10px;
+				float: left;
+			}
+		    .img2{
+				width: 50px;
+				height: 50px;
+				border: 0px;
+			}
+			.img2:hover{
+				border: 1px solid #008000;
+			}
+			.colour .sure{
+				width: 100px;
+				height: 28px;
+				background: #b4a078;
+				color: #FFFFFF;
+				font-size: 12px;
+				line-height: 28px;
+				text-align: center;
+				position: absolute;
+				top:90px;
+				left: 74px;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				/*
+				*1、每一行内容鼠标放上去背景变化（可以用hover）
+	            *2、图片前面的input框选中后，当前行背景为hover的背景，同时最下面“已选”括号里的数字要与选中的数量一致
+	            *3、当所有的input框都选中后，最上面的“全选”也会被选中。如果有一个商品没选中那全选不能被选中
+	            *4、点击“全选”按钮，所有商品都被选中，反之一样
+	            *5、数量的加减功能在选择的时候，“小计”会变，下面“应付总额”（所有小计的价格相加）也会变
+	            *6、下面“最贵的商品”需要算出已选择的商品里单价最贵的那个
+	            *7、“颜色”点击后弹出一个浮层，其里面图片有hover状态，有click状态。点击某张图片后，图片前面的文字要变化。点击确定按钮后大图变为对应选择的图片
+				 */
+				
+				var goods=document.querySelectorAll(".goods");     //中间四个商品格子
+				
+				//1.每一行内容鼠标放上去背景变化
+				/*for(var i=0;i<goods.length;i++){
+					goods[i].onmouseover=function(){
+						for(var i=0;i<goods.length;i++){
+							goods[i].style.background="";
+						}
+						this.style.background='#ccffff';
+					}
+					goods[i].onmouseout=function(){
+						this.style.background='';
+					}
+				}*/
+				
+				//2、图片前面的input框选中后，当前行背景为hover的背景，同时最下面“已选”括号里的数字要与选中的数量一致
+				var check=document.querySelectorAll(".check");
+				var selected=document.getElementById("selected");
+				var checkall=document.getElementById("checkall");
+				
+				var n=0;
+				for(var i=0;i<check.length;i++){
+					check[i].index=i;
+					check[i].onclick=function(){
+						if(this.checked==true){
+						goods[this.index].style.background="#ccffff";
+						this.checked="checked";
+						n++;
+						selected.innerHTML=n;
+						}else{
+						goods[this.index].style.background="";
+						this.checked="";
+						n--;
+						selected.innerHTML=n;
+						}
+						
+						//3、当所有的input框都选中后，最上面的“全选”也会被选中。如果有一个商品没选中那全选不能被选中
+						if(n==4){
+					        checkall.checked="checked"; 
+				         }else{
+				         	checkall.checked="";
+				         }
+					}
+				}	
+					//4、点击“全选”按钮，所有商品都被选中，反之一样
+					checkall.onclick=function(){
+						for(var i=0;i<check.length;i++){
+							check[i].checked="checked";
+							goods[i].style.background="#ccffff";
+							n=4;
+							selected.innerHTML=n;
+						}
+						if(checkall.checked==""){
+							for(var i=0;i<check.length;i++){
+							    check[i].checked="";
+							    goods[i].style.background="";
+							    n=0;
+							    selected.innerHTML=n;
+						    }
+						}
+					}
+				
+				//*5、数量的加减功能在选择的时候，“小计”会变，下面“应付总额”（所有小计的价格相加）也会变
+				var price=document.querySelectorAll(".price");  //单价
+				var subtract=document.querySelectorAll(".subtract");
+				var quantity=document.querySelectorAll(".quantity");  //数量
+				var plus=document.querySelectorAll(".plus");
+				var subtotal=document.querySelectorAll(".subtotal");   //小计
+				var rental=document.getElementById("rental");
+				
+				for(var i=0;i<subtract.length;i++){
+					subtract[i].index=i;
+					subtract[i].onclick=function(){
+						n=parseInt(quantity[this.index].innerHTML);
+						n--;
+						if(n<0){
+							n=0;
+						}
+						quantity[this.index].innerHTML=n;
+						subtotal[this.index].innerHTML=n*parseFloat(price[this.index].innerHTML)+'.00';
+						
+						
+						
+						
+						for(var i=0;i<subtotal.length;i++){
+							rental.innerHTML=parseFloat(subtotal[0].innerHTML)+
+							                 parseFloat(subtotal[1].innerHTML)+
+							                 parseFloat(subtotal[2].innerHTML)+
+							                 parseFloat(subtotal[3].innerHTML)+".00元";
+						}
+						/*
+						 n1=parseFloat(subtotal[0].innerHTML)/parseInt(quantity[0].innerHTML);
+				         n2=parseFloat(subtotal[1].innerHTML)/parseInt(quantity[1].innerHTML);
+				         n3=parseFloat(subtotal[2].innerHTML)/parseInt(quantity[2].innerHTML);
+				         n4=parseFloat(subtotal[3].innerHTML)/parseInt(quantity[3].innerHTML);
+				         
+				         arr=[n1,n2,n3,n4];
+				         console.log(n1);
+				        for(var i=0;i<arr.length;i++){
+				         	if(arr[i]>max){
+				         		max=arr[i];
+				         		dear.innerHTML=max+'.00';
+				         		
+				         	}
+				         }
+				        
+				       
+				       if(parseFloat(quantity[this.index].innerHTML)==0){
+							for(var i=0;i<arr.length;i++){
+				         	if(arr[i]>max){
+				         		max=arr[i];
+				         		dear.innerHTML=max+'.00';
+				         		
+				         	}
+				         }
+						}
+				        */
+					}
+					plus[i].index=i;
+					plus[i].onclick=function(){
+							n=parseInt(quantity[this.index].innerHTML);
+							n++;
+							quantity[this.index].innerHTML=n;
+							subtotal[this.index].innerHTML=n*parseFloat(price[this.index].innerHTML)+'.00';
+						
+						for(var i=0;i<subtotal.length;i++){
+							rental.innerHTML=parseFloat(subtotal[0].innerHTML)+
+							                 parseFloat(subtotal[1].innerHTML)+
+							                 parseFloat(subtotal[2].innerHTML)+
+							                 parseFloat(subtotal[3].innerHTML)+".00元";
+						}
+						
+						 n1=parseFloat(subtotal[0].innerHTML)/parseInt(quantity[0].innerHTML);
+				         n2=parseFloat(subtotal[1].innerHTML)/parseInt(quantity[1].innerHTML);
+				         n3=parseFloat(subtotal[2].innerHTML)/parseInt(quantity[2].innerHTML);
+				         n4=parseFloat(subtotal[3].innerHTML)/parseInt(quantity[3].innerHTML);
+				         arr=[n1,n2,n3,n4];
+				         
+				        for(var i=0;i<arr.length;i++){
+				         	if(arr[i]>max){
+				         		max=arr[i]
+				         		dear.innerHTML=max+'.00';
+				         	}
+				         	
+				         }
+				        
+					}
+				}
+				
+				 //*6、下面“最贵的商品”需要算出已选择的商品里单价最贵的那个 
+				var dear=document.getElementById("dear");
+				var max=-Infinity;
+				
+				
+				
+				
+				
+				/*
+				 * 7、“颜色”点击后弹出一个浮层，其里面图片有hover状态，有click状态。
+				 *点击某张图片后，图片前面的文字要变化。
+				 *点击确定按钮后大图变为对应选择的图片
+				 */
+				
+				var acolour=document.querySelectorAll(".acolour");
+				var colour=document.querySelectorAll(".colour");
+				var img2=document.querySelectorAll(".img2");
+				var bcolour=document.querySelectorAll(".bcolour");
+			    var sure=document.querySelectorAll(".sure");
+			    var img1=document.querySelectorAll(".img1");
+				var qq;
+				for(var i=0;i<acolour.length;i++){
+					acolour[i].index=i;
+					acolour[i].onclick=function(){
+						colour[this.index].style.display="block";
+						qq=bcolour[this.index];
+					}
+					
+				}
+				
+				for(var i=0;i<img2.length;i++){
+					img2[i].index=i;
+					img2[i].onclick=function(){
+						for(var i=0;i<img2.length;i++){
+							img2[i].style.border="";
+						}
+						this.style.border="1px solid #008000";
+						qq.innerHTML=this.alt;
+						
+						var ee=this;
+						for(var i=0;i<sure.length;i++){
+							sure[i].index=i;
+							sure[i].onclick=function(){
+								img1[this.index].src=ee.src;
+								colour[this.index].style.display="none";
+								acolour[this.index].innerHTML=ee.alt;
+							}
+						}
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="demo">
+			<div id="top">
+				<ul>
+					<li><input type="checkbox" id="checkall"   /></li>
+					<li>全选</li>
+					<li>商品信息</li>
+					<li>单价</li>
+					<li>数量</li>
+					<li>小计</li>
+				</ul>
+			</div>
+			
+			<div id="cart">
+				<ul class="shelf">
+					<li class="goods">
+						<ul>
+						    <li><input type="checkbox" class="check" ; /></li>
+						    <li><img src="img/ico1.jpg" class="img1"/></li>
+						    <li>
+						    	<p class="p1">商品名</p>
+						    	<a href="#" class="acolour">银色+</a>
+						    	<div class="colour">
+						    		<ul>
+						    			<li class="bcolour">银色</li>
+						    			<li>
+						    				<div class="classify">
+						    				    <ul>
+						    				    	<li><a href="#"><img src="img/ico1.jpg" alt="银色" class="img2"/></a></li>
+						    			            <li><a href="#"><img src="img/ico2.jpg" alt="灰色" class="img2"/></a></li>
+						    			            <li><a href="#"><img src="img/ico3.jpg" alt="黑色" class="img2"/></a></li>
+						    			            <li><a href="#"><img src="img/ico4.jpg" alt="深蓝" class="img2"/></a></li>
+						    				    </ul>
+						    			    </div>
+						    			</li>
+						    			
+						    			<a href="#" class="sure">确定</a>
+						    		</ul>
+						    	</div>
+						    </li>
+						    <li>
+						    	<span class="price">21.00元</span></li>
+						    <li><a href="#" class="subtract">-</a><a href="#" class="quantity">0</a><a href="#"class=" plus">+</a></li>
+						    <li><span class="subtotal">00.00元</span></li>
+					     </ul>
+					</li>
+					
+					<li class="goods">
+						<ul>
+						    <li><input type="checkbox" class="check"  /></li>
+						    <li><img src="img/ico1.jpg" class="img1"/></li>
+						    <li>
+						    	<p class="p1">商品名</p>
+						    	<a href="#" class="acolour">银色+</a>
+						    	<div class="colour">
+						    		<ul>
+						    			<li class="bcolour">粉色</li>
+						    			<li>
+						    				<div class="classify">
+						    				    <ul>
+						    				    	<li><a href="#"><img src="img/ico1.jpg" alt="银色" class="img2"/></a></li>
+						    			            <li><a href="#"><img src="img/ico2.jpg" alt="灰色"class="img2"/></a></li>
+						    			            <li><a href="#"><img src="img/ico3.jpg" alt="黑色" class="img2"/></a></li>
+						    			            <li><a href="#"><img src="img/ico4.jpg" alt="深蓝" class="img2"/></a></li>
+						    				    </ul>
+						    			    </div>
+						    			</li>
+						    			<a href="#" class="sure">确定</a>
+						    		</ul>
+						    	</div>
+						    </li>
+						    <li>
+						    	<span class="price">31.00元</span></li>
+						    <li><a href="#" class="subtract">-</a><a href="#" class="quantity">0</a><a href="#"class=" plus">+</a></li>
+						    <li><span class="subtotal">00.00元</span></li>
+					     </ul>
+					</li>
+					<li class="goods">
+						<ul>
+						    <li><input type="checkbox" class="check"  /></li>
+						    <li><img src="img/ico1.jpg" class="img1"/></li>
+						    <li>
+						    	<p class="p1">商品名</p>
+						    	<a href="#" class="acolour">银色+</a>
+						    	<div class="colour">
+						    		<ul>
+						    			<li class="bcolour">粉色</li>
+						    			<li>
+						    				<div class="classify">
+						    				    <ul>
+						    				    	<li><a href="#"><img src="img/ico1.jpg" alt="银色" class="img2"/></a></li>
+						    			            <li><a href="#"><img src="img/ico2.jpg" alt="灰色" class="img2"/></a></li>
+						    			            <li><a href="#"><img src="img/ico3.jpg" alt="黑色" class="img2"/></a></li>
+						    			            <li><a href="#"><img src="img/ico4.jpg" alt="深蓝" class="img2"/></a></li>
+						    				    </ul>
+						    			    </div>
+						    			</li>
+						    			<a href="#" class="sure">确定</a>
+						    		</ul>
+						    	</div>
+						    </li>
+						    <li>
+						    	<span class="price">41.00元</span></li>
+						    <li><a href="#" class="subtract">-</a><a href="#" class="quantity">0</a><a href="#"class=" plus">+</a></li>
+						    <li><span class="subtotal">00.00元</span></li>
+					     </ul>
+					</li>
+					<li class="goods">
+						<ul>
+						    <li><input type="checkbox" class="check" /></li>
+						    <li><img src="img/ico1.jpg" class="img1"/></li>
+						    <li>
+						    	<p class="p1">商品名</p>
+						    	<a href="#" class="acolour">银色+</a>
+						    	<div class="colour">
+						    		<ul>
+						    			<li class="bcolour">粉色</li>
+						    			<li>
+						    				<div class="classify">
+						    				    <ul>
+						    				    	<li><a href="#"><img src="img/ico1.jpg" alt="银色" class="img2"/></a></li>
+						    			            <li><a href="#"><img src="img/ico2.jpg" alt="灰色" class="img2"/></a></li>
+						    			            <li><a href="#"><img src="img/ico3.jpg" alt="黑色" class="img2"/></a></li>
+						    			            <li><a href="#"><img src="img/ico4.jpg" alt="深蓝" class="img2"/></a></li>
+						    				    </ul>
+						    			    </div>
+						    			</li>
+						    			<a href="#" class="sure">确定</a>
+						    		</ul>
+						    	</div>
+						    </li>
+						    <li>
+						    	<span class="price">51.00元</span></li>
+						    <li><a href="#" class="subtract">-</a><a href="#" class="quantity">0</a><a href="#"class=" plus">+</a></li>
+						    <li><span class="subtotal">00.00元</span></li>
+					     </ul>
+					</li>
+					
+				</ul>
+			</div>
+			
+			<div id="base">
+				<p class="p2">已选( <span id="selected">0</span> )</p>
+				<p class="p3">应付总额: <span id="rental">0.00元</span> </p>
+				<p class="p4">最贵的商品为:<span id="dear">0.00</span>元 </p>
+				
+			</div>
+		</div>
+	</body>
+</html>
