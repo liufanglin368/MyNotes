@@ -29,8 +29,10 @@ window.onload=function(){
 			}else{
 				if(getComputedStyle(start).width==310+'px'){
 					start.style.width=48+'px';
+					start.style.background='#141a20';
 				}else{
 					start.style.width=310+'px';
+					start.style.background='#1f1f1f';
 					
 				}
 			}
@@ -95,8 +97,6 @@ window.onload=function(){
 			}
 		}
 		
-	
-			
 		//最左边几个功能键的hover功能
 		var hover=document.querySelector(".hover");
 		hove();
@@ -126,5 +126,7 @@ window.onload=function(){
 			}
 		}
 		
+		
+		//中间应用栏的功能
 };
 	
