@@ -16,11 +16,17 @@ li{
 a{
 	text-decoration: none;
 }
+h4{
+	margin: 0;
+}
+p{
+	margin: 0;
+}
 /*
  * 头部
  */
 .active{
-	margin: 0px 439px 0px 447px;
+	margin: 0px 0px 0px 165px;
 }
 body{
 	background: url(../img/img_bg.png);
@@ -56,4 +62,87 @@ body{
 }
 .top ul li a{
 	color: #fff;
+}
+
+/*
+ * 主板块
+ */
+.zhou1{
+	width: 1034px;
+	height: 14px;
+	background: url(../img/img_03.gif);
+}
+section{
+	width: 963px;
+	height: 1002px;
+	border-top: 27px solid #e5e5e5;
+	border-bottom: 27px solid #e5e5e5;
+	border-left: 21px solid #e5e5e5;
+	border-right: 21px solid #e5e5e5;
+	margin: 0 14px;
+	background: #ececec;
+}
+section .secleft{
+	width: 595px;
+	height: 1010px;
+	padding: 39px 0px 25px 23px;
+}
+section .secleft ul li{
+	position: relative;
+}
+section .secleft h4{
+	width: 100%;
+	height: 26px;
+	font-size: 16px;
+	border-bottom: 1px dashed black;
+}
+section .secleft h4 img{
+	float: right;
+}
+.txtimg{
+	width: 146px;
+	height: 116px;
+	margin: 12px 0 24px 8px;
+	display: inline-block;
+}
+.txt{
+	width: 421px;
+	height: 64px;
+	display: inline-block;
+}
+.txt p{
+	font-size: 12px;
+	line-height:22px;
+	color: #767676;
+	position: absolute;
+	top:60px;
+	left:159px;
+}
+.txt p a{
+	position: absolute;
+	top:78px;
+	left: 369px;
+	color: #767676;
+}
+.time{
+	width: 575px;
+	height: 23px;
+	background: #737673;
+	margin:0px 6px 37px 6px;
+}
+.time li{
+	float: left;
+	font-size: 12px;
+	color: #FFFFFF;
+	letter-spacing:1px;
+	line-height: 23px;
+	margin-left: 45px;
+}
+.time li:nth-child(1){
+	margin-left: 10px;
+}
+.zhou2{
+	width: 1034px;
+	height: 14px;
+	background: url(../img/img_06.gif);
 }
