@@ -13,7 +13,6 @@ window.onload=function(){
 			};
 			popups1.style.display='none';
 			start.style.width=48+'px';
-			
 		};
 		var start=document.querySelector(".WindPopupLeft .start");//开始按钮
 		var starts=document.querySelectorAll(".WindPopupLeft li");//电源 设置  用户按钮
@@ -27,13 +26,13 @@ window.onload=function(){
 			if(popups1.style.display=='block'){
 				popups1.style.display='none';
 			}else{
+				
 				if(getComputedStyle(start).width==310+'px'){
 					start.style.width=48+'px';
 					start.style.background='#141a20';
 				}else{
 					start.style.width=310+'px';
 					start.style.background='#1f1f1f';
-					
 				}
 			}
 			hover.style.display='none';
@@ -128,5 +127,18 @@ window.onload=function(){
 		
 		
 		//中间应用栏的功能
+		var allapp=document.querySelector(".allapp");  		  //整体区域
+		var allappleft=document.querySelector(".allappleft"); //左侧外层div
+		var appul=document.querySelector(".appul");           //左侧div里的ul
+		var sliding=document.querySelector(".sliding");       //右侧整体div
+		var sliding1=document.querySelector(".sliding1");	  //可滑动的区域
+		var sliding2=document.querySelector(".sliding2");	  //滑块
+		
+		//鼠标拖动滑块事件
+		sliding2.onmousedown=function(ev){
+			sliding2Y=ev.clientY-sliding2.offsetTop;
+			
+		}
+		
 };
 	
