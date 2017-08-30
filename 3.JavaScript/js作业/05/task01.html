@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#demo{
+				width: 850px;
+				height: 270px;
+				border: 14px solid #b1a7af;
+				background: #f0eef0;
+			}
+			#demo ul{
+				margin: 0px;
+				padding: 0px;
+				width: 850px;
+				display: inline-block;
+				margin-top: 29px;
+				border-bottom: 1px dashed #fad8e6;
+			}
+			#demo ul li{
+				list-style: none;
+				float: left;
+				display: inline-block;
+				margin-right: 10px;
+				font-size: 14px;
+				position: relative;
+			}
+			#demo ul p{
+				width: 70px;
+				margin: 0px;
+				color: #cccccc;
+				float: left;
+				display: inline-block;
+				margin-left: 16px;
+			}
+			a{
+				text-decoration: none;
+				color: black;
+			}
+			.jia{
+				background: #ebe4e4;
+				margin-top: 20px;
+				border: none;
+			}
+			p{
+				width: 70px;
+				margin: 0px;
+				color: #cccccc;
+				float: left;
+				display: inline-block;
+				margin-left: 16px;
+			}
+			.jia span{
+				padding: 0px 0px 0px 20px;
+				margin-left: 4px;
+				border: 1px solid #B1A7AF;
+				border-right:none;
+				color: black;
+			}
+			.jia span a{
+				margin-left: 20px;
+				background: #FF0000;
+				color: #FFFFFF;
+				padding: 0 10px;
+				border-right: 1px solid #B1A7AF;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="demo">
+			<ul>
+				<p>品牌:</p>
+				<li><a href="javascript:void(0)">惠普</a></li>
+				<li><a href="#">联想</a></li>
+				<li><a href="#">戴尔</a></li>
+				<li><a href="#">三星</a></li>
+				<li><a href="#">宏基</a></li>
+				<li><a href="#">苹果</a></li>
+				<li><a href="#">神州</a></li>
+				<li><a href="#">华硕</a></li>
+				<li><a href="#">方正</a></li>
+			</ul>
+			<ul>
+				<p>价格:</p>
+				<li><a href="#">3000-3999</a></li>
+				<li><a href="#">4000-4999</a></li>
+				<li><a href="#">5000-5900</a></li>
+				<li><a href="#">6000-6999</a></li>
+				<li><a href="#">7000-7999</a></li>
+				<li><a href="#">8000-8999</a></li>
+				<li><a href="#">9000-9999</a></li>
+				<li><a href="#">10000以上</a></li>
+			</ul>
+			<ul>
+				<p>尺寸:</p>
+				<li><a href="javascript:void(0)">8.9英寸以及以下</a></li>
+				<li><a href="#">11英寸</a></li>
+				<li><a href="#">12英寸</a></li>
+				<li><a href="#">13英寸</a></li>
+				<li><a href="#">14英寸</a></li>
+				<li><a href="#">15英寸</a></li>
+				<li><a href="#">16英寸</a></li>
+			</ul>
+			<ul>
+				<p>显卡:</p>
+				<li><a href="javascript:void(0)">独立显卡</a></li>
+				<li><a href="#">集成显卡</a></li>
+				<li><a href="#">核心显卡</a></li>
+			</ul>
+			<div class="jia">
+				<p>已选条件</p>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		/*
+		 * 1、点击每一个分类里的选项，字体颜色要变。“已选条件”里，如果没有当前分类的标签话，创建一个。如果有的话，只用改它的文字内容就行
+			2、点击“X”关闭标签，同时对应的分类里选中的颜色要去掉
+		 */
+		var uls=document.querySelectorAll("#demo ul");
+		var jia=document.querySelector(".jia");
+		
+		for(var i=0;i<uls.length;i++){
+			hang(i);
+		}
+		function hang(n){
+			var lis=uls[n].querySelectorAll("li");
+			
+			for(var i=0;i<lis.length;i++){
+				
+				lis[i].onclick=function(){
+					a=this.parentNode;	 //a是当前li的父节点UL
+					b=this.parentNode.querySelectorAll(":not(p)");//获取当前li点击后当前的ul里面的内容
+					for(var i=0;i<b.length;i++){
+						b[i].style.color='black';
+					}
+					c=this.firstElementChild; //当前点击下的a标签
+					c.style.color='red';
+					
+					
+					cc=jia.querySelectorAll('span');
+					if(cc.length==0){
+						for(var i=0;i<4;i++){
+							a1=document.createElement('span');//创建4个apan标签
+							jia.appendChild(a1);			//把4个span标签放入div里
+							cc=jia.querySelectorAll('span');//获取所有span
+							a2=document.createElement('a');//创建了一个4个a标签
+							//a2.innerHTML='x';             //a标签的文字x
+							//a3=cc[i].querySelectorAll("a");
+							cc[i].appendChild(a2)
+						}
+						cc=jia.querySelectorAll('span');
+						cc[n].innerHTML=c.innerHTML+'<a href="#">'+'x'+'</a>';
+						cc[n].style.display='inline-block';
+						
+					}else{
+						cc[n].innerHTML=c.innerHTML+'<a href="#">'+'x'+'</a>';
+						cc[n].style.display='inline-block';
+					}
+					
+					for(var i=0;i<cc.length;i++){
+						if(cc[i].innerHTML=='<a></a>'){
+							cc[i].style.display='none';
+						}
+					}	
+					
+				
+				
+				 var a8=jia.querySelectorAll("a");
+					
+				for(var i=0;i<a8.length;i++){
+					a8[i].index=i
+					a8[i].onclick=function(){
+						x1=this.parentNode;
+						x2=x1.parentNode;
+						x1.style.display='none';
+						ss=uls[this.index].querySelectorAll(":not(li)");
+						for(var i=0;i<ss.length;i++){
+							ss[i].style.color='black'
+						}
+						ssr=uls[this.index].firstElementChild;
+						ssr.style.color="#cccccc";
+						
+					}
+					
+				}
+				
+				
+				
+				
+				
+				
+				
+				/*	a1=document.createElement('span');
+					a2=document.createElement('span');
+					a3=document.createElement('span');
+					a4=document.createElement('span');
+					jia.appendChild(a1);
+					jia.appendChild(a2);
+					jia.appendChild(a3);
+					jia.appendChild(a4);
+					x=jia.querySelectorAll("span");
+					console.log(x)*/
+					/*e=jia.getElementsByTagName("span");  //获取创建的标签
+					console.log(e)
+					
+					if(e==null){
+						d=document.createElement('span');//创建span标签
+						jia.appendChild(d);			//把创建的标签放到div里
+						e=jia.querySelector("span");
+						e.innerHTML=c.innerHTML;
+					}else{
+						e.innerHTML=c.innerHTML;
+					}*/
+					
+					
+					
+					
+				}
+			}
+		}
+		
+	</script>
+</html>
