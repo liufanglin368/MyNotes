@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				background:url(img/win10.jpg) no-repeat;
+				background-size: 100% 640px;
+			}
+			#box{
+				width: 110px;
+				height: 115px;
+				background: url(img/mla-1.gif);
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+	<script type="text/javascript">
+		var box=document.getElementById("box");
+		var step=5;  //走的距离
+		var t2;//定时器名
+		
+		//键盘状态
+		var key={
+			37:false,
+			38:false,
+			39:false,
+			40:false
+		}
+		
+		//键盘按下抬起
+		function cc(){
+			document.onkeydown=function(ev){
+			//左37 上38 右39  下40
+				key[ev.keyCode]=true;
+				tm(event);
+			}
+			document.onkeyup=function(ev){
+			//左37 上38 右39  下40
+				key[ev.keyCode]=false;
+				tm();
+			}
+		};
+		
+		cc();
+		//监听事件
+		t2=setInterval(tm,16);	
+			
+			//判断哪个键
+			function tm(){
+				
+				if(key[37]){
+					box.style.left=box.offsetLeft-step+'px';
+					box.style.background='url(img/mla-4.gif)';
+				}
+			
+				if(key[38]){
+					box.style.top=box.offsetTop-step+'px';
+					box.style.background='url(img/mla-3.gif)';
+				}
+			
+				if(key[39]){
+					box.style.left=box.offsetLeft+step+'px';
+					box.style.background='url(img/mla-2.gif)';
+				}
+			
+				if(key[40]){
+					box.style.top=box.offsetTop+step+'px';
+					box.style.background='url(img/mla-3.gif)';
+				}
+			}	
+		
+		
+	</script>
+</html>
+

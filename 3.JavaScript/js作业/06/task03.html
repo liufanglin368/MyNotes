@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#text{
+				width: 500px;
+				height: 40px;
+				margin: 50px 400px 0px;
+			}
+			ul{
+				width: 502px;
+				border: 1px solid #333333;
+				margin: 0px 400px;
+				padding: 0;
+				display: none;
+			}
+			ul li{
+				list-style: none;
+				width: 100%;
+				height: 40px;
+				margin-top:4px;
+				background: #ccc;
+			}
+			li:nth-child(1){
+				margin-top:0px;
+			}
+			li:hover{
+				background: brown;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+		    <input type="text" id="text" value />
+		    <ul id="ul1"></ul>
+	 	</div>
+	</body>
+	<script type="text/javascript">
+		var input=document.querySelector("input");
+		var div=document.querySelector("div");
+		var ul=document.getElementById("ul1");
+		var lis=document.getElementsByTagName("li");
+		var arr=['《第七个读者》','《心理罪 画像》','《心理罪 教化场》','《心理罪 暗河》','《心理罪 城市之光》','《地球往事》','《黑暗森林》','《死神永生》','《乡村教师》','《地球大炮》'];
+		
+		//生成元素
+		function sc(ys){
+			ul.innerHTML='';
+			for(var i=0;i<ys.length;i++){
+				var li=document.createElement("li");
+				li.innerHTML=ys[i];
+				ul.appendChild(li);
+			}
+		}
+		
+		sc(arr);
+		//1、点击输入框列表显示，点击页面其它地方列表隐藏
+		input.onclick=function(ev){
+			//this.value='';
+			ul.style.display='block';
+			ev.cancelBubble=true;//阻止事件冒泡
+			
+		}
+		document.onclick=function(){
+			ul.style.display='none';
+		}
+		//2、鼠标移入列表项里背景色要变
+		
+		
+		
+		/*
+		 * 3、鼠标点击某个列表项，需要在选中与未选中之间切换。并且所有列表只能同时选中一个（一个选中，其它就取消选中）
+				选中状态：
+					1、有背景色
+			2、input里内容为选中的书名
+				未选中状态：
+					1、无背景色
+					2、input里内容为空
+		 */
+		var n=0;
+		for(var i=0;i<lis.length;i++){
+			lis[i].index=i
+			lis[i].onclick=function(ev){
+				n=this.index;
+				if(this.style.background==''){
+					for(var i=0;i<lis.length;i++){
+						lis[i].style.background=''
+					}
+					this.style.background='red';
+					input.value=this.innerHTML;
+					
+				}else{
+					this.style.background='';
+					input.value='';
+				}
+				ev.cancelBubble=true;
+				input.focus();
+			}
+		}
+		
+		/*
+		 * 4、回车键盘功能
+		 *		1、input框里按下回车，列表需要在显示与隐藏之间切换
+		 *
+		 * 5、上下方向键盘功能
+		 *		1、按上下方向键，选中的列表项会跟着方向键盘走，按下键，选中下一个。按上键，选中上一个。并且首尾要衔接（也就是上下键一直能按）
+		 *		2、在按上下方向键选中列表项的时候，再按下回车键，列表项消失，input框里的内容为选中的内容
+		 */
+		
+		input.onkeydown=function(ev){
+			if(ev.keyCode==13){
+				ul.style.display=='none'?ul.style.display="block":ul.style.display='none';
+				
+			}
+			
+		if(ul.style.display=="block"){
+			if(ev.keyCode==38){
+				n--;
+				if(n==-1){
+					n=lis.length-1;           /////////////////////
+				}
+				
+				for(var i=0;i<lis.length;i++){
+					lis[i].style.background='';
+				}
+				lis[n].style.background='red';
+				input.value=lis[n].innerHTML;
+				input.focus();
+			}
+			
+			if(ev.keyCode==40){
+				n++;
+				if(n>=lis.length){
+					n=0;
+				}
+				
+				for(var i=0;i<lis.length;i++){
+					lis[i].style.background='';
+				}
+				lis[n].style.background='red';
+				input.value=lis[n].innerHTML;
+				input.focus();
+			}
+		}
+		}
+		
+		
+		
+		/*
+		 * 6、搜索功能
+		 *在input框里输入文字，下面列表只显示搜索到的列表，同时按Backspace键也是一样的功能
+		 */
+		input.oninput=function(ev){
+			
+			
+			var str=this.value;
+			var newli=[];
+			for(var i=0;i<arr.length;i++){
+				//lis[i].style.display='none';
+				if(arr[i].indexOf(str)!=-1){
+					newli.push(arr[i]);
+					
+				}
+			}
+			sc(newli);
+			ul.style.display='block';
+		}
+		
+	</script>
+</html>

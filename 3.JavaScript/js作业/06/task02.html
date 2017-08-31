@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#demo{
+				width: 320px;
+				height: 480px;
+				border: 10px solid blueviolet;
+				margin: 100px auto 0px;
+				overflow: hidden;
+				position: relative;
+				
+			}
+			ul{
+				margin: 0;
+				padding: 0;
+				position: absolute;
+				left: 0;
+				top: 0;
+				font-size: 0;
+			}
+			li{
+				width:320px ;
+				height: 480px;
+				list-style: none;
+				margin: 0px;
+				display: inline-block;
+			}
+		</style>
+		<script src="js/move.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="demo">
+			<ul>
+				<li><img src="img/img_1.jpg"/></li>
+				<li><img src="img/img_2.jpg"/></li>
+				<li><img src="img/img_3.jpg"/></li>
+				<li><img src="img/img_4.jpg"/></li>
+				<li><img src="img/img_5.jpg"/></li>
+				<li><img src="img/img_6.jpg"/></li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var demo=document.getElementById("demo");
+		var lis=document.getElementsByTagName("li");
+		var ul=document.querySelector("ul");
+		var w=lis[0].offsetWidth;
+	
+		var min=true;//开关
+		document.onkeydown=function(ev){
+				if(!min){
+					return;
+				}
+				min=false;
+				switch(ev.keyCode){
+				case 37:
+				       ul.style.width=w*lis.length+'px';
+				       move(ul,{left:-w},400,'linear',function(){
+								 ul.appendChild(lis[0]);
+				                 ul.style.left=0;
+				                 min=true;
+							});
+				       break;
+				case 38:
+				       ul.style.width=w+'px';
+				       move(ul,{top:-w},400,'linear',function(){
+								 ul.appendChild(lis[0]);
+				                 ul.style.top=0;
+				                 min=true;
+							});
+				       break;
+				       
+				case 39:
+				       	ul.style.width=w*lis.length+'px';
+						ul.insertBefore(lis[lis.length-1],lis[0]);
+						ul.style.left=-w+'px';
+						move(ul,{left:0},400,'linear',function(){
+								min=true;
+							});
+						break;
+				       
+				case 40:
+				      	ul.style.width=w+'px';
+						ul.insertBefore(lis[lis.length-1],lis[0]);
+						ul.style.top=-w+'px';
+						move(ul,{top:0},400,'linear',function(){
+								min=true;
+							});
+							break;
+			}
+			
+		}
+		
+		
+		
+	</script>
+</html>
