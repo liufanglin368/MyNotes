@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#demo{
+				width: 280px;
+				height: 300px;
+				border: 1px solid #000;
+				position: fixed;
+			}
+			h4{
+				width: 100%;
+				height: 20px;
+				background: #efefef;
+				margin: 0;
+			}
+			h4 .ck{
+				
+				color: #000000;
+				text-decoration: none;
+				float: right;
+			}
+			.big{
+				width: 280px;
+				height: 200px;
+				position: relative;
+				overflow: hidden;
+			}
+			.big ul{
+				width:280px;
+				height: 200px;
+				padding: 0;
+				margin: 0;
+				margin-top: 20px;
+				position: absolute;
+				left: 0px;
+			}
+			.big ul li{
+				list-style: none;
+				margin: 0;
+				float: left;
+				position: relative;
+			}
+			p{
+				width: 280px;
+				height: 50px;
+				background: #000000;
+				opacity: 0.7;
+				margin: 0px;
+				line-height: 50px;
+				font-size: 20px;
+				font-weight: 800;
+				color: #fff;
+				display: inline-block;
+				position: absolute;
+				left: 0;
+				bottom: 25px;
+				text-indent: 1em;
+			}
+			.sml{
+				width: 100%;
+				height: 50px;
+				margin-top: 10px;
+				position: relative;
+				overflow: hidden;
+			}
+			.sml ul{
+				width: 100%;
+				height: 50px;
+				padding: 0;
+				margin: 0px;
+				position: absolute;
+				left: 0px;
+			}
+			.sml ul li{
+				list-style: none;
+				width: 56px;
+				height: 50px;
+				float: left;
+			}
+			.sml ul li img{
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+		<script src="js/move.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload=function(){
+				var big=document.querySelector(".big");
+				var bul=document.querySelector(".big ul");
+				var bli=bul.getElementsByTagName("li");
+				var t;
+				var sml=document.querySelector(".sml");
+				var sul=document.querySelector(".sml ul");
+				var sli=sul.getElementsByTagName("li");
+				//大轮播图
+				var ulw=parseFloat(getComputedStyle(bli[0]).width)*bli.length;
+				bul.style.width=ulw+'px';
+				//小轮播图
+				var ul1=parseFloat(getComputedStyle(sul).width)+parseFloat(getComputedStyle(sli[0]).width)*3;
+				sul.style.width=ul1+2+'px';
+				t=setInterval(top,3000);
+				var n=0
+				function top(){
+					//bul.insertBefore(bli[bli.length-1],bli[0]);
+					move(bul,{left:-bli[0].offsetWidth},1000,'linear',function(){
+						
+						bul.appendChild(bli[0]);
+						bul.style.left=0;
+						sm();
+						if(n>4){
+							move(sul,{left:-sli[1].offsetWidth*(n-4)},1000,'linear',function(){
+								sul.style.left=0;
+							})
+						}
+					})	
+					
+					
+				}
+				
+				function sm(){
+					n++;
+					if(n>sli.length-1){
+						n=0
+					}
+					for(var i=0;i<sli.length;i++){
+						sli[i].style.border='none';
+					}
+					sli[n].style.border='1px solid #f00';
+					console.log(n)
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="demo">
+			<h4><a href="#" class="ck">关闭</a></h3>
+			<div class="big">
+				<ul>
+					<li><img src="img/img_01.jpg"/><p>笔记本电脑租赁</p></li>
+					<li><img src="img/img_02.jpg"/><p>碧桂园森林城市</p></li>
+					<li><img src="img/img_03.jpg"/><p>编程游戏学习</p></li>
+					<li><img src="img/img_04.jpg"/><p>笔记本电脑租赁</p></li>
+					<li><img src="img/img_05.jpg"/><p>便宜云虚拟主机</p></li>
+					<li><img src="img/img_06.jpg"/><p>软件开发工具</p></li>
+					<li><img src="img/img_07.jpg"/><p>学画画</p></li>
+				</ul>
+			</div>
+			<div class="sml">
+				<ul>
+					<li><img src="img/img_01.jpg"/></li>
+					<li><img src="img/img_02.jpg"/></li>
+					<li><img src="img/img_03.jpg"/></li>
+					<li><img src="img/img_04.jpg"/></li>
+					<li><img src="img/img_05.jpg"/></li>
+					<li><img src="img/img_06.jpg"/></li>
+					<li><img src="img/img_07.jpg"/></li>
+				</ul>
+			</div>
+		</div>
+		
+	</body>
+</html>
