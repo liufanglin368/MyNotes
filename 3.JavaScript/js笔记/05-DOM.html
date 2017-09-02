@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+          <!--
+          	1.DOM简介
+			/*
+			 * DOM
+			 * 	文档对象模型
+			 * 	DOM是关于创建，插入，修改，删除页面元素的标准
+			 * 	DOM赋予我们操作页面的能力
+			 * 	
+			 * 	页面的内容都是字符串，JS会把这些字符串转成DOM树，DOM树会把字符串转成节点，其实我们操作DOM的根本就是操作节点
+			 */
+
+2.DOM属性节点		
+
+			/*
+			 * arrtibutes
+			 * 	属性节点
+			 * 	返回元素身上的所有属性节点，每个属性都会有一个自己对应的下标
+			 * 	它有一个length属性，代表元素身上有多少个属性节点
+			 * 
+			 * childNodes
+			 * 	元素身上的第一层子节点，返回元素身上的所有子节点的集合（第一层）
+			 * 
+			 * nodeName
+			 * 	节点的名称
+			 * 
+			 * nodeType
+			 * 	节点的类型
+			 * 	返回的是一个数字
+			 * 	
+			 */
+		
+
+2.tagName
+
+			/*
+			 * nodeName
+			 * 	节点名称，任何一个节点都有这个属性
+			 * 
+			 * tagName
+			 * 	标签名称
+			 * 	只有元素节点才有这个属性
+			 */
+
+3.点击子节点隐藏父节点
+		
+4.parentNode
+
+			/*
+			 * parentNode
+			 * 	元素的父节点
+			 * 
+			 * 	属性节点是没有父节点
+			 */
+		
+5.parentNode例子		
+
+6. children
+
+			/*
+			 * children
+			 * 	父级.children
+			 * 	获取到父级下的第一层子元素，它是一个集合，代表所有的子元素
+			 * 	每个子元素都有一个对应的下标
+			 * 	它还有一个length属性，代表子元素的个数
+			 * 	非标准
+			 * 	
+			 * childNodes
+			 * 	获取元素的第一层的所有子节点，包含文本、注释
+			 */
+			
+7.previousElementSibling
+
+			/*
+			 * previousElementSibling
+			 * 	找到上一个兄弟节点
+			 * 	如果找不到的话就返回一个null
+			 */
+
+			
+8.nextElementSibling	
+
+			/*
+			 * nextElementSibling
+			 * 	找到下一个兄弟节点
+			 * 	如果找不到的话返回一个null
+			 */
+			
+
+9.firstElementChild	
+			/*
+			 * firstElementChild
+			 * 	父级.firstElementChild
+			 * 	找到第一个子节点
+			 */
+			
+10 lastElementChild
+
+			/*
+			 * lastElementChild
+			 * 	父级.lastElementChild
+			 * 	找到最后一个子节点
+			 */
+			
+11.offsetParent
+
+			/*
+			 * offsetParent
+			 * 	作用
+			 * 		获取离元素最近的有定位的父级
+			 * 		它会一层一层往上找，直到找到最近的有定位的父级后就把这个父级返回
+			 * 		如果父级都没有定位，那返回body(IE8以及IE8以上)
+			 * 
+			 * 	语法
+			 * 		元素.offsetPrent
+			 * 	注意
+			 * 		遵循一个原则，父级一定要给一个定位
+			 * 		body是没有offsetParent
+			 */
+			
+12. offsetLeft/	offsetTop	
+
+			/*
+			 * offsetLeft
+			 * 	作用
+			 * 		找到元素最左边离最近的有定位的父级之间的距离，不带单位，并且不带边框
+			 * 	语法
+			 * 		元素.offsetLeft
+			 * 
+			 * offsetTop
+			 * 	作用
+			 * 		找到元素最上边离最近的有定位父级之间的距离，不带单位，并且不带边框
+			 * 
+			 * 注意
+			 * 		如果没有定位的父级，那默认是到html的距离
+			 * 		遵循一个原则：1、给父级定位；2、一上来把默认样清掉
+			 * 
+			 */
+				
+13.文字提示层例子
+
+14.getBoundingClinetRect	
+
+			/*
+			 * getBoundingClinetRect
+			 * 	作用
+			 * 		获取到元素盒模型的一些信息，得到的结果是没有单位，不包含滚动条的距离
+			 * 		width			宽度(包含边框)
+			 * 		height			高度(包含边框)
+			 * 		left				从元素的最左边到可视区的最左边距离
+			 * 		right			从元素的最右边到可视区的最左边的距离
+			 * 		top				从元素的最上边到可视区的最上边的距离
+			 * 		bottom			从元素的最下边到可视区的最上边的距离
+			 * 	
+			 */
+			
+15.getAttribute
+
+			/*
+			 * 属性操作的方法
+			 * 	1、.属性名
+			 * 	2、[属性名]
+			 * 
+			 * getAttribute
+			 * 	用来获取元素的属性
+			 * 	元素.getArrtibute(属性名)
+			 * 
+			 * 	如果参数是一个src或者href的话，那它取到的结果就是引号里面的值（相对地址）
+			 * 	它取不到js的自定义属性
+			 * 	它可以取到html标签的自定义属性
+			 */
+			
+		
+16.setAttribute
+
+			/*
+			 * setAttribute
+			 * 	设置属性
+			 * 	元素.setAttribute(attr,value);
+			 * 	两个参数必需同时出现
+			 */
+			
+17.removeAttribute	
+
+			/*
+			 * removeAttribute
+			 * 	删除属性
+			 * 	元素.removeAttribute(属性名)
+			 * 	
+			 */
+			
+18.获取元素的宽高
+
+			/*
+			 * 元素的宽度
+			 * 		元素.offsetWidth
+			 * 			返回元素的宽度，包含边框的
+			 * 		元素.clientWidth
+			 * 			返回元素的宽度，不包含边框
+			 * 
+			 * 元素的高度
+			 * 		元素.offsetHeight
+			 * 			返回元素的高度，包含边框的
+			 * 		元素.clientHeight
+			 * 			返回元素的高度，不包含边框
+			 * 			
+			 */
+			
+
+19.可视区的宽高
+			/*
+			 * 可视区的宽高
+			 * 	宽：document.documentElement.clientWidth
+			 * 	高：document.documentElement.clientHeight
+			 */
+			
+
+20.登录框例子
+
+21.createElement
+
+			/*
+			 * createElement
+			 * 	作用
+			 * 		创建元素：通过标签名的形式来创建一个元素
+			 * 	语法
+			 * 		document.createElement(tagName)
+			 * 		createElement前面的主语只能document，其它的元素都没有这个方法
+			 * 	参数
+			 * 		标签名
+			 * 	返回值
+			 * 		返回创建的标签元素
+			 * 	注意
+			 * 		只能用来创建元素节点，不能创建文本、注释节点
+			 * 		创建后的标签可以对它进行操作
+			 * 		
+			 */
+			
+22. appendChild
+
+			/*
+			 * appendChild
+			 * 	作用
+			 * 		添加元素：往父节点里在添加一个元素
+			 * 		注意：它是添加到父节点的最后面
+			 * 	语法
+			 * 		父节点.appendChild(childNode)
+			 * 	参数
+			 * 		子元素，一般为用caeateElement创建后的节点
+			 * 	返回值
+			 * 		返回创建的那个标签元素
+			 * 	注意
+			 * 		只能添加标签节点，不能添加其它节点
+			 * 	
+			 */
+23.insertBefore
+
+			/*
+			 * insertBefore
+			 * 	作用
+			 * 		插入元素，把第一个参数插入到第二个参数的前面
+			 * 	语法
+			 * 		父级.insertBefore(childNode1,childNode2)
+			 * 	参数
+			 * 		childNode1			要插入的元素
+			 * 		chilsNod2			决定childNod1插入的位置
+			 * 		
+			 * 		两个参数必需同时存在，否则就会报错
+			 * 		第二个参数如果为null或者undefined的时候，insertBefore的作用相当于appedChild
+			 * 	返回值
+			 * 		返回要插入的那个元素（第一个参数）
+			 * 		
+			 */
+			
+24.removeChild
+
+			/*
+			 * removeChild
+			 * 	作用
+			 * 		移除元素，从父级里移除指定的元素
+			 * 	语法
+			 * 		父级.removeChild(childNode)
+			 * 	参数
+			 * 		要删除的子元素
+			 * 	返回值
+			 * 		返回被删除掉的那个元素
+			 */
+				
+25.replaceChild	
+
+			/*
+			 * replaceChild
+			 * 	作用
+			 * 		替换元素，用第一个参数替换第二个参数
+			 * 	语法
+			 * 		父级.replaceChild(node,childNode)
+			 * 	参数
+			 * 		node			要替换的元素
+			 * 		childNode	被替换的元素
+			 * 		两个参数必需同时出现，不然会报错
+			 * 
+			 * 	返回值
+			 * 		返回被替换的那个元素（第二个参数）
+			 * 
+			 * 	注意
+			 * 		如果用父级里的元素去替换另一个元素
+			 * 		替换的那个元素会跑到被替换元素的位置
+			 * 		被替换的那个元素会被删掉
+			 * 	
+			 */
+			
+26. cloneNode	
+
+			/*
+			 * cloneNode
+			 * 	作用
+			 * 		克隆一个节点
+			 * 	语法
+			 * 		要克隆的节点.cloneNode(boolean)
+			 * 	参数
+			 * 		true			克隆元素和元素包含的子孙节点
+			 * 		false		克隆元素但是不包含子孙节点
+			 * 		如果不写参数的话，默认为false
+			 * 		克隆只克隆html、css，js是不会被克隆的，如果克隆元素身上有js的功能，那克隆后的元素是不具备的
+			 * 		如果克隆的元素本身有id，那克隆后的元素也会有id，两个就会重名，这样的话是不符合标准，手动去改一下id
+			 * 	返回值
+			 * 		返回被克隆的节点
+			 * 		
+			 */
+			
+27.DOM操作方法的特性
+
+			/*
+			 * appendChild/insertBefore/replaceChild在操作一个已有的元素时，是将已有的元素移动，而不是复制一份进行操作(剪切)
+			 */
+		
+28.留言板例子
+
+29.innerHTML与DOM方法的区别
+
+			/*
+			 * innerHTML
+			 * 	它会把原来的内容先清空，然后再添加新的内容，原来的内容已经没有了。只不过是新添加的内容与原来的内容长得一样而已
+			 * DOM方法
+			 * 	会把新的内容追加到原来的内容里面，原来内容所具有的事件，依然会在
+			 */
+			
+30.动态与静态获取元素
+
+			/*
+			 * getElementsByTagName
+			 * 	动态获取元素，只要原来的结果有变化，这就能监听到，它会重新去获取一次元素，那这个时候原来的下标就变化了，变成新的下标了
+			 * 
+			 * querySlectorAll
+			 * 	静态获取元素，只获取一次，会把下标存下来，即使原来的结构有变化，它也不会去重新获取
+			 */
+
+31.DOM表格操作	
+
+			/*
+			 * tbody
+			 * 	表格中的tbody是可以不写的，在游览器解析的时候，会自动帮你加上
+			 * 	建议大家写的时候要加上
+			 * 
+			 * 表格操作
+			 * 	获取表格头
+			 * 		表格.tHead
+			 * 		返回整个表格头，thead里的所有内容
+			 * 		注意：一个表格里只能有一个表格头
+			 * 
+			 * 	获取表格主体
+			 * 		表格.tBodies
+			 * 		返回的是整个表格的主体内容，是一个数组
+			 * 
+			 * 	获取表格底部
+			 * 		表格.tFoot
+			 * 		返回这个表格的底部，tfoot里的所有内容
+			 * 		注意：一个表格只有一个tfoot
+			 * 
+			 * 	获取表格行
+			 * 		表格.rows/tHead.rows/tBodies.rows/tFoot.rows
+			 * 		返回各自对应的行，是个数组
+			 * 		注意：可以设置整个行的样式
+			 * 
+			 * 	获取表格的单元格
+			 * 		行.cells
+			 * 		返回这一行的所有单元格，是个数组
+			 * 		注意：它不能对整个单元格进行操作，只能取到某一个单元格进行操作
+			 */
+			
+32.DOM表单操作
+
+
+			/*
+			 * 操作表单
+			 * 	获取表单的值
+			 * 		node.value
+			 * 			input
+			 * 			select
+			 * 			textarea
+			 * 	
+			 * 给每个表单都添加了一个name属性，用这个属性去获取到相应的表单元素
+			 * 
+			 * selectedIndex
+			 * 	获取到下拉框里内容对应的索引值，它的索引值是默认添加上去的
+			 * 
+			 * oninput
+			 * 	只要在输入框里输入内容的时候就会触发这个事件
+			 * 
+			 * onchange
+			 * 	当下拉框里的内容有变化的时候就会触发这个事件
+			 * 
+			 * onsubmit
+			 * 	当表单提交的时候会触发（点击submit按钮才能触发）
+			 * 	表单.onsubmit
+			 * 
+			 * onreset
+			 * 	当表单被重置的时候会触发（点击重置按钮才能触发）
+			 * 	表单.onreset
+			 * 
+			 * 表单的方法
+			 * 	表单.submit()		提交表单
+			 * 	表单.reset()			重置表单，会触发onreset事件
+			 * 		
+			 */
+			
+          -->
+	</body>
+</html>

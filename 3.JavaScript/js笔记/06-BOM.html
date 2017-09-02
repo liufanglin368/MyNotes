@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+        	第六章 BOM
+1.BOM
+
+			/*
+			 * BOM (Browser Object Model)
+				浏览器对象模型 	
+				BOM是关于浏览器的方法，属性，事件 	
+			 * 	
+			 */
+		
+2.window.open
+
+			/*
+			 * window.open()
+			 * 		参数
+			 * 			1、要找开的新网页的地址
+			 * 			2、找开方式_blank _self ... iframName
+			 * 			3、打开新窗口的一些信息
+			 * 			
+			 */
+			
+		
+3.window.close
+
+			/*
+			 * window.close()
+			 * 	关闭页面
+			 * 		不同的浏览器表现形式不一样
+					在ff/O下， 只允许关闭由window.open方法所打开的窗口
+			 */
+			
+4.userAgent
+
+			/*
+			 * window.navigator.userAgent		用户代理信息
+			 * 	操作系统 、 浏览器内核 、浏览器版本等
+			 */
+			
+			console.log(window.navigator.userAgent);
+					
+		
+5.window.location
+
+			/*
+			 * window.location --- 地址栏信息
+				字符串版的地址栏信息
+				window.location.search
+				地址栏查询信息 （问号到#号之间的所有内容，包含问号但不包含#）
+				window.location.hash
+				锚点信息（#号后面的所有内容,包含#）
+			 */
+	
+6.可视区的尺寸		
+
+			/*
+			 * 元素的宽
+			 * 	offsetWidth			带边框
+			 * 	clientWidth			不带边框
+			 * 
+			 * 元素的高
+			 * 	offsetHeight			带边框
+			 * 	clientHeight			不带边框
+			 * 
+			 * 可视区的宽/高(DOM)
+			 * 	document.documentElement.clientWidth
+			 * 	document.documentElement.clientHeight
+			 * 
+			 * 可视区的宽/高(BOM)
+			 * 	window.innerWidth
+			 * 	window.innerHeight
+			 * 	不兼容低版本的浏览器
+			 */
+			
+	
+7. 滚动条的距离
+			/*
+			 * 滚动条的距离（DOM）
+			 * 	
+			 * 	chrom		document.body.scrollTop
+			 * 	其它			document.documentElement.scrollTop
+			 * 
+			 * 
+			 * 滚动条的距离（BOM）
+			 * 	window.pageXOffset/window.pageYOffset
+			 * 
+			 * 设置滚动条的距离
+			 * 		window.scrollTop(x,y)
+			 * 		全兼容，两个参数必需同时出现
+			 */
+			
+		
+8.内容的高度
+
+			/*
+			 * 内容的高度：被内容撑开的高度
+			 * 	scrollHeight
+			 * 		元素.scrollHeight
+			 * 		
+			 * 	内容如果没有外层的高度高，那它取到的值就是外层的高度
+			 * 
+			 * 		document.body.scrollHeight
+			 * 			取body的内容高度
+			 * 	文档的高度
+			 * 		document.body.offsetHeight
+			 * 
+			 */
+			
+9.window.onscroll
+
+			/*
+			 * window.onscroll()
+			 * 	当滚动条滚动的时候触发这个方法
+			 * 
+			 * window.onresize()
+			 * 	当窗口改变大小的时候触发这个方法
+			 * 
+			 * 
+			 * 它们会按照一定的频率去触发，这个频率是由浏览器决定的
+			 */
+		
+10.回到顶部例子
+        -->
+	</body>
+</html>
