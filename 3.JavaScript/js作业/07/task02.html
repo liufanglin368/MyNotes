@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				background: url(img/img-01.jpg) no-repeat;
+				background-size: 100%;
+				margin: 0;
+				position: relative;
+			}
+			div{
+				width: 100px;
+				height: 100px;
+				border: 10px solid #f00;
+				position: absolute;
+				top:200px;
+				left:300px;
+			}
+			img{
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"><img src="img/hulu.jpg"/></div>
+	</body>
+	<script type="text/javascript">
+		var box=document.getElementById("box");
+		
+		
+		
+		
+		box.onmousedown=function(ev){
+			var disX=ev.clientX;		//变量存初始鼠标点击的ev.clientX位置
+			var disY=ev.clientY;
+			var w=box.clientWidth;		//变量存初始div的宽度包含边框
+			var h=box.clientHeight;
+			var t=box.offsetTop;
+			var l=box.offsetLeft;
+			var r=getmes(box).right;
+			var s=0;
+			var x=0;
+			var z=0;
+			var y=0;
+			
+			//右
+			if(getmes(box).right-ev.clientX<=10){  
+				//box的最右边到可视区的最左边的距离-鼠标的ev.clientX<=box的边框
+				//条件成立说明鼠标现在在右边框上
+				y=1
+				document.onmousemove=function(ev){
+					//用一个变量存鼠标移动时的ev.clientX,    鼠标移动的距离=现在鼠标的X-初始点击时鼠标的X
+					you(disX,w,ev.clientX);
+				}
+			}
+			
+			//下
+			if(getmes(box).bottom-ev.clientY<=10){
+					x=1
+					document.onmousemove=function(ev){
+						xia(disY,h,ev.clientY);
+					}
+				}
+				
+			//上
+			if(ev.clientY-getmes(box).top<=10){
+				s=1
+				document.onmousemove=function(ev){
+				shang(disY,ev.clientY,h,t);
+				}
+			}
+			
+			//左
+			if(ev.clientX-getmes(box).left<=10){
+				z=1
+				document.onmousemove=function(ev){
+					zuo(disX,ev.clientX,w,l,r);
+				}	
+			}
+			
+			//右下
+			if(y==1&&x==1){
+				document.onmousemove=function(ev){
+					//用一个变量存鼠标移动时的ev.clientX,    鼠标移动的距离=现在鼠标的X-初始点击时鼠标的X
+					you(disX,w,ev.clientX);
+					xia(disY,h,ev.clientY);
+				}	
+			}
+			//右上
+			if(y==1&&s==1){
+				document.onmousemove=function(ev){
+					//用一个变量存鼠标移动时的ev.clientX,    鼠标移动的距离=现在鼠标的X-初始点击时鼠标的X
+					you(disX,w,ev.clientX);
+					shang(disY,ev.clientY,h,t);
+				}	
+			}
+			
+			//左下
+			if(z==1&&x==1){
+				
+				document.onmousemove=function(ev){
+					//用一个变量存鼠标移动时的ev.clientX,    鼠标移动的距离=现在鼠标的X-初始点击时鼠标的X
+					xia(disY,h,ev.clientY);
+					zuo(disX,ev.clientX,w,l,r);
+				}	
+			}
+			
+			//左上
+			if(z==1&&s==1){
+				document.onmousemove=function(ev){
+					//用一个变量存鼠标移动时的ev.clientX,    鼠标移动的距离=现在鼠标的X-初始点击时鼠标的X
+					shang(disY,ev.clientY,h,t);
+					zuo(disX,ev.clientX,w,l,r);
+				}
+			}
+			
+			document.onmouseup=function(){
+				document.onmousemove=null;	
+			}
+			return false
+		}
+		
+		document.onmouseover=function(ev){
+				var disX=ev.clientX;		//变量存初始鼠标点击的ev.clientX位置
+				var disY=ev.clientY;
+				var w=box.clientWidth;		//变量存初始div的宽度包含边框
+				var h=box.clientHeight;
+				var t=box.offsetTop;
+				var l=box.offsetLeft;
+				var r=getmes(box).right;
+				var s=0;
+				var x=0;
+				var z=0;
+				var y=0;
+			/*
+			 * 鼠标方向
+			 * 左	w-resize
+			 * 上	n-resize
+			 * 右	e-resize
+			 * 下	s-resize
+			 * 
+			 * 左上	nw-resize
+			 * 右上	ne-resize
+			 * 右下	se-resize
+			 * 左下	sw-resize
+			 * 左右	ew-resize
+			 * 上下	ns-resize
+			 * 
+			 * cursor
+			 */
+			
+			//右
+			if(getmes(box).right-ev.clientX<=10){  
+				y=1
+				box.style.cursor='e-resize';
+				
+			}
+			
+			//下
+			if(getmes(box).bottom-ev.clientY<=10){
+				x=1
+				box.style.cursor='s-resize';	
+				}
+				
+			//上
+			if(ev.clientY-getmes(box).top<=10){
+				s=1
+				box.style.cursor='n-resize';
+			}
+			
+			//左
+			if(ev.clientX-getmes(box).left<=10){
+				z=1
+				box.style.cursor='w-resize';	
+			}
+			
+			//右下
+			if(y==1&&x==1){
+				box.style.cursor='se-resize';
+			}
+			//右上
+			if(y==1&&s==1){
+				box.style.cursor='ne-resize';	
+			}
+			
+			//左下
+			if(z==1&&x==1){
+				box.style.cursor='sw-resize';
+				
+			}
+			
+			//左上
+			if(z==1&&s==1){
+				box.style.cursor='nw-resize';
+			}
+				
+			
+		}
+	
+			//右函数
+			function you(disX,w,ev){
+				var newW=w+ev-disX;
+					console.log('右');
+					if(newW<100){
+						newW=100
+					}
+					
+					box.style.width=newW+'px';
+			}
+			//下函数
+			function xia(disY,h,ev){
+					var newH=ev-disY+h;
+						console.log('下');
+						if(newH<100){
+							newH=100
+						}
+						box.style.height=newH+'px';
+			}
+			
+			//左函数
+			function zuo(disX,ev,w,l,r){
+					var newW1=(disX-ev)+w;
+					console.log('左');
+					var l1=l-(disX-ev)
+					if(newW1<100){
+							newW1=100
+							l1=r-120
+						}
+					box.style.width=newW1+'px';
+					box.style.left=l1+'px';
+					console.log(box.style.left)
+			}
+			
+			//上函数
+			function shang(disY,ev,h,t){
+				var newH1=(disY-ev)+h;
+				var t2=t-(disY-ev);
+				if(newH1<100){
+						newH1=100
+						t2=t-120
+					}
+					box.style.height=newH1+'px';
+					box.style.top=t2+'px'
+			}
+			
+		
+		//获取元素身上的信息
+		function getmes(obj){
+			return obj.getBoundingClientRect();   //获取到的结果是一个对象
+		}
+	</script>
+</html>

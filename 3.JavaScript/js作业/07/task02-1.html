@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				margin: 0px;
+			}
+			#box{
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				top: 200px;
+				left: 600px;
+			}
+			img{
+				width: 100%;
+				height: 100%;
+			}
+			/*
+			 * 鼠标方向
+			 * 左	w-resize
+			 * 上	n-resize
+			 * 右	e-resize
+			 * 下	s-resize
+			 * 
+			 * 左上	nw-resize
+			 * 右上	ne-resize
+			 * 右下	se-resize
+			 * 左下	sw-resize
+			 * 左右	ew-resize
+			 * 上下	ns-resize
+			 * 
+			 * cursor
+			 */
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				var box=document.getElementById("box");
+				var dir='';			//用来记录鼠标样式
+				var isDown=false;	//鼠标按下与否开关
+				var mes={};			//记录div信息
+				
+				box.onmousedown=function(ev){
+					isDown=true;
+					
+					mes={
+						y:ev.clientY,
+						x:ev.clientX,
+						w:get(this).width,
+						h:get(this).height,
+						l:get(this).left,
+						r:get(this).right,
+						t:get(this).top,
+						b:get(this).bottom
+					}
+				}
+				
+				
+				document.onmousemove=function(ev){
+					
+					if(!isDown){
+						box.style.cursor='auto';
+						dir='';
+						//上
+						if(ev.clientY<get(box).top+10){
+							dir+='n';
+						}
+						//下
+						if(ev.clientY>get(box).bottom-10){
+							dir+='s';
+						}
+						//左
+						if(ev.clientX<get(box).left+10){
+							dir+='w';
+						}
+						//右
+						if(ev.clientX>get(box).right-10){
+							dir+='e';
+						}
+						
+						box.style.cursor=dir+'-resize';
+					}else{
+						
+						//往右
+						 if(dir.indexOf('e')!=-1){
+						 	var w=mes.w+ev.clientX-mes.x;
+						 	if(w<100){
+						 		w=100;
+						 	}
+						 	box.style.width=w+'px';
+						 }
+						 //往下
+						  if(dir.indexOf('s')!=-1){
+						 	var h=mes.h+ev.clientY-mes.y;
+						 	if(h<100){
+						 		h=100;
+						 	}
+						 	box.style.height=h+'px';
+						 }
+						  //往左
+						   if(dir.indexOf('w')!=-1){
+						 	var w=mes.w+mes.x-ev.clientX;
+						 	var l=mes.l-(mes.x-ev.clientX);
+						 	if(w<100){
+						 		w=100;
+						 		l=mes.r-100;
+						 	}
+						 	box.style.left=l+'px';
+						 	box.style.width=w+'px';
+						 }
+						    //往上
+						   if(dir.indexOf('n')!=-1){
+						 	var h=mes.h+mes.y-ev.clientY;
+						 	var t=mes.t-(mes.y-ev.clientY);
+						 	if(h<100){
+						 		h=100;
+						 		t=mes.b-100;
+						 	}
+						 	box.style.top=t+'px';
+						 	box.style.height=h+'px';
+						 }
+					}
+					
+					return false
+				}
+				
+				document.onmouseup=function(){
+					isDown=false;
+				}
+				
+				function get(obj){
+					return obj.getBoundingClientRect();
+				}
+			}
+			
+			
+		</script>
+	</head>
+	<body>
+		<div id="box"><img src="img/hulu.jpg"/></div>
+	</body>
+</html>
