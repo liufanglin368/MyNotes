@@ -98,6 +98,7 @@
 	position: absolute;
 	top:0;	
 	left: 48px;
+	overflow: hidden;
 	z-index: -1;
 }
 .allappleft{
@@ -107,8 +108,8 @@
 }
 .appul{
 	width: 248px;
-	height: 530px;/**/
-	overflow: hidden;
+	position: absolute;
+	top: 0;
 }
 .appul li{
 	width: 248px;

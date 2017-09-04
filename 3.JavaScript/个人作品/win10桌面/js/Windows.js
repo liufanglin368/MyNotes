@@ -133,12 +133,126 @@ window.onload=function(){
 		var sliding=document.querySelector(".sliding");       //右侧整体div
 		var sliding1=document.querySelector(".sliding1");	  //可滑动的区域
 		var sliding2=document.querySelector(".sliding2");	  //滑块
+		var ha=sliding.querySelectorAll("a");
 		
-		//鼠标拖动滑块事件
-		sliding2.onmousedown=function(ev){
-			sliding2Y=ev.clientY-sliding2.offsetTop;
-			
+		//鼠标拖动文本动
+		document.onmousedown=function(ev){
+			var disY=ev.clientY-sliding2.offsetTop;
+			document.onmousemove=function(ev){
+				var t=ev.clientY-disY;
+				if(t<0){
+					t=0
+				}else if(t>sliding1.offsetHeight-sliding2.offsetHeight){
+					t=sliding1.offsetHeight-sliding2.offsetHeight;
+				}
+				sliding2.style.top=t+'px';
+				var bfb=t/(sliding1.offsetHeight-sliding2.offsetHeight);
+				appul.style.top=bfb*(allappleft.offsetHeight-appul.offsetHeight)+'px';
+			}
+			document.onmouseup=function(){
+				document.onmousemove=null;
+			}
+			return false
 		}
 		
+		//鼠标放在文字区域与滚动条区域，滚动滚轮都可以滚动
+		myScroll(sliding1,function(ev){
+					var blockY=ev.clientY-sliding2.offsetTop+20;
+					var t=ev.clientY-blockY;
+					if(t<0){
+						t=0;
+					}
+					sliding2.style.top=(t--)+'px';
+					var scale=t/(sliding1.clientHeight-sliding2.clientHeight);
+					appul.style.top=scale*(allappleft.clientHeight-appul.clientHeight)+'px';
+					
+				},function(ev){
+					var blockY=ev.clientY-sliding2.offsetTop-20;
+					var t=ev.clientY-blockY;
+					if(t>sliding1.offsetHeight-sliding2.offsetHeight){
+						t=sliding1.offsetHeight-sliding2.offsetHeight;
+					}
+					console.log(t);
+					sliding2.style.top=(t++)+'px';
+					var scale=t/(sliding1.clientHeight-sliding2.clientHeight);
+					appul.style.top=scale*(allappleft.clientHeight-appul.clientHeight)+'px';
+					
+				});
+			
+				//鼠标放在文本区域滚动滑块与内容
+				myScroll(appul,function(ev){
+					var blockY=ev.clientY-sliding2.offsetTop+20;
+					var t=ev.clientY-blockY;
+					if(t<0){
+						t=0;
+					}
+					sliding2.style.top=(t--)+'px';
+					var scale=t/(sliding1.clientHeight-sliding2.clientHeight);
+					appul.style.top=scale*(allappleft.clientHeight-appul.clientHeight)+'px';
+					
+				},function(ev){
+					var blockY=ev.clientY-sliding2.offsetTop-20;
+					var t=ev.clientY-blockY;
+					if(t>sliding1.offsetHeight-sliding2.offsetHeight){
+						t=sliding1.offsetHeight-sliding2.offsetHeight;
+					}
+					sliding2.style.top=(t++)+'px';
+					var scale=t/(sliding1.clientHeight-sliding2.clientHeight);
+					appul.style.top=scale*(allappleft.clientHeight-appul.clientHeight)+'px';
+					
+				});
+			//滚轮函数
+			function myScroll(obj,upFn,downFn){
+				obj.onmousewheel=fn;
+				obj.addEventListener('DOMMouseScroll',fn);
+				
+				function fn(ev){
+					if(ev.wheelDelta>0 || ev.detail<0){
+						//这个条件成立，说明现在都是往上边滚动
+						//upFn();
+						upFn.call(obj,ev);
+					}else{
+						//走这里说明，都是往下滚动
+						//downFn();
+						downFn.call(obj,ev);
+					}
+					
+					ev.preventDefault();
+					return false;
+				};
+			}
+			
+			//鼠标点击滑块到滑块点击的位置
+			
+			
+			//5、鼠标按下上下箭头，滚动条滚动
+				ha[1].onclick=function(ev){
+					var blockY=ev.clientY-sliding2.offsetTop-20;
+					var t=ev.clientY-blockY;
+					
+					if(t<0){
+						t=0;
+					}else if(t>sliding1.clientHeight-sliding2.clientHeight){
+						t=sliding1.clientHeight-sliding2.clientHeight
+					}
+					var scale=t/(sliding1.clientHeight-sliding2.clientHeight);
+					appul.style.top=scale*(allappleft.clientHeight-appul.clientHeight)+'px';
+					sliding2.style.top=t--+'px';
+				
+				}
+				ha[0].onclick=function(ev){
+					var blockY=ev.clientY-sliding2.offsetTop+20;
+					var t=ev.clientY-blockY;
+					
+					if(t<0){
+						t=0;
+					}else if(t>sliding1.clientHeight-sliding2.clientHeight){
+						t=sliding1.clientHeight-sliding2.clientHeight
+					}
+					var scale=t/(sliding1.clientHeight-sliding2.clientHeight);
+					appul.style.top=scale*(allappleft.clientHeight-appul.clientHeight)+'px';
+					sliding2.style.top=t+++'px';
+				
+				}
 };
 	
