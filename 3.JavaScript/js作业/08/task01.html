@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 200px;
+				height: 200px;
+				background: red;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				var box1=new Drag('box');
+				
+				
+			}
+				function Drag(obj){
+					this.obj=document.getElementById(obj);
+					this.misX=0;
+					this.misY=0;
+					var This=this;
+					this.obj.onmousedown=function(ev){
+						This.down(ev);
+						
+					}
+					
+				}
+				Drag.prototype.down=function(ev){
+						
+						this.misX=ev.clientX-this.obj.offsetLeft;
+						this.misY=ev.clientY-this.obj.offsetTop;
+						This=this
+						document.onmousemove=function(ev){
+							This.move(ev);
+						};
+						document.onmouseup=this.up;
+				};
+					
+					
+				Drag.prototype.move=function(ev){
+						this.obj.style.left=ev.clientX-this.misX+'px';
+						this.obj.style.top=ev.clientY-this.misY+'px';
+					
+				}
+				Drag.prototype.up=function(){
+					document.onmousemove=null;
+				}
+				
+				
+			
+		</script>
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+</html>
