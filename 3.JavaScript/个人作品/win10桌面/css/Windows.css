@@ -139,6 +139,7 @@
 	background: #333538;
 	float: right;
 	vertical-align: middle;
+	display: none;
 }
 .sliding a:nth-child(1){
 	width: 12px;
@@ -167,7 +168,10 @@
 .sliding2{
 	width: 12px;
 	height: 80px;
-	background: #71716b;
+	background: #585a59;
 	position: absolute;
 	top: 0;
+}
+.sliding2:hover{
+	background: #8f8f8f;
 }

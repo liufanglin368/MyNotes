@@ -136,7 +136,7 @@ window.onload=function(){
 		var ha=sliding.querySelectorAll("a");
 		
 		//鼠标拖动文本动
-		document.onmousedown=function(ev){
+		sliding2.onmousedown=function(ev){
 			var disY=ev.clientY-sliding2.offsetTop;
 			document.onmousemove=function(ev){
 				var t=ev.clientY-disY;
@@ -152,6 +152,8 @@ window.onload=function(){
 			document.onmouseup=function(){
 				document.onmousemove=null;
 			}
+			
+			ev.cancelBubble=true
 			return false
 		}
 		
@@ -223,13 +225,27 @@ window.onload=function(){
 			}
 			
 			//鼠标点击滑块到滑块点击的位置
-			
+			sliding1.onmousedown=function(ev){
+				var t=ev.clientY-sliding2.offsetHeight-sliding2.offsetHeight/2
+				if(t<0){
+					t=0
+				}else if(t>sliding1.offsetHeight-sliding2.offsetHeight){
+					t=sliding1.offsetHeight-sliding2.offsetHeight
+				}
+				sliding2.style.top=t+'px';
+				var bfb=t/(sliding1.offsetHeight-sliding2.offsetHeight);
+				appul.style.top=bfb*(allappleft.offsetHeight-appul.offsetHeight)+'px';
+				document.onmouseup=function(){
+					document.onmousedown=null;
+				}
+				return false
+			};
 			
 			//5、鼠标按下上下箭头，滚动条滚动
-				ha[1].onclick=function(ev){
+				ha[1].onmousedown=function(ev){
 					var blockY=ev.clientY-sliding2.offsetTop-20;
 					var t=ev.clientY-blockY;
-					
+					ha[1].style.background='#8d8f8e';
 					if(t<0){
 						t=0;
 					}else if(t>sliding1.clientHeight-sliding2.clientHeight){
@@ -238,12 +254,15 @@ window.onload=function(){
 					var scale=t/(sliding1.clientHeight-sliding2.clientHeight);
 					appul.style.top=scale*(allappleft.clientHeight-appul.clientHeight)+'px';
 					sliding2.style.top=t--+'px';
-				
+					document.onmouseup=function(){
+						document.onmousedown=null;
+						ha[1].style.background='';
+					}
 				}
-				ha[0].onclick=function(ev){
+				ha[0].onmousedown=function(ev){
 					var blockY=ev.clientY-sliding2.offsetTop+20;
 					var t=ev.clientY-blockY;
-					
+					ha[0].style.background='#8d8f8e';
 					if(t<0){
 						t=0;
 					}else if(t>sliding1.clientHeight-sliding2.clientHeight){
@@ -252,7 +271,21 @@ window.onload=function(){
 					var scale=t/(sliding1.clientHeight-sliding2.clientHeight);
 					appul.style.top=scale*(allappleft.clientHeight-appul.clientHeight)+'px';
 					sliding2.style.top=t+++'px';
-				
+					
+					document.onmouseup=function(){
+						document.onmousedown=null;
+						ha[0].style.background='';
+					}
 				}
+				
+				//鼠标移入左侧应用栏右侧滚动条显示
+				allapp.onmouseover=function(){
+					sliding.style.display='block';
+				}
+				allapp.onmouseout=function(){
+					sliding.style.display='none';
+				}
+				
+				
 };
 	
