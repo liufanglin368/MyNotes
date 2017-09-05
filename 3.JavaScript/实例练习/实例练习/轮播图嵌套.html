@@ -111,9 +111,16 @@
 						bul.appendChild(bli[0]);
 						bul.style.left=0;
 						sm();
-						if(n>4){
-							move(sul,{left:-sli[1].offsetWidth*(n-4)},1000,'linear',function(){
-								sul.style.left=0;
+						if(n==5){
+							
+							move(sul,{left:-sli[1].offsetWidth*1},1000,'linear',function(){
+								sul.style.left=-sli[1].offsetWidth*1+'px';
+								
+							})
+						}else if(n==6){
+							move(sul,{left:-sli[1].offsetWidth*2},1000,'linear',function(){
+								sul.style.left=-sli[1].offsetWidth*2+'px';
+								
 							})
 						}
 					})	
