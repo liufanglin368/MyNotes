@@ -175,3 +175,67 @@
 .sliding2:hover{
 	background: #8f8f8f;
 }
+
+/*
+ * 右侧方块
+ */
+#Windows .WindPopup .WindPopupRight{
+	width: 653px;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 308px;
+}
+.WindPopupRight .weather{
+	width: 308px;
+	height: 340px;
+	margin-top: 24px;
+	margin-left: 4px;
+}
+.weather dd{
+	float: left;
+	margin-right: 2px;
+}
+.WindPopupRight .portal{
+	width: 308px;
+	height: 125px;
+	margin-top: 35px;
+	margin-left: 4px;
+}
+.portal dd{
+	float: left;
+	margin-right: 2px;
+}
+.WindPopupRight .play{
+	width: 308px;
+	height: 236px;
+	margin-top:24px;
+	position: absolute;
+	top: 0;
+	left: 320px;
+}
+.play dd{
+	float: left;
+	margin-right: 2px;
+}
+.WindPopupRight .dictionaries{
+	width: 308px;
+	height: 226px;
+	margin: 0;
+	position: absolute;
+	top: 300px;
+	left: 320px;
+}
+.dictionaries dd{
+	float: left;
+	margin-right: 2px;
+}
+.WindPopupRight .strip{
+	width: 12px;
+	height: 100%;
+	border: 1px solid #FF0000;
+	float: right;
+	position: absolute;
+	top: 0;
+	left:640px ;
+}

@@ -20,7 +20,9 @@ img{
 p{
 	margin: 0;
 }
-
+dd{
+	margin: 0;
+}
 
 body{
 	background-image: url(../img/win10.jpg);
