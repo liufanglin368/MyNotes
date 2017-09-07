@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#demo{
+				width: 596px;
+				height: 191px;
+				background: black;
+				padding: 10px;
+			}
+			ul{
+				padding: 0px;
+				margin: 0px;
+			}
+			ul li{
+				list-style: none;
+				width: 122px;
+				height: 191px;
+				float: left;
+			}
+			ul li:nth-child(1){
+				width: 350px;
+			}
+			li img{
+				width: 122px;
+				height: 191px;
+				float: left;
+			}
+			li div{
+				width: 225px;
+				height: 191px;
+				float: right;
+				background: #313131;
+			}
+			h3{
+				color: #fff;
+			}
+			p{
+				color: #FFFFFF;
+			}
+		</style>
+		<script src="js/jquery-3.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				var h3=['认识讲师','教学管理','学员反馈']
+				var p=['1你所看到的,你所认同的,在这里都将被实现.学习艰辛,我们一路同行','2你所看到的,你所认同的,在这里都将被实现.学习艰辛,我们一路同行','3你所看到的,你所认同的,在这里都将被实现.学习艰辛,我们一路同行']
+				$('img').click(function(){
+					$('li').css('width','122');
+					$('li').eq($(this).index('img')).css('width','350');
+					var div=$('li div')
+					$('li').eq($(this).index('img')).append(div)
+					$('p').html(p[$(this).index('img')]);
+					$('h3').html(h3[$(this).index('img')]);
+				})
+				  
+			})
+		</script>
+	</head>
+	<body>
+		<div id="demo">
+			<ul>
+				<li>
+					<img src="img/img_01.gif"/>
+					<div>
+						<h3>认识讲师</h3>
+						<p>1你所看到的,你所认同的,在这里都将被实现.学习艰辛,我们一路同行</p>
+					</div>
+				</li>
+				<li>
+					<img src="img/img_01.gif"/>
+				</li>
+				<li>
+					<img src="img/img_01.gif"/>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>

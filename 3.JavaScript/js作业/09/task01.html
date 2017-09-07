@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#sml{
+				width: 300px;
+				height: 300px;
+				position: relative;
+				float: left;
+				margin-right: 10px;
+			}
+			#sml img{
+				width: 300px;
+			}
+			#sml div{
+				width: 100px;
+				height: 100px;
+				background: greenyellow;
+				opacity: 0.5;
+				position: absolute;
+				left: 0;
+				top: 0;
+				cursor: move;
+				display: none;
+			}
+			#big{
+				width: 350px;
+				height: 350px;
+				float:left;
+				position: relative;
+				overflow: hidden;
+				display: none;
+			}
+			#big img{
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+		<script src="js/jquery-3.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('#sml').mouseover(function(){
+					$('#sml div').css('display','block');
+					$('#big').css('display','block');
+				})
+				
+				$('#sml').mousemove(function(ev){
+					var dim=$('#sml div');
+					var l=ev.clientX-dim.width()/2-$('#sml').offset().left;
+					var t=ev.clientY-dim.height()/2-$('#sml').offset().top;
+					//限定范围
+					if(t<0){
+						t=0
+					}else if(t>$('#sml').height()-dim.height()){
+						t=$('#sml').height()-dim.height();
+					}
+					if(l<0){
+						l=0
+					}else if(l>$('#sml').width()-dim.width()){
+						l=$('#sml').width()-dim.width();
+					}
+					dim.css({top:t,left:l});
+					//百分比
+					var w=l/($('#sml').width()-dim.width());
+					var h=t/($('#sml').height()-dim.height());
+					
+					var imgl=-w*($('#big img').width()-$('#big').width());
+					var imgt=-h*($('#big img').height()-$('#big').height())
+					
+					$('#big img').css({left:imgl,top:imgt})
+				})
+				
+				$('#sml').mouseout(function(){
+					$('#sml div').css('display','none');
+					$('#big').css('display','none');
+				})
+				
+				/*$('#sml').mousemove(function(ev){
+					$('#sml div').css({left:ev.pageX-$('#sml div').width()/2-$('#sml').offset().left,top:ev.pageY-$('#sml div').height()/2-$('#sml').offset().top})
+					var scaleX=parseInt($('#sml div').css('left'))/(parseInt($('#sml').css('width'))-parseInt($('#sml div').css('width')))
+					var scaleY=parseInt($('#sml div').css('top'))/(parseInt($('#sml').css('height'))-parseInt($('#sml div').css('height')))
+					
+					console.log($('#big img').css('top'))
+					
+					$('#big img').css({left:-scaleX*(parseInt($('#big img').css('width'))-parseInt($('#big').css('width'))),top:-scaleX*(parseInt($('#big img').css('height'))-parseInt($('#big').css('height')))})
+					
+				})*/
+			})
+		</script>
+	</head>
+	<body>
+		<div id="sml">
+			<img src="img/lb.jpg"/>
+			<div></div>
+		</div>
+		<div id="big">
+			<img src="img/lb.jpg"/>
+		</div>
+	</body>
+</html>
