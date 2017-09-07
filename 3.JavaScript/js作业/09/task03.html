@@ -1,185 +1,178 @@
-<html><head>
+<!DOCTYPE html>
+<html>
+	<head>
 		<meta charset="UTF-8">
 		<title></title>
-		<style>
-			*{
-				margin:0;
-				padding:0;
+		<style type="text/css">
+			#demo{
+				width: 950px;
+				height: 362px;
+				border: 1px solid #000000;
+			}
+			#demo ul{
+				width: 100%;
+				height: 100%;
+				padding: 0;
+				margin: 0;
+				position: relative;
+			}
+			#demo ul li{
+				list-style: none;
+				float: left;
+				overflow: hidden;
 			}
 			a{
-				text-decoration:none;
+				display: inline-block;
+				text-decoration: none;
+				text-align: center;
+				line-height: 20px;
+				position: absolute;
+				top: 0;
+				left: 0;
 			}
-			body{
-				font:12px/24px "微软雅黑";
-			}
-			.artist{
-				width:960px;
-				position:relative;
-				height:354px;
-				margin:40px auto;
-			}
-			.artist li{
-				width:110px;
-				height:110px;
-				position:absolute;
-				left:240px;
-				top:0px;
-				overflow:hidden;
-			}
-			.artist li a{
-				background:#ff0048;
-				color:#fff;
-				position:absolute;
-				left:0px;
-				top:0px;
-				opacity:0.8;
-			}
-			.artist li a:hover{
-				color:#fff;
-			}
-			.artist li a strong{
-				line-height:2em;
+			.mu{
+				background: red;
+				opacity: 0.8;
+				color:white ;
 			}
 			
-			.artist .a1{left:0px;position:absolute;top:0px;width:230px;height:354px;}
-			.artist .a2{width:232px;height:232px}
-			.artist .a3{left:240px;top:244px}
-			.artist .a4{left:362px;top:244px}
-			.artist .a5{left:482px;top:0px}
-			.artist .a6{left:604px;top:0px}
-			.artist .a7{left:482px;top:120px}
-			.artist .a8{left:604px;top:120px}
-			.artist .a9{left:482px;width:232px;top:244px}
-			.artist .a10{left:726px;top:0px}
-			.artist .a11{left:848px;top:0px}
-			.artist .a12{left:726px;width:232px;top:120px;height:232px}
+			.a1{position: absolute;top:4px;left:2px;width:230px;height: 354px;}
+			.a2{position: absolute;top:4px;left:236px;}
+			.a3{position: absolute;top:246px;left:236px;}
+			.a4{position: absolute;top:246px;left:360px;}
+			.a5{position: absolute;top:4px;left:474px;}
+			.a6{position: absolute;top:4px;left:592px;}
+			.a7{position: absolute;top:124px;left:474px;}
+			.a8{position: absolute;top:124px;left:592px;}
+			.a9{position: absolute;top:246px;left:474px;}
+			.a10{position: absolute;top:4px;left:710px;}
+			.a11{position: absolute;top:4px;left:830px;}
+			.a12{position: absolute;top:124px;left:710px;}
 			
-			.artist .a2 a{padding-right:20px;padding-left:30px;font-size:18px;padding-bottom:15px;overflow:hidden;width:182px;padding-top:45px;height:172px}
-			.artist .a3 a{padding-right:10px;padding-left:10px;font-size:12px;padding-bottom:10px;overflow:hidden;width:90px;padding-top:10px;height:90px}
-			.artist .a4 a{padding-right:10px;padding-left:10px;font-size:12px;padding-bottom:10px;overflow:hidden;width:90px;padding-top:10px;height:90px}
-			.artist .a5 a{padding-right:10px;padding-left:10px;font-size:12px;padding-bottom:10px;overflow:hidden;width:90px;padding-top:10px;height:90px}
-			.artist .a6 a{padding-right:10px;padding-left:10px;font-size:12px;padding-bottom:10px;overflow:hidden;width:90px;padding-top:10px;height:90px}
-			.artist .a7 a{padding-right:10px;padding-left:10px;font-size:12px;padding-bottom:10px;overflow:hidden;width:90px;padding-top:10px;height:90px}
-			.artist .a8 a{padding-right:10px;padding-left:10px;font-size:12px;padding-bottom:10px;overflow:hidden;width:90px;padding-top:10px;height:90px}
-			.artist .a9 a{padding-right:20px;padding-left:20px;font-size:14px;padding-bottom:10px;overflow:hidden;width:192px;padding-top:10px;height:90px}
-			.artist .a10 a{padding-right:10px;padding-left:10px;font-size:12px;padding-bottom:10px;overflow:hidden;width:90px;padding-top:10px;height:90px}
-			.artist .a11 a{padding-right:10px;padding-left:10px;font-size:12px;padding-bottom:10px;overflow:hidden;width:90px;padding-top:10px;height:90px}
-			.artist .a12 a{padding-right:20px;padding-left:30px;font-size:18px;padding-bottom:15px;overflow:hidden;width:182px;padding-top:45px;height:172px}
+			.a2 a{position: absolute;top:0px;left:0px;width:232px;height:232px;}
+			.a3 a{width:110px;height:110px;}
+			.a4 a{width:110px;height:110px;}
+			.a5 a{width:110px;height:110px;}
+			.a6 a{width:110px;height:110px;}
+			.a7 a{width:110px;height:110px;}
+			.a8 a{width:110px;height:110px;}
+			.a9 a{width:232px;height:110px;}
+			.a10 a{width:110px;height:110px;}
+			.a11 a{width:110px;height:110px;}
+			.a12 a{width:232px;height:232px;}
 		</style>
-		<script src="js/jquery-3.1.0.js"></script>
-		<script>
+		<script src="js/jquery-3.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
 			$(function(){
-				$('.artist li').each(function(){
-					$(this).find('.cover').css('top',-$(this).height());
-					
+				$('#demo ul li').each(function(){
+					$(this).find('.mu').css('top',-$(this).height())
 					$(this).hover(function(){
-						$(this).find('.cover').stop().animate({top:0},300,'linear');
+						$(this).find('.mu').stop().animate({top:0},300,'linear');
 					},function(){
-						$(this).find('.cover').stop().animate({top:$(this).height()},300,function(){
+						$(this).find('.mu').stop().animate({top:$(this).height()},300,function(){
 							$(this).css('top',-$(this).parent('li').height());
 						})
 					});
-				});
+				})
 				
-				
-			});
+			})
 		</script>
 	</head>
 	<body>
-		<ul class="artist">
-			<li class="a1">
-				<a href="#">
-					<img width="230" height="354" src="img/1.jpg" alt="张学友">
-				</a>
-			</li>
-			<li class="a2">
-				<img width="232" height="232" src="img/2.jpg">
-				<a class="cover" href="#">
-					<strong>张震岳</strong><br>
-					<span>即将有5场演出</span><br>
-					查看详情
-				</a> 
-			</li>
-			<li class="a3">
-				<img width="110" height="110" src="img/3.jpg">
-				<a class="cover" href="#">
-					<strong>蔡琴</strong><br>
-					<span>即将有4场演出</span><br>
-					查看详情
-				</a> 
-			</li>
-			<li class="a4">
-				<img width="110" height="110" src="img/4.jpg">
-				<a class="cover" href="#">
-					<strong>郑钧</strong><br>
-					<span>即将有2场演出</span><br>
-					查看详情
-				</a> 
-			</li>
-			<li class="a5">
-				<img width="110" height="110" src="img/5.jpg">
-				<a class="cover" href="#">
-					<strong>费玉清</strong><br>
-					<span>即将有4场演出</span><br>
-					查看详情
-				</a> 
-			</li>
-			<li class="a6">
-				<img width="110" height="110" src="img/6.jpg">
-				<a class="cover" href="#">
-					<strong>陈绮贞</strong><br>
-					<span>即将有2场演出</span><br>
-					查看详情</a> 
-			</li>
-			<li class="a7">
-				<img width="110" height="110" src="img/7.jpg">
-				<a class="cover" href="#">
-					<strong>王力宏</strong><br>
-					<span>即将有6场演出</span><br>
-					查看详情
-				</a>
-			</li>
-			<li class="a8">
-				<img width="110" height="110" src="img/8.jpg">
-				<a class="cover" href="#">
-					<strong>周杰伦</strong><br>
-					<span>即将有6场演出</span><br>
-					查看详情
-				</a> 
-			</li>
-			<li class="a9">
-				<img width="232" height="110" src="img/9.jpg">
-				<a class="cover" href="#">
-					<strong>迈克学摇滚</strong><br>
-					<span>即将有1场演出</span><br>
-					查看详情
-				</a> 
-			</li>
-			<li class="a10">
-				<img width="110" height="110" src="img/10.jpg">
-				<a class="cover" href="http://sc.chinaz.com/">
-					<strong>蔡依林</strong><br>
-					<span>即将有1场演出</span><br>
-					查看详情
-				</a> 
-			</li>
-			<li class="a11">
-				<img width="110" height="110" src="img/11.jpg">
-				<a class="cover" href="#">
-					<strong>齐秦</strong><br>
-					<span>即将有2场演出</span><br>
-					查看详情
-				</a> 
-			</li>
-			<li class="a12">
-				<img width="232" height="232" src="img/12.jpg">
-				<a class="cover" href="#">
-					<strong>罗志祥</strong><br>
-					<span>即将有6场演出</span><br>
-					查看详情
-				</a> 
-			</li>
-		</ul>
-	
-
-</body></html>
+		<div id="demo">
+			<ul>
+				<li class="a1">
+					<img src="img/1.jpg"/>
+				</li>
+				<li class="a2">
+					<img src="img/2.jpg"/>
+					<a href="#" class="mu">
+						<strong>张震岳</strong><br />
+						<span>即将有两场演出</span><br />
+						查看详情
+					</a>
+				</li>
+				<li class="a3">
+					<img src="img/3.jpg"/>
+					<a href="#" class="mu">
+						<strong>蔡琴</strong><br />
+						<span>即将有两场演出</span><br />
+						查看详情
+					</a>
+				</li>
+				<li class="a4">
+					<img src="img/4.jpg"/>
+					<a href="#" class="mu">
+						<strong>郑钧</strong><br />
+						<span>即将有两场演出</span><br />
+						查看详情
+					</a>
+				</li>
+				<li class="a5">
+					<img src="img/5.jpg"/>
+					<a href="#" class="mu">
+						<strong>费玉清</strong><br />
+						<span>即将有两场演出</span><br />
+						查看详情
+					</a>
+				</li>
+				<li class="a6">
+					<img src="img/6.jpg"/>
+					<a href="#" class="mu">
+						<strong>陈绮贞</strong><br />
+						<span>即将有两场演出</span><br />
+						查看详情
+					</a>
+				</li>
+				<li class="a7">
+					<img src="img/7.jpg"/>
+					<a href="#" class="mu">
+						<strong>王力宏</strong><br />
+						<span>即将有两场演出</span><br />
+						查看详情
+					</a>
+				</li>
+				<li class="a8">
+					<img src="img/8.jpg"/>
+					<a href="#" class="mu">
+						<strong>周杰伦</strong><br />
+						<span>即将有两场演出</span><br />
+						查看详情
+					</a>
+				</li>
+				<li class="a9">
+					<img src="img/9.jpg"/>
+					<a href="#" class="mu">
+						<strong>迈克学摇滚</strong><br />
+						<span>即将有两场演出</span><br />
+						查看详情
+					</a>
+				</li>
+				<li class="a10">
+					<img src="img/10.jpg"/>
+					<a href="#" class="mu">
+						<strong>蔡依林</strong><br />
+						<span>即将有两场演出</span><br />
+						查看详情
+					</a>
+				</li>
+				<li class="a11">
+					<img src="img/11.jpg"/>
+					<a href="#" class="mu">
+						<strong>齐秦</strong><br />
+						<span>即将有两场演出</span><br />
+						查看详情
+					</a>
+				</li>
+				<li class="a12">
+					<img src="img/12.jpg"/>
+					<a href="#" class="mu">
+						<strong>罗志祥</strong><br />
+						<span>即将有两场演出</span><br />
+						查看详情
+					</a>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>
