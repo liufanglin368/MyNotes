@@ -285,7 +285,16 @@ window.onload=function(){
 				allapp.onmouseout=function(){
 					sliding.style.display='none';
 				}
-				
+			
+			//最右侧滚动条
+			var WindPopupRight=document.querySelector(".WindPopupRight");
+			var strip=document.querySelector(".strip");
+			WindPopupRight.onmouseover=function(){
+					strip.style.display='block';
+				}
+				WindPopupRight.onmouseout=function(){
+					strip.style.display='none';
+				}
 				
 };
 	
