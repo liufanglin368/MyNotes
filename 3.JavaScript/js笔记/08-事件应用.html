@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+        	01拖拽的原理
+
+			
+			/*
+			 * 拖拽的原理
+			 * 	1、鼠标在元素身上按下
+			 * 		这里需要算出鼠标点击的地方离元素边界的距离
+			 * 		鼠标起始X轴的位置＝鼠标的clientX-元素的offsetLeft
+			 * 		鼠标起始Y轴的位置＝鼠标的clientY-元素的offsetTop
+			 * 
+			 * 	2、鼠标移动
+			 * 		这里需要算出来元素的真正left与top值
+			 * 		元素的left＝鼠标的clientX-鼠标起始X轴的位置
+			 * 		元素的top＝鼠标的clientY-鼠标起始Y轴的位置
+			 * 
+			 * 	3、鼠标抬起
+			 * 		清除掉鼠标身上的事件
+			 * 
+			 * 
+			 * 问题：
+			 * 	1、只能拖拽一次
+			 * 		解决方法1：声明一个变量，用来判断用户有没有点击方块
+			 * 		解决方法2：把所有的要处理的整改放在mousedown里面去做，就可以解决。
+			 * 	2、鼠标拖动的速度非常快的时候，就会脱离方块
+			 * 		原因是因为mousemove事件的发生是根据浏览器的频率决定的，如果鼠标移动的非常快，那mousemove事件有可能没有发生，所以就会断了
+			 * 		解决方法：把move事件加给document
+			 * 	3、有文字的时候会选中文字
+			 * 		解决方法：return false;
+			 * 	4、拖动图片的时候会复制一张图片
+			 * 		解决方法：return false;
+			 * 		
+			 * 		
+			 */
+			
+			window.onload=function(){
+				var box=document.getElementById("box");
+				var img=document.getElementById("img");
+				
+				//鼠标按下
+				box.onmousedown=function(ev){
+					var disX=ev.clientX-box.offsetLeft;
+					var disY=ev.clientY-box.offsetTop;
+					
+					//console.log(disX,disY);
+					
+					//鼠标移动
+					document.onmousemove=function(ev){
+						box.style.left=ev.clientX-disX+'px';
+						box.style.top=ev.clientY-disY+'px';
+					};
+					
+					//鼠标抬起
+					document.onmouseup=function(){
+						document.onmousemove=null;
+					};
+					
+					
+					//阻止默认选中文字
+					return false;
+				};
+				
+				
+				img.onmousedown=function(ev){
+					var disX=ev.clientX-img.offsetLeft;
+					var disY=ev.clientY-img.offsetTop;
+					
+					
+					document.onmousemove=function(ev){
+						img.style.left=ev.clientX-disX+'px';
+						img.style.top=ev.clientY-disY+'px';
+					}
+					
+					document.onmouseup=function(){
+						document.onmousemove=null;
+					};
+					
+					//阻止默认图片拖动的时候会复制一个
+					return false;
+				}
+			};
+		
+02.自定义滚动条
+
+			/*
+			 * 拖拽与放大镜的原理--自定义滚动条的原理
+			 */
+			
+			window.onload=function(){
+				var div1=document.getElementById("div1");
+				var div2=document.getElementById("div2");
+				var con=document.getElementById("con");
+				var text=document.getElementById("text");
+				
+				div2.onmousedown=function(ev){
+					var disY=ev.clientY-div2.offsetTop;
+					
+					document.onmousemove=function(ev){
+						var t=ev.clientY-disY;
+						
+						if(t<0){
+							t=0;
+						}else if(t>div1.clientHeight-div2.clientHeight){
+							t=div1.clientHeight-div2.clientHeight;
+						}
+						
+						var scale=t/(div1.clientHeight-div2.clientHeight);
+						
+						con.style.top=scale*(text.clientHeight-con.clientHeight)+'px';
+						
+						div2.style.top=t+'px';
+					}
+					document.onmouseup=function(){
+						document.onmousemove=null;
+					};
+					
+					return false;
+				};
+			};
+		
+        -->
+	</body>
+</html>
