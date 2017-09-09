@@ -2,11 +2,12 @@
 #Windows{
 	width: 48px;
 	height: 36px;
+	float: left;
 	position: relative;
 }
 #Windows .btn{
 	width: 48px;
-	height: 36px;
+	height: 40px;
 	background-image: url(../ico/windows_ico.gif);
 	display: inline-block;
 }
@@ -317,4 +318,79 @@
 }
 .strip2:hover{
 	background: #8f8f8f;
+}
+
+/*
+ * 任务栏系统托盘
+ */
+footer .taskbar{
+	width: 330px;
+	height: 40px;
+	float: right;
+	position: relative;
+}
+.taskbar .icon{
+	width: 24px;
+	height: 40px;
+	display: inline-block;
+}
+.taskbar .power{
+	width: 24px;
+	height: 40px;
+	display: inline-block;
+}
+.taskbar .network{
+	width: 24px;
+	height: 40px;
+	display: inline-block;
+}
+.taskbar .loudspeaker{
+	width: 24px;
+	height: 40px;
+	display: inline-block;
+}
+.taskbar .state{
+	width: 22px;
+	height: 40px;
+	line-height: 40px;
+	color: #FFFFFF;
+	font-size: 13px;
+	display: inline-block;
+	vertical-align:top;
+}
+.taskbar .method{
+	width: 36px;
+	height: 40px;
+	display: inline-block;
+}
+.taskbar .time{
+	width: 73px;
+	height: 40px;
+	line-height: 40px;
+	display: inline-block;
+	vertical-align:top;
+}
+.taskbar .message{
+	width: 40px;
+	height: 40px;
+	display: inline-block;
+}
+.taskbar .desktop{
+	width: 23px;
+	height: 40px;
+	font-size: 40px;
+	text-indent: 8px;
+	color: #66696b;
+	
+	display: inline-block;
+	vertical-align:top;
+}
+.taskbar .time a{
+	text-align: center;
+}
+.taskbar .desktop .wire{
+	width: 1px;
+	height: 40px;
+	border-right: 1px solid #66696b;
+
 }
