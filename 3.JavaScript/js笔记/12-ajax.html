@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+        	1-表单
+
+			action			表单提交地址
+			method			提交方法
+				1、get
+					提交的数据通过地址栏发送，数据添加到地址栏的问号后面
+					数据形式：数据名=数据值&数据名=数据值
+				2、post
+					提交的数据通过请求头发送（头部信息，能过控制台可以看到）
+		
+
+2-ajax简介
+
+			/*
+			 * Ajax是一种技术方案，但并不是一种新技术。它依赖的是现有的CSS/HTML/Javascript，而其中最核心的依赖是浏览器提供的XMLHttpRequest对象，是这个对象使得浏览器可以发出HTTP请求与接收HTTP响应。
+			 * 
+			 * ajax:Asynchronous JavaScript and XML(异步js和XML)
+			 * 	异步js：js的代码都是至到而下执行的，如果一块代码没有执行完毕，那后面的代码就不会执行。异步就是ajax可以做到不按顺序执行
+			 * 	XML：存储数据的一种格式
+			 * 		<name>陈学辉</name>
+			 * 		<age>18</age>
+			 * 		<qq>356985332</qq>
+			 * 		<email>kaivon@126.com</email>
+			 * 
+			 * 		ajax不光能够处理XML格式的数据，还可以处理json、数组、字符串类型的数据
+			 * 
+			 * ajax到底能干嘛
+			 * 	js与后端进行数据交互的一种技术，通过请求协商好的接口，来获取到想要的数据
+			 * 
+			 * 优点
+			 * 	传输数据时候会在本页面请求服务器，不用跳转页面，从而减轻服务器压力。做到实时验证，减少用户返工率并且优化用户体验
+			 * 		
+			 */
+		
+3-服务器环境安装
+
+			/*
+			 * AJAX是基于http（https）协议，所以只能在HTTP服务器环境下运行。之前我们打开页面是在本地打开，走的是file协议。
+			 * 本地安装服务器环境用wampserver
+			 * 	1、如果你的电脑是64位的话，安装的是32位的软件的话会有问题，提示“无法启动此程序，因为计算机中丢失MSVCR110.dll”。所以一定要安装64位的wampserver
+			 * 	2、打开wampserver前最好把所有的软件都关掉，特别是下载、视频播放软件
+			 * 	3、www目录下的文件夹不能以中文命名，但是文件里面的html文件可以用中文命名
+			 */
+		
+4-ajax数据交互流程
+
+			/*
+			 * ajax数据交互流程
+			 * 1、创建一个ajax对象			买了一个电话
+			 * 2、填写请求地址				输入号码
+			 * 3、发送请求					拨号
+			 * 4、等待服务器响应				等待
+			 * 5、接收数据					通话
+			 */
+			window.onload=function(){
+				var inputs=document.querySelectorAll("input");
+				
+				inputs[2].onclick=function(){
+					var val=inputs[0].value;
+					
+					//1、创建一个ajax对象
+					var ajax=new XMLHttpRequest;
+					
+					//2、填写请求地址
+					ajax.open('get','php/get.php?user='+val,true);
+					
+					//3、发送请求
+					ajax.send();
+					
+					//4、等待服务器响应
+					ajax.onload=function(){
+						//5、接收数据
+						var span=document.querySelector("span");
+						span.innerHTML=ajax.responseText;
+					};
+				};
+			};
+		
+5-返回json数据
+//ajax请求过来的数据都是字符串，它不能用对象的操作方法 直接操作
+
+6-XMLHttpRequest;
+
+			/*
+			 * var ajax=new XMLHttpRequest;
+			 * 
+			 */
+			
+			/*var ajax=new XMLHttpRequest;
+			alert(ajax);		//在IE6下会报错*/
+			
+			var ajax=null;
+			if(window.XMLHttpRequest){
+				ajax=new XMLHttpRequest;
+			}else{
+				ajax=new ActiveXObject('Microsoft.XMLHTTP');
+			}
+			
+			alert(ajax);
+			
+7-get与post的区别
+
+			get方式
+				1、通过地址栏信息进行数据传输，传输的大小有限制
+				2、不安全，用户的所有信息都会暴露出来
+				3、拼接数据的时候要用encodeURI转一下码，不然有中文就会乱码
+				4、不用设置请求头
+				5、数据拼接在open方法里
+				6、会有缓存问题
+				
+			post方式
+				1、通过send向服务器传输数据，理论上来说是没有长度或体积限制
+				2、相对来说安全，因为不直接暴露用户信息
+				3、不用转码，已经通过请求头设置了数据格式，不会有乱码
+				4、在send()的前面需要设置一个请求头（不设置要出错）
+					ajax.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+				5、数据要拼接在send方法里
+				6、没有缓存问题
+		
+8-get转码问题
+
+decodeURI()
+encodeURI()
+
+9-post提交
+
+//post发送请求的时候一定要在发送前设置一下请求头
+ajax.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+
+10-同步与异步
+/*
+			 * 同步与异步
+			 * 	执行的一种模式
+			 * 	同步
+			 * 		1、当send()方法调用后会等待服务器返回信息，如果服务器一直没有响应，就会阻塞后面的代码，后面的代码就不会执行
+			 * 		2、后面的代码执行受前面代码的影响，前面的代码没跑通，后面的代码就不会执行
+			 * 	异步
+			 * 		1、当send()方法调用后，就会执行后面的代码，不用等待服务器的响应
+			 * 		2、后面的代码执行不受前面代码的影响
+			 */
+
+11-onload与onreadystatechange		
+/*
+			 * ajax.readyState		AJAX运行步骤(第一步捕捉不到)
+			 * 	它的值为4的话说明AJAX已经运行完成
+			 * 		0    初始化			还没有调用open()方法
+			 *		1    载入			已调用send()方法，正在发送请求
+			 *		2    载入完成		send()方法完成，已收到全部响应内容
+			 *		3    解析			正在解析响应内容
+			 *		4    完成			响应内容解析完成，可以在客户端调用了
+			 * 
+			 * 
+			 * ajax.status			服务器对请求的反馈(状态码)
+			 * 		200就是成功的，404就是错误的
+			 * 
+			 * onreadystatechange		
+			 * 		readyState的值发生改变时触发的事件，只要这个值有变化就会触发
+			 * 
+			 * onload
+			 *		所有请求成功完成后触发，此时readystate的值为4
+			 * 		（IE678不支持）
+			 * 	
+			 * （新的XMLHttpRequest不推荐用onreadystatechange，使用onload）
+			 * 
+			 */
+
+12-封装ajax
+
+
+
+13-ajax上传功能
+
+/*
+			 * 上传只能用post的方式，并且后台需要处理中文
+			 * ajax.upload.onprogress		上传的进度事件
+			 * 	ev.loaded	已经上传文件的大小
+			 * 	ev.total	总文件的大小
+			 * 
+			 * FormData		用来创建与表单格式相同的数据，它是由XMLHttpRequest 2级定义。获取到的是一个二进制数据
+			 * 	FormData.append(文件名,文件值)
+			 * 
+			 * files		上传选中的所有文件列表，放在type为file的表单控件中
+			 * 	这里包括：最后修改的时间、大小、类型等等
+			 */
+			
+
+
+14-跨域
+
+			/*
+			 * 跨域
+			 * 	两个不同域名下的数据进行交互。Ajax之所以不能跨域其实是因为XMLHttpRequest受到同源策略的限制，只能让它访问同源下的数据，不能访问不同源下的数据
+			 * 
+			 * 同源策略
+			 * 	每个网站只能读取同一来源的数据，这里的同一来源指的是主机名(域名)、协议(http/https)和端口号的组合。在没明确授权的情况下，不能读写对方的资源，它是浏览器最核心也最基本的安全功能
+			 * 	源：协议、端口、域名
+			 * 	只要不同源就跨域
+			 * 
+			 * 协议
+			 * 	http	超文本协议
+			 *	https	HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议要比http协议安全
+			 *	file	本地协议
+			 * 	ftp		文件共享协议
+			 *
+			 * 端口
+			 * 	相当于酒店里一层的房间
+			 * 
+			 * 域名
+			 * 	http://www.kaivon.cn/
+			 * 	
+			 * 	
+			 * 	http://www.kaivon.cn/c/d.html		成功   
+			 *	http://www.kaivon.cn/d/e/f.html		成功   
+			 *	https://www.kaivon.cn/a/c.html		失败  协议不同
+			 *	http://www.kaivon.cn:81/a/c.html	失败  端口不同
+			 *	http://www.apeclass.com/a/b.html	失败  主机名不同
+			 * 
+			 * 
+			 * 
+			 * 跨域解决办法
+			 * 	1、在标准浏览器下XMLHttpRequest配合后端设置一个请求权限
+			 * 		在php里写上	header('Access-Control-Allow-Origin:*');
+			 * 		这个是XMLHttpRequest 2级支持的，非标准浏览器不支持
+			 * 	2、服务器代理
+			 * 		服务器文件可以访问你想要的资源，而你又能访问服务器文件，所以你就可以访问想要的资源
+			 * 		缺点：如果想访问的资源需求有变，对于后端的开发成本就很大
+			 * 	3、iframe、flash、postMessage、WebSocket
+			 * 		http://www.freebuf.com/articles/web/65468.html
+			 * 	
+			 */
+		
+15-jsonp
+
+			/*
+			 * 带src属性的<script><img><iframe><link>等标签是不需要遵守同源策略的，但是通过src加载的资源，浏览器限制了javascript的权限，只能读不能写
+			 * 
+			 * jsonp(json+padding)
+			 * 	1、通过script标签引入某些数据，是同步模式的，只有上面的代码加载完成才能继续加载下面的代码一般在用script标签做跨域的时候，不建议将数据提前加载，应该按需加载
+			 * 	2、当需要数据的时候创建一个script标签，将需要的数据放在src中，通过onload去监听是否请求过来，请求完毕就调用传回来的数据（异步加载）
+			 * 	3、jsonp不能用post请求只能用get方式请求
+			 */
+			
+			//alert(a);
+			window.onload=function(){
+				var btn=document.querySelector("button");
+				
+				btn.onclick=function(){
+					var script=document.createElement("script");
+					script.src='js/data.js';
+					
+					/*
+					 * onload要放在加载前面，如果添在前面的话，会有缓存，缓存就有可能触发不了onload事件
+					 */
+					
+					script.onload=function(){
+						alert(a);
+					};
+					
+					document.body.appendChild(script);
+				};
+			};
+		
+16-jsonp里的回调函数
+<script>
+			function getData(data){
+				alert(data);
+			}
+		</script>
+
+如果数据是以script标签的形式引入到页面中的，那切记定义函数一定要放在引入数据的前面，要不然就会出错
+
+<script src="http://localhost/ajax/php/jsonp.php"></script>
+		<script>
+			function getData(data){
+				alert(data);
+			}
+		</script>
+
+17-jsonp自定义函数
+
+18-百度搜索框
+
+19-jsonp封装
+
+
+        -->
+	</body>
+</html>

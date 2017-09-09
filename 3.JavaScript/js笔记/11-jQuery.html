@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+        	1-jQuery简介
+			/*
+			 * jQuery是一个JavaScript库
+			 * 提供强大的选择器、简洁的API、优雅的链式、便捷的操作	
+			 * 核心理念 The Write Less,Do More（写更少，做更多）
+			 * 
+			 * 
+			 * 3个大版本
+			 * 	1字开头的:做了很多低版本IE兼容处理的
+			 * 	2字开头的:基本抛弃了低版本IE（9以下）
+			 * 	3字开头的 :2开头的基础上加了些新的功能
+			 * 
+			 * 
+			 * http://jquery.com/			英文站
+			 * http://www.jquery123.com/		中文站
+			 */
+			
+			alert($);
+
+2-匿名自执行函数
+/*
+			 * 匿名函数自执行
+			 * 
+			 * 
+			 * 好处
+			 * 	1、使用匿名函数自执行，创建一个私有空间，这样内外部的命名空间就不会相互干扰了。可以避免变量全局污染
+			 * 	2、把window做为参数传进来
+			 * 		1、一是便于代码压缩，有时候关键字是没法被压缩的
+			 * 		2、兼容模块化写法。在浏览器环境下，给factory传入的是window
+			 * 		3、可以节省查找全局window的时间，提高性能
+			 * 	3、noGlobal为undefined，确保undefined可以使用
+			 * 		在低版本undefined会被修改的，函数不传参就是undefined
+			 * 
+			 * 
+			 * 	global			typeof window !== "undefined" ? window : this
+			 * 	factory			function(global,noGlobal){console.log('这里才是jquery的源码',global,noGlobal);}
+
+3-jquery的整体架构
+
+			(function(global,factory){
+				factory(global);
+			})(typeof window !== "undefined" ? window : this, function(global,noGlobal){
+				
+				//声明一个构造函数
+				function jQuery(select){
+					/*
+					 * 在构造函数内部实例化
+					 * 	1、避免每次调用生成实例的时候加new关键字
+					 * 	2、如果直接new jQuery的话就是一个死循环，所以把构造函数放在jQuery.fn.init
+					 */
+					return new jQuery.fn.init(select);
+				}
+				
+				//把原型对象赋值给了jQuery.fn，只是起了一个名字而已
+				jQuery.fn=jQuery.prototype={
+					constructor:jQuery,
+					css:function(){
+						console.log(1);
+					}
+				};
+				
+				/*
+				 * 构造函数（初始化函数）
+				 * 	1、把初始化的方法赋值给一个变量，这个变量就代表了构造函数，它就是jQuery中的真正的构造函数
+				 * 	2、为了解决在生成实例的时候不加new关键字，所以把jQuery的构造函数赋值给了jQuery.fn.init
+				 * 	3、这种写法不是赋值，只是两个变量都指向了同一个值
+				 */
+				var init=jQuery.fn.init=function(select){
+					select=select.substring(1);
+					var temp=document.getElementById(select);
+					
+					return temp;
+				}
+				
+				//将jquery身上的所有方法都赋值给init
+				init.prototype=jQuery.fn;
+				
+				
+				//为了在外面能访问到jquery对象，所以把jqueyr对象赋值给window身上的一个属性
+				global.$=jQuery;
+			});
+			
+			console.log($('#box'));
+		
+4-获取元素
+/*
+			 * jquery中的window.onload
+			 * 	$(callBack)
+			 * 	$(document).ready(callBack)
+			 * 	$().ready(callBack)
+			 * 
+			 * 以上三种方法，在页面中可以同时写
+			 * 
+			 * 
+			 * jquery中获取元素
+			 * 	$(selector);
+			 * 
+			 * 在jquery中获取到的元素都是一个集合
+			 * 	length			获取到元素的数量
+
+5-jquery里的事件
+/*
+			 * jquery里的事件(没有on)
+			 * 	语法
+			 * 		$(元素).click(callBack);
+			 * 
+			 * 
+			 */
+6-css方法
+/*
+			 * css()			关于样式的一些操作
+			 * 	一个参数		获取属性的值
+			 * 		参数为一个对象的话，表示设置属性，可以同时设置多个属性的值
+			 * 	两个参数		设置属性的值
+			 * 		第一个参数是属性名，第二个参数为属性名对应的值(不带单位也是可以的)
+			 * 	
+			 * 
+			 * 表单的value值
+			 * 	val()			获取表单对应的value值
+			 * 	val(values)		设置表单的value值
+
+7-attr()与data()
+/*
+			 * attr()			关于标签属性的操作
+			 * 	一个参数			获取元素的某个属性
+			 * 		参数的值就是属性名字
+			 * 	两个参数			设置元素的某个属性
+			 * 		第一个参数为属性名字，第二个参数为属性要设置成的值
+			 * 	
+			 * data()		给标签添加数据
+			 * 		有参数的话，是添加数据（用对象的形式去表示）
+			 * 		没参数的话，是获取数据
+			 */
+
+8-例子
+
+9-html css
+/*
+			 * html()		取元素里的内容，与js中的innerHTML的效果是一样的
+			 * text()		取元素里的文字，不取标签
+			 *
+10-链式操作
+/*
+			 * 链式操作
+			 * 	对一个元素进行连续的操作
+			 *
+
+11-获取节点
+/*
+			 * 获取节点
+			 * 	.first()					获取第一个子节点
+			 * 	.last()					获取最后一个子节点
+			 * 	.slice(start,end)		截取部分子节点
+			 * 		start				起始位置
+			 * 		end					结束位置,不包含结束位置，第二个参数不写的话，截到最后一位
+			 */
+
+12-获取节点
+/*
+			 * 获取节点
+			 * 	.first()					获取第一个子节点
+			 * 	.last()					获取最后一个子节点
+			 * 	.slice(start,end)		截取部分子节点
+			 * 		start				起始位置
+			 * 		end					结束位置,不包含结束位置，第二个参数不写的话，截到最后一位
+			 * 
+			 * .children	(selector)		获取到元素里的第一层子节点
+			 * 		参数如果没有的话，获取到父级下的所有子节点
+			 * 		有参数的话，参数是一个选择器，找到对应选择器的节点
+			 * .find()					获取元素里的所有节点
+			 * 
+			 */
+
+13-父节点
+/*
+			 * 父节点
+			 * 	.parent()			元素的第一层父节点
+			 * 	.parents()			元素的所有父节点，它会一直往上找，直到找到html
+			 * 
+			 */
+
+14-最近的节点
+			/*
+			 * 最近的节点
+			 * 	.closest()			从自身开始找，一层一层往外找，找到最近满足条件的元素，找到一个以后就不再找了
+			 */
+
+15-创建节点与插入节点
+/*
+			 * 父级.append(要添加的元素)			把要添加的元素添加到父级的最后面
+			 * 父级.prepend(要添加的元素)			把要添加的元素添加到父级的最前面
+			 * 元素.before(要添加的元素)			把要添加的元素添加到一个指定的元素的前面
+			 * 元素.after(要添加的元素)			把要添加的元素添加到一个指定的元素的后面
+			 * 
+			 */
+
+16-创建节点与插入节点
+/*
+			 * 要添加的元素.appendTo(父级)			把要添加的元素添加到父级的最后面
+			 * 要添加的元素.prependTo(父级)			把要添加的元素添加到父级的最前面
+			 * 要添加的元素.insertBefore(元素)		把要添加的元素添加到一个指定的元素的前面
+			 * 要添加的元素.insertAfter(元素)			把要添加的元素添加到一个指定的元素的后面
+			 * 
+			 */
+17-remove() clone()
+/*
+			 * remove()		删除元素
+			 * 	元素.remove();
+			 * 
+			 * clone(blooen)		克隆元素
+			 * 	参数默认为空，表示只复制元素，不复制事件。如果参数为true，表示元素与事件都会被复制
+			 */
+
+18-上一个 下一个节点
+/*
+			 * 上一个兄弟节点
+			 * 	.prev()
+			 * 
+			 * 下一个兄弟节点
+			 * 	.next()
+			 * 
+			 */
+19-索引
+/*
+			 * index()		
+			 * 	没有参数
+			 * 		第一个元素（获取到的这个元素，因为jquery获取到的是一组数据）在兄弟元素中的排行
+			 * 	有参数
+			 * 		代表前面的元素在参数的标签（所有标签，不分兄弟）里排行第几
+			 * 		
+			 */
+20-循环
+/*
+			 * each(i,elem)			循环
+			 * 		i				每个元素对应的下标（索引）
+			 * 		elem				每个元素，原生的元素
+			 * 
+			 * 	在循环中
+			 */
+
+21-选项卡
+/*
+			 * 通过索引找到对应的元素
+			 * 	eq(index)			参数为下标
+			 *
+
+22-get
+/*
+			 * get(index)		把jquery对象转成原生对象
+			 * 		index		是元素的索引值
+			 * 
+			 * 原生对象转jquery对象用$
+			 * jquery转原生对象用get(index);
+			 */
+23-包装对象
+/*
+			 * 包装对象：在外层包一层标签
+			 * 	wrap()			在标签外在加一层父级	
+			 * 	wrapAll()		把所有的标签都拿过来，放在一起，然后在他们的外面加一个父级
+			 * 	wrapInner()		在父级的里面添加一个标签，并把内容放到这个标签里面
+			 * 	unwrap()			删除父级(不包含body标签)
+			 */
+
+24-包装标签例子
+
+25-元素的尺寸
+/*
+			 * width()			获取元素的宽度（值不带单位）
+			 * 		有参数的话，代表设置宽度，参数不用带单位
+			 * height()			获取元素的高度
+			 * 		有参数的话，代表设置高度，参数不用带单位
+			 * innerWidth()		width+padding
+			 * innerHeight()		height+padding
+			 * outerWidth()		width+padding+border
+			 * outerHeight()		height+padding+border
+			 * 
+			 * 
+			 */
+26-可视区的尺寸
+
+			$(function(){
+				//页面的宽高
+				console.log($(document).width());
+				console.log($(document).height());
+				
+				//可视区的宽高
+				console.log($(window).width());
+				console.log($(window).height());
+			});
+		
+27-元素的距离
+/*
+			 * 元素相对于文档的距离
+			 * 		offset().left
+			 * 		offset().top
+			 * 
+			 * 元素相对于父级的距离
+			 * 		position().left
+			 * 		position().top
+			 * 	position的值是不会受margin影响的，或者说它的值不加margin
+			 * 
+			 * offsetParent()
+			 * 	找到最近的有定位的父级
+			 */
+
+28-滚动距离
+/*
+			 * 滚动条的距离
+			 * 	scrollTop()、	scrollLeft()
+			 * 	如果有参数，就代表设置滚动条的距离
+			 */
+			
+			$(function(){
+				console.log($(document).scrollTop());
+				
+				$(document).scrollTop(500);
+			})
+29-进入可失去加载图片
+
+			/*
+			 * scroll()		滚动事件
+			 */
+			$(function(){
+				$(document).scroll(function(){
+					var sTop=$(document).scrollTop();
+					var viewHeight=$(window).height();
+					
+					$('img').each(function(i,elem){
+						//图片离文档最上面的距离如果比可视区的距离+滚动条的距离要小，说明图片已经进入到了可视区
+						if($(elem).offset().top<viewHeight+sTop){
+							$(elem).attr('src',$(elem).attr('_src'));
+						}
+					});
+				});
+			});
+		
+30-事件
+
+			$(function(){
+				$('#box').click(function(){
+					console.log(1);
+				});
+				$('#box').click(function(){
+					console.log(2);
+				});
+				
+				$('#box').on('click',function(){
+					console.log(3);
+				});
+				$('#box').on('click mouseover',function(){
+					console.log(4);
+				});
+				
+				
+				$('#box').on('click',function(){
+					console.log(5);
+					$(this).off();		//移除事件
+				});
+			});
+		
+
+31-事件对象
+/*
+			 * clientX		不带滚动条的距离
+			 * pageX			带滚动条的距离
+			 */
+
+32-拖拽例子
+
+33-事件委托
+
+34-自定义事件
+
+			$(function(){
+				$('div').on('kaivon',function(){
+					console.log('这是一个鼠标点击的自定义事件');
+				});
+				$('div').on('鼠标移入',function(){
+					console.log('这是一个鼠标移入的自定义事件');
+				});
+				
+				
+				$('div').click(function(){
+					$('div').trigger('kaivon');
+				});
+				
+				$('div').mouseover(function(){
+					$(this).trigger('鼠标移入');
+				});
+			});
+		
+35-自定义事件拖拽
+
+36-工具方法/数据检测
+/*
+			 * $(选择器).css()	$(选择器).html()	$(选择器).trigger()
+			 * 	以上这些都是jquery里的方法，原生的不能直接用
+			 * 
+			 * $.xxx()	$.yyy()
+			 * 	这些方法是jquery里的方法，原生的也可以直接用
+			 * 
+			 * $.type()
+			 * 	检测参数的类型
+			 * 	http://www.jquery123.com/jQuery.type/
+			 * 
+			 * $.isFunction()
+			 * 	检测参数是不是函数
+			 * 	http://www.jquery123.com/jQuery.isFunction/
+			 * 
+			 * $.isNumeric()
+			 * 	检测参数是不是个数字
+			 * 	http://www.jquery123.com/jQuery.isNumeric/
+			 * 
+			 * $.isArray()
+			 * 	检测参数是不是数组
+			 * 	http://www.jquery123.com/jQuery.isArray/
+			 * 
+			 * $.isWindow()
+			 * 	检测参数是不是window对象
+			 * 
+			 * $.isEmptyObject()
+			 * 	检测对象是否为空
+			 * 
+			 * $.isPlainObject()
+			 * 	检测对象是不是纯粹的对象
+			 * 	通过{}、new Object()创建的对象称为纯粹的对象
+			 
+37-show()与hide()
+/*
+			 * show(duration,easing,complate)		显示
+			 * hide(duration,easing,complate)		隐藏
+			 * 
+			 * duration
+			 * 		slow		600
+			 * 		normal	400
+			 * 		fast		200
+			 * 
+			 * easing
+			 * 		linear,swing(默认)
+			 * 
+			 * complate
+			 * 		运动完成后执行的回调函数
+			 */
+
+38-toggle
+/*
+			 * toggle(duration,easing,complate)		在两种效果之间进行切换
+			 * 
+			 * duration
+			 * 		slow		600
+			 * 		normal	400
+			 * 		fast		200
+			 * 
+			 * easing
+			 * 		linear,swing(默认)
+			 * 
+			 * complate
+			 * 		运动完成后执行的回调函数
+			 */
+39-渐隐渐现
+/*
+			 * 渐隐渐现
+			 * fadeIn(duration,easing,complate)		显示
+			 * fadeOut(duration,easing,complate)		隐藏
+			 * 
+			 * duration
+			 * 		slow		600
+			 * 		normal	400
+			 * 		fast		200
+			 * 
+			 * easing
+			 * 		linear,swing(默认)
+			 * 
+			 * complate
+			 * 		运动完成后执行的回调函数
+			 */
+
+40-fadeToggle
+/*
+			 * fadeToggle(duration,easing,complate)		在两种效果之间进行切换
+			 * 
+			 * duration
+			 * 		slow		600
+			 * 		normal	400
+			 * 		fast		200
+			 * 
+			 * easing
+			 * 		linear,swing(默认)
+			 * 
+			 * complate
+			 * 		运动完成后执行的回调函数
+			 */
+41-slideUp() slideDown()
+/*
+			 * slideUp(duration,easing,complate)			收缩
+			 * slideDown(duration,easing,complate)		展开
+			 * 
+			 * duration
+			 * 		slow		600
+			 * 		normal	400
+			 * 		fast		200
+			 * 
+			 * easing
+			 * 		linear,swing(默认)
+			 * 
+			 * complate
+			 * 		运动完成后执行的回调函数
+			 */
+42-slideToggle
+/*
+			 * slideToggle(duration,easing,complate)		在两种效果之间进行切换
+			 * 
+			 * duration
+			 * 		slow		600
+			 * 		normal	400
+			 * 		fast		200
+			 * 
+			 * easing
+			 * 		linear,swing(默认)
+			 * 
+			 * complate
+			 * 		运动完成后执行的回调函数
+			 */
+
+43-animate
+/*
+			 * animate(property,duration,easing,complate)
+			 * 	property			要运动的属性，它是一个对象
+			 * 	duration			运动的时间（默认为400）
+			 * 	easing			运动的形式
+			 * 					swing		缓冲
+			 * 					linear		匀速
+			 * 	complate			回调函数（运动完成后触发）
+			 */
+
+44-延迟动画
+/*
+			 * animate(property,duration,easing,complate)
+			 * 	property			要运动的属性，它是一个对象
+			 * 	duration			运动的时间（默认为400）
+			 * 	easing			运动的形式
+			 * 					swing		缓冲
+			 * 					linear		匀速
+			 * 	complate			回调函数（运动完成后触发）
+			 * 
+			 * 	设置延迟
+			 * 		delay(time);
+			 */
+
+45-停止动画
+/*
+			 * animate(property,duration,easing,complate)
+			 * 	property			要运动的属性，它是一个对象
+			 * 	duration			运动的时间（默认为400）
+			 * 	easing			运动的形式
+			 * 					swing		缓冲
+			 * 					linear		匀速
+			 * 	complate			回调函数（运动完成后触发）
+			 * 
+			 * 	设置延迟
+			 * 		delay(time);
+			 * 
+			 * 	停止动画
+			 * 		stop()				只停止当前的运动（属性），后面的运动还会接着走
+			 * 		stop(true)			所有的运动都停了
+			 * 		stop(true,true)		当前的属性会马上到达目标点，后面的运动不会走
+			 * 		finish()				所有的属性都会马上到达目标点，没运动的效果
+			 */
+46-先停止在运动
+
+			$(function(){
+				$('#div1').mouseover(function(){
+					$('#div1').stop().animate({width:400,height:400});
+				}).mouseout(function(){
+					$('#div1').stop().animate({width:200,height:200});
+				});
+			});
+		
+47-轮播图例子
+
+48-表单验证插件
+
+49-扩展方法
+
+50-拖拽插件
+        -->
+	</body>
+</html>
