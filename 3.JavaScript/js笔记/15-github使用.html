@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+        	1-github介绍
+
+			/*
+			 * git与github
+			 * 	git是目前最先进的分布式版本控制系统，它在本地电脑里
+			 * 	github是一个社交平台，开源项目，是一个远程仓库
+			 */
+		
+
+2-git步骤
+
+			/*
+			 * 
+			 * 1、下载
+			 * 		https://git-for-windows.github.io/
+			 * 2、在开始里打开Git Bash
+			 * 		接下来要做的是把git绑定github
+			 * 3、打开github网站登录后
+			 * 		1、点击最右上角的图标，点击settings
+			 * 		2、再打开的页面左边点击SSH and GPG keys选项
+			 * 		3、点击New SSH key
+			 * 		4、在打开的页面里随便输入一个title
+			 * 4、找key
+			 * 		在打开的软件(Git Bash)里输入ssh-keygen -t rsa -C '注册的邮箱'
+			 * 		1、点击回车后提示要输入密码，可以输入也可以不输入
+			 * 		2、接下来两次回车就可以，从提示的路径里找到对应的.ssh文件
+			 * 		3、打开对应的路径，里面有两个id_rsa，打开带pub的那个id_rsa（里面带邮箱），复制里面的代码
+			 * 5、所复制的key放到网页里面，点击确定
+			 * 6、测试有没有绑定成功
+			 * 		输入命令ssh -T git@github.com
+			 * 		有提示 You've successfully authenticated 就表示绑定成功
+			 * 7、设置用户信息（用于在提交的时候显示你的信息）
+			 * 		查看的话，如果没有设置过的话什么也没有，查看也可以用git config --list
+			 * 		设置用户名输入git config --global user.name '用户名'
+			 * 		设置用户邮箱输入git config --global user.email '邮箱'
+			 * 8、建立项目（可能会提示输入密码）
+			 * 		1、点击网站中右上角的加号
+			 * 		2、点击弹出来框里面的New repository
+			 * 		3、在Repository name输入框里输入项目名称
+			 * 		4、在Description输入框里输入项目描述
+			 * 		5、把Initialize this repository with a README的框打上对号，表示把项目的描述也放在文件夹里
+			 * 9、把项目放到本地
+			 * 		1、在本地新建一个文件夹
+			 * 		2、在命令提示框里找到新建的目录，用cd命令cd c:	cd:github(tab可以补全)
+			 * 		3、git clone 项目地址
+			 * 			项目地址在网页里点击clone or download的绿色按钮弹出的输入框里复制一下
+			 * 			等命令提示框里看到一个100%就证明已经下载完成了
+			 * 			注意：下载后的文件里有一个隐藏的.git文件夹，不要去修改它，不然会出错的
+			 * 10、在项目里新建页面
+			 * 		1、要看这个文件下有哪些文件，输入ls
+			 * 		2、进入到Tab的文件，cd Tab
+			 * 			地址里有一个master，表示已经进入到项目里了
+			 * 		3、在Tab的文件夹里新建一个html文件
+			 * 			可以在命令提示框里查看一下现在项目的状态git status，显示的红色的内容就是新添加的文件
+			 * 11、把本地的文件上传到github上
+			 * 		1、添加到暂存区(过渡层，避免误操作，保护工作区和版本区)
+			 * 			git add 文件名				将单个文件放到暂存区
+			 * 			git add .					将多个文件放到暂存区
+			 * 		2、添加到版本区
+			 * 			git commit -m '注释'			将文件放到版本区
+			 * 			git commit -a -m '注释'		从本地直接到版本区，跳过了暂存区
+			 * 			每一次改动的内容都需要注释一下，容易查看版本
+			 * 		3、添加到github上
+			 * 			git push origin master
+			 * 			这个步骤可能会提示要输入密码，输入注册时候的用户名与密码就可以
+			 * 			提交完成后在网页里刷新就能看到提交的文件
+			 * 		
+			 * 		文件在本地修改的时候，可以随时git status，查看现在的状态
+			 */
+		
+3-查看文件的差异
+
+			/*
+			 * 查看文件的差异
+			 * 	查看本地与暂存区的差异：git diff
+			 * 	查看暂存区与版本区差异：git diff --cached
+			 * 	查看本地与版本区的差异：git diff master
+			 * 
+			 * 撤消
+			 * 	从暂存区撤消到本地：git reset HEAD 文件名	
+			 * 	把版本区的文件还原到本地：git checkout -- 文件名
+			 * 
+			 * 	如果有多个文件同时修改了，还需要一起提交。但是已经提交到版本区的时候忘记了，只提交了一个
+			 * 		解决方法：
+			 * 			1、把未提交的的文件先提交到暂存区
+			 * 			2、git commit -m '注释' --amend
+			 * 
+			 */
+		
+4-删除
+
+			/*
+			 * 删除
+			 * 1、删除暂存区的文件：git rm 文件名
+			 * 		本地的文件手动删除了，暂存区里是还有的
+			 * 2、删除本地文件和暂存区文件：git rm -f 文件名
+			 * 3、只删除暂存区，不删除本地文件：git rm --cached 文件名
+			 * 
+			 * 
+			 * 
+			 * 
+			 * 恢复
+			 * 	1、git checkout 编码 文件名		恢复单个文件
+			 * 		注意：编码通过git log去找，只用输几个字符就可以，只要不与其它的编码重复
+			 * 	2、git reset --hard 编码			恢复整个版本的文件
+			 * 	3、git reflog					查找历史版本记录，方便回滚
+			 */
+		
+5-发布到github上
+
+			/*
+			 * 发布到github上
+			 * 	git remote				查看远程仓库的名称
+			 * 	git remote -v			查看远程仓库的地址
+			 * 	git push origin master	把版本库中的文件提交到远程仓库
+			 * 
+			 * 设置多人开发权限
+			 * 	1、一个项目可以设置多个开发人员一起开发
+			 * 	2、在项目中点击右上角加号，点击New collaborator，在弹出的页面里找到输入框输入用户名点击后面的add按钮
+			 * 	3、其它的开发都必需先clone一下项目，下载到本地
+			 * 
+			 * 多人开发出现冲突（如果多人同时在操作一个代码，那提交的时候会有冲突）
+			 * 		1、git fetch							把线上的代码先下载下来
+			 * 		2、git diff master origin/master		查看冲突，会很清晰的打出来哪些代码不一样
+			 * 		3、git merge origin/master			将不同的代码显示到页面中，人为的判断用谁的代码
+			 * 		4、解决完后，再push上去
+			 */
+		
+6-分支
+
+			/*
+			 * 分支
+			 * 	git branch					查找分支
+			 * 	git branch 新分支名			新建分支
+			 * 	git checkout 分支名			切换分支
+			 * 	git checkout -b 新分支名		快速新建并切换
+			 * 	git merge 分支名				合并分支
+			 * 	git branch -d 分支名			删除分支
+			 * 
+			 */
+		
+7-创建博客
+
+			/*
+			 * 创建博客
+			 * 	1、点击右上角的加号，再点击New repository
+			 * 	2、在输入框里输入地址，这个地址一定要与你的github的地址一样
+			 * 	3、确定后再新的页面点create new file
+			 * 	4、在新的页面输入框里输入index.html（一定要这样写），然后在下面的大输入框里输入内容，然后点击commit new file按钮
+			 * 
+			 * 	
+			 * http://git.oschina.net/progit/		github中文文档
+			 */
+		
+        	
+        -->
+	</body>
+</html>

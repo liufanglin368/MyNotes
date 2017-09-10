@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+        	1-移动端基础事件
+/*
+			 * touchstart			手指按下事件
+			 * touchmove			手指移动事件
+			 * touchend				手指离开事件
+			 * 
+			 * 注意：
+			 * 		1、这些事件只能用事件监听函数来添加，不能用on添加
+			 * 		2、移动端当中就不要再用鼠标的事件了
+			 * 		3、移动端的事件会触发浏览器的默认行为，所以在调用事件的时候要把这个默认行为给阻止了
+			 */
+
+2-事件对象
+
+			/*
+			 * touches			当前屏幕中的手指列表
+			 * 
+			 * 
+			 */
+			
+			var box=document.getElementById("box");
+			
+			//相当于mousedown
+			box.addEventListener('touchstart',function(ev){
+				//console.log(ev.touches);
+				this.innerHTML=ev.touches.length;
+			});
+		
+3-重力加速事件
+
+			/*
+			 * devicemotion						重力加速度事件
+			 * accelerationIncludingGravity		重力加速度对象
+			 * 		他身上有三个轴
+			 * 			x:手机的宽
+			 * 			y:手机的长
+			 * 			z:手机的厚
+			 * 
+			 * 注意：这个事件只能放在window身上
+			 */
+			
+			var box=document.getElementById("box");
+			
+			//相当于mousedown
+			window.addEventListener('devicemotion',function(ev){
+				var motion=ev.accelerationIncludingGravity;
+				//console.log(ev.touches);
+				this.innerHTML=`x:${motion.x}</br>y:${motion.y}</br>z:${motion.z}`;
+			});
+		
+4-方块跟着重力移动
+
+			/*
+			 * devicemotion						重力加速度事件
+			 * accelerationIncludingGravity		重力加速度对象
+			 * 		他身上有三个轴
+			 * 			x:手机的宽
+			 * 			y:手机的长
+			 * 			z:手机的厚
+			 * 
+			 * 注意：这个事件只能放在window身上
+			 */
+			
+			var box=document.getElementById("box");
+			
+			//相当于mousedown
+			window.addEventListener('devicemotion',function(ev){
+				var motion=ev.accelerationIncludingGravity;
+				//console.log(ev.touches);
+				var x=parseFloat(getComputedStyle(box).left);
+				box.style.left=x+motion.x+'px';
+			});
+		
+5-手机倾斜事件
+
+			/*
+			 * deviceorientation			手机倾斜事件
+			 * 		ev.beta					x轴的倾斜
+			 * 		ev.gamma				y轴的倾斜
+			 * 		ev.alpha				z轴的倾斜
+			 * 
+			 * 注意：这个事件只能放在window身上
+			 */
+			
+			var box=document.getElementById("box");
+			
+			//相当于mousedown
+			window.addEventListener('deviceorientation',function(ev){
+				var motion=ev.accelerationIncludingGravity;
+				//console.log(ev.touches);
+				box.innerHTML=`x轴倾斜:${ev.beta.toFixed(1)}</br>y轴倾斜:${ev.gamma.toFixed(1)}</br>z轴倾斜:${ev.alpha.toFixed(1)}`;
+			});
+		
+6-摇一摇
+
+			var lastRange=0;		//上一次摇晃的幅度
+			var isShake=false;		//决定用户到底有没有大幅度摇晃
+			
+			window.addEventListener('devicemotion',function(ev){
+				var motion=ev.accelerationIncludingGravity;
+				var x=Math.abs(motion.x);
+				var y=Math.abs(motion.y);
+				var z=Math.abs(motion.z);
+				
+				var range=x+y+z;			//当前摇晃的幅度
+				if(range-lastRange>100){
+					//这个条件成立说明用户现在已经在大幅度摇晃
+					isShake=true;
+				}
+				
+				if(isShake && range<50){	
+					//这个条件成立，说明用户摇晃的幅度很小了就要停了
+					alert('摇一摇了');
+					isShake=false;
+				}
+			});
+		
+7-多指旋转
+
+			/*
+			 * gesturestart				两个或者两个以上手指按下
+			 * gesturechange			两个或者两个以上手指变换
+			 * gestureend				两个或者两个以上手指离开
+			 * 
+			 * ev.rotation				这个值是start与move的旋转度数的差值
+			 */
+			
+			//一定要阻止浏览器的默认行为
+			document.addEventListener('touchstart',function(ev){
+				ev.preventDefault();
+			});
+			document.addEventListener('touchmove',function(ev){
+				ev.preventDefault();
+			});
+			
+			var box=document.getElementById("box");
+			
+			
+			var startDeg=0;		//上次旋转后的角度
+			//两个或者两个以上手指按下
+			box.addEventListener('gesturestart',function(){
+				this.style.background='blue';
+				
+				//rotate(90deg)
+				if(this.style.transform){
+					startDeg=parseFloat(this.style.transform.split('(')[1]);
+				}
+			});
+			
+			//两个或者两个以上手指变换
+			box.addEventListener('gesturechange',function(ev){
+				/*this.style.background='black';
+				this.innerHTML=ev.rotation;*/
+				
+				this.style.transform='rotate('+(ev.rotation+startDeg)+'deg)';
+			});
+			
+			//两个或者两个以上手指变换
+			box.addEventListener('gestureend',function(){
+				this.style.background='green';
+			});
+		
+8-多指缩放
+
+			/*
+			 * gesturestart				两个或者两个以上手指按下
+			 * gesturechange			两个或者两个以上手指变换
+			 * gestureend				两个或者两个以上手指离开
+			 * 
+			 * ev.rotation				这个值是start与move的旋转度数的差值
+			 * ev.scale					这个值是start与move的缩放倍数的差值
+			 */
+			
+			//一定要阻止浏览器的默认行为
+			document.addEventListener('touchstart',function(ev){
+				ev.preventDefault();
+			});
+			document.addEventListener('touchmove',function(ev){
+				ev.preventDefault();
+			});
+			
+			var box=document.getElementById("box");
+			
+			
+			var startScale=1;		//上次缩放后的角度
+			//两个或者两个以上手指按下
+			box.addEventListener('gesturestart',function(){
+				this.style.background='blue';
+				
+				//rotate(90deg)
+				if(this.style.transform){
+					startScale=parseFloat(this.style.transform.split('(')[1]);
+				}
+			});
+			
+			//两个或者两个以上手指变换
+			box.addEventListener('gesturechange',function(ev){
+				/*this.style.background='black';
+				this.innerHTML=ev.rotation;*/
+				
+				var sc=ev.scale*startScale;
+				sc=sc<0.5?0.5:sc;
+				
+				this.style.transform='scale('+sc+')';
+			});
+			
+			//两个或者两个以上手指变换
+			box.addEventListener('gestureend',function(){
+				this.style.background='green';
+			});
+		
+        -->
+	</body>
+</html>
