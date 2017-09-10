@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+        	1-获取class
+
+			/*
+			 * getElementsByClassName
+			 * 	IE9以及以上支持
+			 */
+			var boxs=document.getElementsByClassName('box');
+			console.log(boxs);
+			
+			for(var i=0;i<boxs.length;i++){
+				boxs[i].style.background='red';
+			}
+		
+2-query选择器
+
+			/*
+			 * querySelector/querySelectorAll
+			 * 	IE8以及以上支持
+			 */
+			var wrap=document.querySelector("#wrap");
+			wrap.style.background='red';
+			
+			var boxs=document.querySelectorAll("li");
+			for(var i=0;i<boxs.length;i++){
+				boxs[i].style.background='green';
+			}
+		
+3-获取计算后的样式
+
+			/*
+			 * 获取计算后的样式
+			 * 	getComputedStyle
+			 * 		IE9以及以上支持
+			 * 	
+			 * 	currentStyle
+			 * 		所有IE都支持，它是一个属性
+			 */
+			var box=document.getElementById("box");
+			//alert(getComputedStyle(box).width);
+			//alert(box.currentStyle.width);
+			
+			
+			function getStyle(obj,attr){
+				if(obj.currentStyle){
+					return obj.currentStyle[attr];
+				}else{
+					return getComputedStyle(obj)[attr];
+				}
+			}
+			
+			alert(getStyle(box,'height'));
+		
+4-trim
+
+			/*
+			 * trim
+			 * 	IE9以及以上支持
+			 * 
+			 */
+			var str='    kaivon    ';
+			//console.log(str.trim());
+			
+			String.prototype.trim=function(){
+				return this.replace(/^\s+|\s+$/g,'');
+			};
+			
+			console.log(str.trim());
+		
+5-forEach
+
+			/*
+			 * forEach
+			 * 	IE9以及以上支持
+			 */
+			var color=['red','green','blue','yellow'];
+			
+			color.forEach(function(value,index,array){
+				console.log(value,index,array);
+			});
+		
+6-获取DOM节点1
+
+			/*
+			 * 获取DOM节点
+			 * 	firstChild
+			 * 	lastChild
+			 * 	nextSibling
+			 * 	previousSibling
+			 * 
+			 * 以上方法都是兼容的，但是取到的结果不一样。IE8以下获取到的是标签节点，标准浏览器获取到的不一定是标签节点
+			 */
+			
+			var box=document.getElementById("box");
+			//alert(box.firstChild.nodeName);
+			//alert(box.lastChild.nodeName);
+			//alert(box.nextSibling.nodeName);
+			alert(box.previousSibling.nodeName);
+		
+7-获取DOM节点2
+
+			/*
+			 * 获取DOM节点
+			 * 	firstElementChild
+			 * 	lastElementChild
+			 * 	nextElementSibling
+			 * 	previousElementSibling
+			 * 
+			 * IE9以及以上支持
+			 */
+			
+			var box=document.getElementById("box");
+			//alert(box.firstElementChild.nodeName);
+			//alert(box.lastElementChild.nodeName);
+			//alert(box.nextElementSibling.nodeName);
+			alert(box.previousElementSibling.nodeName);
+		
+8-滚动条的距离
+
+			/*
+			 * 滚动条的距离
+			 * 	window.pageXOffset
+			 * 	window.pageYOffset
+			 * 	
+			 * 	IE9以及以上支持
+			 * 
+			 * scrollTop
+			 * 	document.documentElement.scrollTop			其它的浏览器从document身上去获取
+			 * 	document.body.scrollTop						chrom从body身上获取
+			 * 
+			 */
+			document.onclick=function(){
+				//alert(window.pageYOffset);
+				var top=document.documentElement.scrollTop||document.body.scrollTop;
+				alert(top)
+			}
+		
+9-事件对象
+
+			/*
+			 * event对象
+			 * 	IE9以及以上支持
+			 * 
+			 * IE678的事件对象是window身上的一个属性
+			 */
+			document.onclick=function(ev){
+				//alert(ev);
+				//alert(window.event);
+				var ev=ev||event;
+				
+				alert(ev);
+			}
+		
+10-事件绑定
+
+			/*
+			 * addEventListener
+			 * 	IE9以及以上支持
+			 * 	
+			 * attachEvent
+			 * 	IE678支持，但是要注意它的事件名字参数要加on
+			 */
+			var box=document.getElementById("box");
+			/*box.addEventListener('click',function(){
+				alert(1);
+			});*/
+			
+			/*box.attachEvent('onclick',function(){
+				alert(1);
+			});*/
+			
+			function addEvent(obj,type,fn){
+				if(obj.addEventListener){
+					obj.addEventListener(type,fn);
+				}else{
+					obj.attachEvent('on'+type,fn);
+				}
+			};
+			function removeEvent(obj,type,fn){
+				if(obj.removeEventListener){
+					obj.removeEventListener(type,fn);
+				}else{
+					obj.detachEvent('on'+type,fn);
+				}
+			}
+			addEvent(box,'click',alertBox);
+			
+			
+			function alertBox(){
+				alert(1);
+				
+				removeEvent(box,'click',alertBox);
+			}
+		
+        -->
+	</body>
+</html>
