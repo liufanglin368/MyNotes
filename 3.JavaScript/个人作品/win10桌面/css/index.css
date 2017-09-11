@@ -27,6 +27,11 @@ dl{
 	padding:0px;
 	margin: 0px;
 }
+hr{
+	margin: 0px;
+}
+
+
 body{
 	background-image: url(../img/win10.jpg);
 	background-size:100% ;

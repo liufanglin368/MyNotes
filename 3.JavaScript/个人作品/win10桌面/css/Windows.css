@@ -324,7 +324,7 @@
  * 任务栏系统托盘
  */
 footer .taskbar{
-	width: 318px;
+	width: 313px;
 	height: 40px;
 	float: right;
 	position: relative;
@@ -434,6 +434,7 @@ footer .taskbar{
 	top: -581px;
 	right: 0px;
 	opacity: 0.99;
+	display: none;
 }
 .taskbar .network .networkA p{
 	width: 348px;
@@ -513,6 +514,27 @@ footer .taskbar{
 	height: 40px;
 	display: inline-block;
 }
+.taskbar .loudspeaker .loudspeakerA{
+	width: 360px;
+	height: 100px;
+	background: #20272e;
+	border-top: 1px solid #2b3a4b;
+	border-left: 1px solid #2b3a4b;
+	position: absolute;
+	top: -100px;
+	right: 0px;
+	opacity: 0.99;
+	display: none;
+}
+.taskbar .loudspeaker .loudspeakerA p{
+	width: 240px;
+	height: 15px;
+	font-size: 14px;
+	color: #FFFFFF;
+	margin: 16px 120px 0px 12px;
+}
+
+/*当前输入法*/
 .taskbar .state{
 	width: 22px;
 	height: 40px;
@@ -522,11 +544,64 @@ footer .taskbar{
 	display: inline-block;
 	vertical-align:top;
 }
+/*输入法*/
 .taskbar .method{
 	width: 36px;
 	height: 40px;
 	display: inline-block;
 }
+.taskbar .method .methodA{
+	width: 300px;
+	height: 250px;
+	background: #20272e;
+	border-top: 1px solid #2b3a4b;
+	border-left: 1px solid #2b3a4b;
+	position: absolute;
+	top: -250px;
+	right: 6px;
+	opacity: 0.99;
+	display: none;
+}
+.taskbar .method .methodA ul{
+	width: 100%;
+	height: 240px;
+	margin: 2px 0px;
+}
+.taskbar .method .methodA ul li{
+	width: 100%;
+	height: 60px;
+	position: relative;
+}
+.taskbar .method .methodA ul li img{
+	position: absolute;
+	top: 20px;
+	left: 20px;
+}
+.taskbar .method .methodA ul li p{
+	width: 114px;
+	height: 14px;
+	font-size: 14px;
+	color: #d0ecfd;
+	position: absolute;
+	top: 19px;
+	left: 74px;
+}
+.taskbar .method .methodA ul li span{
+	width: 114px;
+	height: 14px;
+	font-size: 14px;
+	color: #d0ecfd;
+	position: absolute;
+	top: 39px;
+	left: 74px;
+}
+.taskbar .method .methodA ul hr{
+	border: none;
+	border-top: 1px solid #3c454e;
+	margin: 1px 12px;
+}
+
+/*日历*/
 .taskbar .time{
 	width: 73px;
 	height: 40px;
@@ -534,13 +609,69 @@ footer .taskbar{
 	display: inline-block;
 	vertical-align:top;
 }
+.taskbar .time p{
+	color: #FFFFFF;
+	vertical-align: top;
+	font-size: 10px;
+	height: 10px;
+	display: inline-block;
+}
+.taskbar .time span{
+	color: #FFFFFF;
+	vertical-align: top;
+	font-size: 10px;
+	height: 10px;
+}
+
+/*系统通知*/
 .taskbar .message{
 	width: 40px;
 	height: 40px;
 	display: inline-block;
 }
+.taskbar .message .messageA{
+	width: 360px;
+	height: 600px;
+	background: #20272e;
+	border-top: 1px solid #2b3a4b;
+	border-left: 1px solid #2b3a4b;
+	position: absolute;
+	top: -600px;
+	right: 0px;
+	opacity: 0.95;
+	display: none;
+}
+.taskbar .message .messageA h3{
+	font-size: 13px;
+	color: #FFFFFF;
+	margin: 22px 0px 0px 12px;
+}
+.taskbar .message .messageA p{
+	color: #a0a3a7;
+	margin: 42px 0px 0px 12px;
+}
+.taskbar .message .messageA .messageB{
+	width: 100%;
+	height: 288px;
+	font-size: 0;
+	position: absolute;
+	top: 306px;
+}
+.taskbar .message .messageA .messageB span{
+	width: 25px;
+	height: 28px;
+	color: #969a9e;
+	font-size: 12px;
+	margin-right: 11px;
+	margin-left: 330px;
+	display: inline-block;
+}
+.taskbar .message .messageA .messageB img{
+	margin: 4px 0px 0px 4px;
+	display: inline-block;
+}
 .taskbar .desktop{
-	width: 13px;
+	width: 8px;
 	height: 40px;
 	font-size: 40px;
 	text-indent: 8px;
@@ -557,4 +688,26 @@ footer .taskbar{
 	height: 40px;
 	border-right: 1px solid #66696b;
 
+}
+
+
+/*文件夹*/
+section .folder{
+	width: 74px;
+	height: 72px;
+	text-align: center;
+}
+
+section .folder p{
+	font-size: 11px ;
+	color: #FFFFFF;
+}
+section .notepad{
+	width: 74px;
+	height: 72px;
+	text-align: center;
+}
+section .notepad p{
+	font-size: 11px ;
+	color: #FFFFFF;
 }
