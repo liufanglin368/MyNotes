@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.demo{
+				width: 300px;
+				height: 100px;
+				border: 1px solid #008000;
+			}
+			.qx{
+				width: 300px;
+				height: 30px;
+				border: 1px solid #008000;
+				border-radius: 5%;
+				margin-top: 20px;
+				position: relative;
+			}
+			.btn{
+				width: 40px;
+				height: 40px;
+				background: #000000;
+				border-radius: 50%;
+				position: absolute;
+				top: -6px;
+				left: 0;
+			}
+			.red{
+				width: 40px;
+				height: 100%;
+				background: red;
+				position: absolute;
+				left: 0;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				(function(){
+					var app={
+						qx:document.querySelector(".qx"),
+						btn:document.querySelector(".btn"),
+						p:document.querySelector("p"),
+						red:document.querySelector(".red")
+					}
+					
+					app.btn.onmousedown=function(ev){
+						let disX=ev.clientX-app.btn.offsetLeft;
+						
+						document.onmousemove=function(ev){
+							let l=ev.clientX-disX;
+							
+							if(l<0){
+								l=0
+							}else if(l>app.qx.offsetWidth-app.btn.offsetWidth){
+								l=app.qx.offsetWidth-app.btn.offsetWidth;
+							}
+							
+							let sx=l/(app.qx.offsetWidth-app.btn.offsetWidth);
+							app.p.innerHTML=(sx*100).toFixed(0)+'%';
+							app.red.style.width=l+'px';
+							app.btn.style.left=l+'px';
+						}
+						
+						document.onmouseup=function(){
+							document.onmousemove=null;
+						}
+						return false
+					}
+				}());
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div class="demo">
+			<div class="qx">
+				<div class="red"></div>
+				<div class="btn"></div>
+			</div>
+		</div>
+		<p>0%</p>
+	</body>
+</html>
