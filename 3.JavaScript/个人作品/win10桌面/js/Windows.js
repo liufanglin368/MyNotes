@@ -296,5 +296,11 @@ window.onload=function(){
 					strip.style.display='none';
 				}
 				
+				
+				
+		//右侧功能栏鼠标移入函数
+		
+		
+		
 };
 	
