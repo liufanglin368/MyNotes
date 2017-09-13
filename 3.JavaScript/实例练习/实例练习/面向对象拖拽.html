@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			.box1{
+				background: #000000;
+			}
+			.box2{
+				background: #FF0000;
+				position: absolute;
+				left: 100px;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				var div1=new Pull(".box1");
+				var div2=new xian(".box2");
+			}
+			//正常
+			function Pull(obj){
+				this.obj=document.querySelector(obj);
+				this.disX=0;
+				this.disY=0;
+				
+				var This=this;
+				this.obj.onmousedown=function(ev){
+					This.down(ev)
+				}
+			}
+			
+			Pull.prototype.down=function(ev){
+				this.disX=ev.clientX-this.obj.offsetLeft;
+				this.disY=ev.clientY-this.obj.offsetTop;
+				var This=this;
+				
+				document.onmousemove=function(ev){
+					This.move(ev);
+				};
+				document.onmouseup=this.up;		//this.up()?????
+				
+			}
+			
+			Pull.prototype.move=function(ev){
+				this.obj.style.left=ev.clientX-this.disX+'px';
+				this.obj.style.top=ev.clientY-this.disY+'px';
+			}
+			
+			Pull.prototype.up=function(){
+				document.onmousemove=null;
+			}
+			//限制范围
+			function xian(obj){
+				Pull.call(this,obj);
+			}
+			
+			for(var attr in Pull.prototype){
+				xian.prototype[attr]=Pull.prototype[attr];
+			}
+			
+			xian.prototype.move=function(ev){
+				var l=ev.clientX-this.disX;
+				var t=ev.clientY-this.disY;
+				if(l<0){
+					l=0;
+				}else if(l>document.documentElement.clientWidth-this.obj.offsetWidth){
+					l=document.documentElement.clientWidth-this.obj.offsetWidth;
+				}
+				if(t<0){
+					t=0;
+				}else if(t>document.documentElement.clientHeight-this.obj.offsetHeight){
+					t=document.documentElement.clientHeight-this.obj.offsetHeight;
+				}
+				this.obj.style.left=l+'px';
+				this.obj.style.top=t+'px';
+			}
+		</script>
+	</head>
+	<body>
+		<div class="box1"></div>
+		<div class="box2"></div>
+	</body>
+</html>
