@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box .div1,.div2,.div3{
+				width: 200px;
+				height: 200px;
+				border: 1px solid #FF0000;
+				display: none;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				var box1=new Tab("box");
+				box1.init({
+					id:'box'
+				})					//配置参数
+			};
+			
+			function Tab(obj){
+				this.settings={
+					id:''
+				}					//默认参数
+			}
+			
+			Tab.prototype={
+				constructor:Tab,
+				init:function(opt){	//初始化函数
+					for(var attr in this.settings){
+						this.settings[attr]=opt[attr];
+					}
+					this.createDom();
+				},
+				createDom:function(){ //创建元素
+					this.vessel=document.getElementById(this.settings.id);
+					this.vessel.innerHTML=`<input type="button"value="按钮一" style="background: #FF0000;"/>
+											<input type="button"value="按钮二" />
+											<input type="button"value="按钮三" />
+											<div class="div1" style="display: block;">div1</div>
+											<div class="div2">div2</div>
+											<div class="div3">div3</div>`;
+					this.btn=this.vessel.getElementsByTagName("input");
+					this.div=this.vessel.getElementsByTagName("div");
+					this.clickBtn();
+				},
+				clickBtn:function(){
+					var This=this;
+					this.index=0;
+					for(var i=0;i<this.btn.length;i++){
+						This.btn[i].index=i;
+						This.btn[i].onclick=function(){
+							This.index=this.index;
+							This.show();
+						};
+					}
+					
+				},
+				show:function(){
+					for(var i=0;i<this.btn.length;i++){
+						this.btn[i].style.background='';
+						this.div[i].style.display='none';
+					}
+					this.btn[this.index].style.background='#FF0000';
+					this.div[this.index].style.display='block';
+				}
+			}						
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<!--	
+            <input type="button"value="按钮一" style="background: #FF0000;"/>
+			<input type="button"value="按钮二" />
+			<input type="button"value="按钮三" />
+			<div class="div1" style="display: block;">div1</div>
+			<div class="div2">div2</div>
+			<div class="div3">div3</div>
+			-->
+		</div>
+	</body>
+</html>
