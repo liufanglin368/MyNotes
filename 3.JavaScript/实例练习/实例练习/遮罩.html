@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				position: relative;
+				left: 50px;
+				top:20px
+			}
+			#box div{
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				transition: 0.5s;
+				opacity: 0.2;
+				background: #f00;
+				color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+	<script type="text/javascript">
+		(function(){
+			var shade={
+				init:function(){
+					shade.creationDom();
+				},
+				creationDom:function(){
+					var box=document.getElementById("box");
+					var str='';
+					console.log(box)
+					for(var i=0;i<90;i++){
+						str+='<div style:"left:'+i*10+';top:'+i*10+'></div>';
+					}
+					box.innerHTML=str;
+					
+					shade.events()
+				},
+				events:function(){
+					
+				}
+				
+				
+			}
+			
+			shade.init();
+		}())
+	</script>
+</html>
