@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#demo{
+				width: 810px;
+				border: 1px solid black;
+				background: #f9f9f9;
+			}
+			
+			#top{
+				width: 800px;
+				height: 168px;
+				border: 1px solid #a5bcff;
+				margin: 4px 4px 26px 4px;
+			}
+			#top input:nth-child(1){
+				width: 762px;
+				height: 76px;
+				border: 1px solid #a9a9a9;
+				background: #8BC132;
+				margin: 20px 19px 0px 19px;
+			}
+			#top input:last-child{
+				width: 120px;
+				height: 30px;
+				background: #8bc132;
+				border-radius: 5%;
+				margin: 17px 24px 22px 0px;
+				float: right;
+			}
+			#demo ul{
+				width: 800px;
+				border: 1px solid #a5bcff;
+				padding: 0px;
+				margin: 24px 4px 4px 4px;
+			}
+			#demo ul li{
+				width: 100%;
+				height: 90px;
+				border-bottom: 1px solid #e9e9e9;
+				list-style: none;
+			}
+			#demo ul li .ins{
+				width: 140px;
+				height: 15px;
+				margin-top: 40px;
+				margin-right: 20px;
+				float: right;
+			}
+			#demo ul li .ins span{
+				display: inline-block;
+				margin-left: 2px;
+				margin-right: 2px;
+			}
+			p{
+				display: inline-block;
+			}
+			.page{
+				margin-left: 700px;
+			}
+			.page span{
+				width: 50px;
+				height: 50px;
+				text-align: center;
+				line-height: 50px;
+				border: 1px solid #000000;
+				margin-left: 5px;
+			}
+			.active{
+				background: #8BC132;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="demo">
+			<div id="top">
+				<input type="text"/>
+				<input type="button"value="提交评论" />
+			</div>
+			<ul>
+				<!--
+                	<li>
+					<p>萨达打撒<br />
+								<br />
+						352154785
+					</p>
+					<div class="ins">
+					<a href="#"><img src="img/ico_01.gif"/ class="ding"></a><span class="s1">0</span>
+					<a href="#"><img src="img/ico_02.gif"/></a><span>0</span>
+					<a href="#"><img src="img/ico_03.gif"/></a><span>删除</span>	
+					</div>
+				</li>
+				
+                -->
+			</ul>
+			<div class="page"><!--//<span>1</span><span>2</span>--></div>
+				
+			
+		</div>
+	</body>
+	<script src="js/ajax.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		(function(){
+			var inputs=document.querySelectorAll("#top input");
+			var ul=document.querySelector("#demo ul");
+			var pn=1;  //当前页码
+			var events={
+				//初始化
+				init:function(){
+					
+				 	events.gain();
+					events.affair();
+					//events.handle();
+				},
+				//点击事件
+				affair:function(){
+					inputs[1].onclick=function(){
+						if(inputs[0].value==''){
+							alert('快来评论吧!');
+							return;
+						}	
+						events.present();	
+					}
+				},
+				//提交数据
+				present:function(){
+					ajax({
+						url:'php/weibo.php',
+						method:'get',
+						data:{
+							act:'add',
+							content:inputs[0].value
+						},
+						dataType:'json',
+						succ:function(){
+							events.gain()
+						}
+					})
+				},
+				//获取数据
+				gain:function(){
+					ajax({
+						url:'php/weibo.php',
+						method:'get',
+						data:{
+							act:'get',
+							page:pn
+						},
+						dataType:'json',
+						succ:function(data){
+							events.createDom(data);
+						}
+					})
+				},
+				//创建DOM
+				createDom:function(data){
+						var inHtml='';
+							for(var i=0;i<data.list.length;i++){
+							 	inHtml+=`<li><p>${data.list[i].content}<br /><br />352154785</p>
+											<div class="ins" data-id=${data.list[i].id}>
+											<a href="#"><img src="img/ico_01.gif"/ class="ding"></a>
+											<span class="s1">${data.list[i].acc}</span>
+											<a href="#"><img src="img/ico_02.gif"/></a><span>${data.list[i].ref}</span>
+											<a href="#"><img src="img/ico_03.gif"/></a><span>删除</span>	
+											</div>
+											</li>`;
+							}
+						ul.innerHTML=inHtml;
+						events.handle();
+						events.page(data.totalNum);
+				},
+				//操作功能
+				handle:function(){
+					var ins=document.querySelectorAll(".ins");
+					
+					for(var i=0;i<ins.length;i++){
+						var as=ins[i].querySelectorAll('a');
+							
+						as[0].onclick=function(){events.praise.call(this)};
+						as[1].onclick=function(){events.trample.call(this)};
+						as[2].onclick=function(){events.dele.call(this)};
+					}
+				},
+				//赞
+				praise:function(){
+					var id=this.parentNode.dataset.id;
+							ajax({
+								url:'php/weibo.php',
+								method:'get',
+								data:{
+									act:'acc',
+									id:id
+								},
+								dataType:'json',
+								succ:function(){
+									events.gain();
+								}
+							});
+				},
+				//踩
+				trample:function(){
+					var id=this.parentNode.dataset.id;
+							ajax({
+								url:'php/weibo.php',
+								method:'get',
+								data:{
+									act:'ref',
+									id:id
+								},
+								dataType:'json',
+								succ:function(){
+									events.gain();
+								}
+							});
+				},
+				//删
+				dele:function(){
+					var id=this.parentNode.dataset.id;
+							ajax({
+								url:'php/weibo.php',
+								method:'get',
+								data:{
+									act:'del',
+									id:id
+								},
+								dataType:'json',
+								succ:function(){
+									events.gain();
+								}
+							});
+				},
+				//分页
+				page:function(total){
+					var pageWarp=document.querySelector(".page");
+					pageWarp.innerHTML=''
+					if(total>6){
+						var rn=Math.ceil(total/6);   //页码数量
+						
+						for(var i=0;i<rn;i++){
+							var span=document.createElement("span");
+							span.innerHTML=i+1;
+							if(i+1==pn){
+								span.className='active';
+							}
+							span.onclick=function(){
+								pn=this.innerHTML;
+								events.gain();
+							};
+							pageWarp.appendChild(span);
+						}
+					}
+				}
+			}
+			
+			events.init()
+		}());
+	</script>
+</html>

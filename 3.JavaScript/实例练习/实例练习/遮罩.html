@@ -32,13 +32,16 @@
 				creationDom:function(){
 					var box=document.getElementById("box");
 					var str='';
-					console.log(box)
 					for(var i=0;i<90;i++){
-						str+='<div style:"left:'+i*10+';top:'+i*10+'></div>';
+						str+='<div></div>';
 					}
 					box.innerHTML=str;
+					var div=document.querySelectorAll("#box div");
 					
-					shade.events()
+					for(var i=0;i<div.length;i++){
+						
+						div[i].style.top="";
+					}
 				},
 				events:function(){
 					
