@@ -60,16 +60,20 @@
 			}
 			.page{
 				margin-left: 700px;
+				text-align: right;
 			}
 			.page span{
-				width: 50px;
-				height: 50px;
+				display: inline-block;
+				font: 12px/20px "微软雅黑";
+				width: 20px;
+				height: 20px;
+				border: 1px solid #ccc;
 				text-align: center;
-				line-height: 50px;
-				border: 1px solid #000000;
-				margin-left: 5px;
+				background: #fff;
+				margin: 10px 10px 10px 0;
+				cursor: pointer;
 			}
-			.active{
+			.page span.active{
 				background: #8BC132;
 			}
 		</style>
@@ -104,29 +108,18 @@
 	<script src="js/ajax.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		(function(){
-			var inputs=document.querySelectorAll("#top input");
-			var ul=document.querySelector("#demo ul");
-			var pn=1;  //当前页码
-			var events={
+			var inputs=document.querySelectorAll("input");
+			var ul=document.querySelector("ul");
+			var pageW=document.querySelector(".page");
+			var pn=1
+			var demo={
 				//初始化
 				init:function(){
-					
-				 	events.gain();
-					events.affair();
-					//events.handle();
-				},
-				//点击事件
-				affair:function(){
-					inputs[1].onclick=function(){
-						if(inputs[0].value==''){
-							alert('快来评论吧!');
-							return;
-						}	
-						events.present();	
-					}
+					demo.gain();
+					demo.events();
 				},
 				//提交数据
-				present:function(){
+				putIn:function(){
 					ajax({
 						url:'php/weibo.php',
 						method:'get',
@@ -135,10 +128,19 @@
 							content:inputs[0].value
 						},
 						dataType:'json',
-						succ:function(){
-							events.gain()
-						}
+						succ:function(){demo.gain();}
 					})
+				},
+				//点击事件
+				events:function(){
+					inputs[1].onclick=function(){
+						if(!inputs[0].value){
+							alert('快来评论吧');
+							return;
+						}
+						 demo.putIn();
+						 
+					}
 				},
 				//获取数据
 				gain:function(){
@@ -151,111 +153,116 @@
 						},
 						dataType:'json',
 						succ:function(data){
-							events.createDom(data);
+							demo.createDom(data);
 						}
-					})
+					});
 				},
-				//创建DOM
+				//展示数据
 				createDom:function(data){
-						var inHtml='';
-							for(var i=0;i<data.list.length;i++){
-							 	inHtml+=`<li><p>${data.list[i].content}<br /><br />352154785</p>
-											<div class="ins" data-id=${data.list[i].id}>
-											<a href="#"><img src="img/ico_01.gif"/ class="ding"></a>
-											<span class="s1">${data.list[i].acc}</span>
-											<a href="#"><img src="img/ico_02.gif"/></a><span>${data.list[i].ref}</span>
-											<a href="#"><img src="img/ico_03.gif"/></a><span>删除</span>	
-											</div>
-											</li>`;
-							}
-						ul.innerHTML=inHtml;
-						events.handle();
-						events.page(data.totalNum);
+					if(JSON.stringify(data)==='{}'){
+						ul.innerHTML='';
+						pageW.innerHTML='';
+						return;
+					}
+					var str='';
+					for(let i=0;i<data.list.length;i++){
+						str+=`<li>
+								<p>${data.list[i].content}<br /><br />352154785</p>
+								<div class="ins" data-id=${data.list[i].id}>
+								<a href="#"><img src="img/ico_01.gif"/ ></a><span>${data.list[i].acc}</span>
+								<a href="#"><img src="img/ico_02.gif"/></a><span>${data.list[i].ref}</span>
+								<a href="#"><img src="img/ico_03.gif"/></a><span>删除</span>	
+								</div>
+								</li>`;
+					}
+					ul.innerHTML=str;
+					demo.operate();
+					demo.page(data.totalNum);
 				},
 				//操作功能
-				handle:function(){
+				operate:function(){
 					var ins=document.querySelectorAll(".ins");
 					
-					for(var i=0;i<ins.length;i++){
-						var as=ins[i].querySelectorAll('a');
-							
-						as[0].onclick=function(){events.praise.call(this)};
-						as[1].onclick=function(){events.trample.call(this)};
-						as[2].onclick=function(){events.dele.call(this)};
+					for(let i=0;i<ins.length;i++){
+						let as=ins[i].querySelectorAll("a");
+						
+						as[0].onclick=function(){demo.praise.call(this)};
+						as[1].onclick=function(){demo.trample.call(this)};
+						as[2].onclick=function(){demo.delete.call(this)};
 					}
 				},
 				//赞
 				praise:function(){
-					var id=this.parentNode.dataset.id;
-							ajax({
-								url:'php/weibo.php',
-								method:'get',
-								data:{
-									act:'acc',
-									id:id
-								},
-								dataType:'json',
-								succ:function(){
-									events.gain();
-								}
-							});
+					let id=this.parentNode.getAttribute('data-id');
+					ajax({
+						url:'php/weibo.php',
+						method:'get',
+						data:{
+							act:'acc',
+							id:id
+						},
+						dataType:'json',
+						succ:function(){
+							demo.gain()
+						}
+					})
 				},
 				//踩
 				trample:function(){
-					var id=this.parentNode.dataset.id;
-							ajax({
-								url:'php/weibo.php',
-								method:'get',
-								data:{
-									act:'ref',
-									id:id
-								},
-								dataType:'json',
-								succ:function(){
-									events.gain();
-								}
-							});
+					let id=this.parentNode.getAttribute('data-id')
+					ajax({
+						url:'php/weibo.php',
+						method:'get',
+						data:{
+							act:'ref',
+							id:id
+						},
+						dataType:'json',
+						succ:function(){
+							demo.gain()
+						}
+					})
 				},
-				//删
-				dele:function(){
-					var id=this.parentNode.dataset.id;
-							ajax({
-								url:'php/weibo.php',
-								method:'get',
-								data:{
-									act:'del',
-									id:id
-								},
-								dataType:'json',
-								succ:function(){
-									events.gain();
-								}
-							});
+				//删除
+				delete:function(){
+					let id=this.parentNode.getAttribute('data-id');
+					ajax({
+						url:'php/weibo.php',
+						method:'get',
+						data:{
+							act:'del',
+							id:id
+						},
+						dataType:'json',
+						succ:function(){
+							 demo.gain();
+						}
+					})
 				},
 				//分页
 				page:function(total){
-					var pageWarp=document.querySelector(".page");
-					pageWarp.innerHTML=''
+					//var pageW=document.querySelector(".page");
+					pageW.innerHTML='';
 					if(total>6){
-						var rn=Math.ceil(total/6);   //页码数量
-						
-						for(var i=0;i<rn;i++){
+						var rn=Math.ceil(total/6);
+						//console.log(rn)
+						for(let i=0;i<rn;i++){
 							var span=document.createElement("span");
 							span.innerHTML=i+1;
+							
 							if(i+1==pn){
 								span.className='active';
 							}
 							span.onclick=function(){
 								pn=this.innerHTML;
-								events.gain();
-							};
-							pageWarp.appendChild(span);
+								demo.gain();
+					        };
+					        pageW.appendChild(span);
 						}
 					}
 				}
 			}
-			
-			events.init()
+			demo.init();
 		}());
 	</script>
 </html>
