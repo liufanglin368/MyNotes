@@ -26,14 +26,25 @@
 		var box=document.getElementById("box");
 					
 		var str='';
-		for(var i=0; i<9;i++){
-			for(var j=0;j<10;j++){
+		for(let i=0; i<9;i++){
+			for(let j=0;j<10;j++){
 				str+='<div style="left:'+j*102+'px;top:'+i*102+'px;background:url(img/pic.jpg) -'+j*100+'px -'+i*100+'px"></div>';
 			}
 		};
 		box.innerHTML=str;
 		
-		document.querySelectorAll("#box div").forEach(function(element){
+		var element=document.querySelectorAll("#box div");
+		for(let i=0; i<element.length;i++){
+			element[i].onmouseover=function(){
+				this.style.opacity=1;
+				this.style.transform='scale(1.5)';
+			};
+			element[i].onmouseout=function(){
+				this.style.transform='scale(1)';
+			};
+		}
+		
+		/*document.querySelectorAll("#box div").forEach(function(element){
 			element.onmouseover=function(){
 				this.style.opacity=1;
 				this.style.transform='scale(1.5)';
@@ -41,8 +52,6 @@
 			element.onmouseout=function(){
 				this.style.transform='scale(1)';
 			};
-		});
-		
-		
+		});*/
 	</script>
 </html>
