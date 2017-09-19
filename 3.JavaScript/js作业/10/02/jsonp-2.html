@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>豆瓣电影</title>
+		<style type="text/css">
+			ul {
+				width: 740px;
+				height: 800px;
+				border: 1px solid #A5BCFF;
+				padding: 0 10px;
+				display: none;
+			}
+			
+			li {
+				list-style: none;
+				width: 120px;
+				height: 170px;
+				border: 1px solid #A5BCFF;
+				display: inline-block;
+				margin: 10px 10px;
+				vertical-align: top;
+				text-align: center;
+			}
+			
+			li img {
+				width: 70px;
+				height: 90px;
+				border: 1px solid #A5BCFF;
+				display: inline-block;
+				margin: 10px 10px;
+			}
+			
+			li p {
+				height: 24px;
+				width: 100%;
+				text-align: center;
+				font-size: 12px;
+				margin: 0;
+			}
+			
+			li span {
+				width: 100%;
+				text-align: center;
+				display: inline-block;
+				font-size: 14px;
+				margin-top: 10px;
+			}
+			.loading{
+				opacity: 0;
+			}
+		</style>
+		<link rel="shortcut icon" href="path/to/favicon.ico">
+	</head>
+
+	<body>
+		<input type="text"><input type="button" value="查找">
+		<br />
+		<ul></ul>
+		<img src="img/20150526102555432.jpg" class="loading">
+	</body>
+	
+	<script type="text/javascript">
+		var inputs = document.getElementsByTagName('input');
+		var uls = document.getElementsByTagName("ul");
+		var load = document.querySelector(".loading");
+		
+		//https://api.douban.com/v2/movie/search?q=%E4%BA%BA&start=1&callback=jsonp_1479784751284
+		inputs[1].onclick = function () {
+			load.style.opacity = 1;
+			
+			var val = inputs[0].value;
+			var script = document.createElement("script");
+			script.src = 'https://api.douban.com/v2/movie/search?q=' + val + '&start=0&callback=fn1';
+
+			document.body.appendChild(script);
+			document.body.removeChild(script);
+		};
+
+		function fn1(data) {
+			
+			var str = '';
+			for(var i = 0; i < data.subjects.length; i++) {
+				str += `<li>
+						<img src=${data.subjects[i].images.small}>
+						<p>${data.subjects[i].original_title}</p>
+						<span>${data.subjects[i].genres.join(' ')}</span>
+						</li>`;
+			}
+			uls[0].innerHTML = str;
+			uls[0].style.display = 'block'
+			if(uls[0].style.display == 'block'){
+				load.style.opacity = 0;
+			}
+			
+			//page()
+		}
+	</script>
+
+</html>

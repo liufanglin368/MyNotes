@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#demo {
+				width: 810px;
+				border: 1px solid black;
+				background: #f9f9f9;
+			}
+			
+			#top {
+				width: 800px;
+				height: 168px;
+				border: 1px solid #a5bcff;
+				margin: 4px 4px 26px 4px;
+			}
+			
+			#top input:nth-child(1) {
+				width: 762px;
+				height: 76px;
+				border: 1px solid #a9a9a9;
+				background: #8BC132;
+				margin: 20px 19px 0px 19px;
+			}
+			
+			#top input:last-child {
+				width: 120px;
+				height: 30px;
+				background: #8bc132;
+				border-radius: 5%;
+				margin: 17px 24px 22px 0px;
+				float: right;
+			}
+			
+			#demo ul {
+				width: 800px;
+				border: 1px solid #a5bcff;
+				padding: 0px;
+				margin: 24px 4px 4px 4px;
+			}
+			
+			#demo ul li {
+				width: 100%;
+				height: 90px;
+				border-bottom: 1px solid #e9e9e9;
+				list-style: none;
+			}
+			
+			#demo ul li .ins {
+				width: 140px;
+				height: 15px;
+				margin-top: 40px;
+				margin-right: 20px;
+				float: right;
+			}
+			
+			#demo ul li .ins span {
+				display: inline-block;
+				margin-left: 2px;
+				margin-right: 2px;
+			}
+			
+			p {
+				display: inline-block;
+			}
+			
+			.page {
+				margin-left: 700px;
+				text-align: right;
+			}
+			
+			.page span {
+				display: inline-block;
+				font: 12px/20px "微软雅黑";
+				width: 20px;
+				height: 20px;
+				border: 1px solid #ccc;
+				text-align: center;
+				background: #fff;
+				margin: 10px 10px 10px 0;
+				cursor: pointer;
+			}
+			
+			.page span.active {
+				background: #8BC132;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="demo">
+			<div id="top">
+				<input type="text" />
+				<input type="button" value="提交评论" />
+			</div>
+			<ul>
+				<!--
+                	<li>
+					<p>萨达打撒<br /><br />352154785</p>
+					<div class="ins">
+					<a href="#"><img src="img/ico_01.gif"/ ></a><span class="s1">0</span>
+					<a href="#"><img src="img/ico_02.gif"/></a><span>0</span>
+					<a href="#"><img src="img/ico_03.gif"/></a><span>删除</span>	
+					</div>
+				</li>
+				
+                -->
+			</ul>
+			<div class="page">
+				<!--//<span>1</span><span>2</span>--></div>
+
+		</div>
+	</body>
+	<script type="text/javascript">
+		(function() {
+			var inputs = document.querySelectorAll('input');
+			var ul = document.querySelector("ul");
+			var pn = 1;
+			var pageW = document.querySelector(".page");
+			
+			var discuss = {
+				//初始化
+				init: function() {
+					discuss.gain();
+					discuss.putIn();
+				},
+				//添加数据
+				uploading: function() {
+					ajax({
+						url: 'php/weibo.php',
+						method: 'get',
+						data: {
+							act: 'add',
+							content: inputs[0].value
+						},
+						dataType: 'json',
+						succ: function() {
+							discuss.gain()
+						},
+						fail: function() {}
+					});
+				},
+				//提交评论
+				putIn: function() {
+					inputs[1].onclick = function() {
+						if(!inputs[0].value) {
+							alert("快来评论吧");
+							return;
+						};
+						discuss.uploading()
+					}
+				},
+				//获取数据
+				gain: function() {
+					ajax({
+						url: 'php/weibo.php',
+						method: 'get',
+						data: {
+							act: 'get',
+							page: pn
+						},
+						dataType: 'json',
+						succ: function(data) {
+							discuss.createDom(data);
+						},
+						fail: function() {}
+					});
+				},
+				//展示数据
+				createDom: function(data) {
+					if(JSON.stringify(data) === '{}') {
+						ul.innerHTML = '';
+						pageW.innerHTML = ''
+						return;
+					}else{
+						var str = '';
+						for(let i = 0; i < data.list.length; i++) {
+							str += `<li>
+									<p>${data.list[i].content}<br /><br />352154785</p>
+									<div class="ins" data-id=${data.list[i].id}>
+									<a href="#"><img src="img/ico_01.gif"/ ></a><span class="s1">${data.list[i].acc}</span>
+									<a href="#"><img src="img/ico_02.gif"/></a><span>${data.list[i].ref}</span>
+									<a href="#"><img src="img/ico_03.gif"/></a><span>删除</span>	
+									</div>
+									</li>`;
+						}
+						ul.innerHTML = str;
+						discuss.operate();
+						discuss.page(data.totalNum);
+					}
+				},
+				//操作功能
+				operate: function() {
+					var ins = document.querySelectorAll(".ins");
+					for(let i = 0; i < ins.length; i++) {
+						var as = ins[i].querySelectorAll('a');
+						as[0].onclick = function() {
+							discuss.praise.call(this)
+						};
+						as[1].onclick = function() {
+							discuss.trample.call(this)
+						};
+						as[2].onclick = function() {
+							discuss.delete.call(this)
+						};
+					}
+				},
+				//赞
+				praise: function() {
+					var id = this.parentNode.getAttribute('data-id');
+					ajax({
+						url: 'php/weibo.php',
+						method: 'get',
+						data: {
+							act: 'acc',
+							id: id
+						},
+						dataType: 'json',
+						succ: function() {
+							discuss.gain();
+						},
+						fail: function() {}
+					});
+				},
+				//踩
+				trample: function() {
+					var id = this.parentNode.getAttribute('data-id');
+					ajax({
+						url: 'php/weibo.php',
+						method: 'get',
+						data: {
+							act: 'ref',
+							id: id
+						},
+						dataType: 'json',
+						succ: function() {
+							discuss.gain();
+						},
+						fail: function() {}
+					});
+				},
+				//删除
+				delete: function() {
+					var id = this.parentNode.getAttribute('data-id');
+					ajax({
+						url: 'php/weibo.php',
+						method: 'get',
+						data: {
+							act: 'del',
+							id: id
+						},
+						dataType: 'json',
+						succ: function() {
+							discuss.gain();
+						},
+						fail: function() {}
+					});
+				},
+				//分页
+				page: function(total) {
+					pageW.innerHTML = '';
+					if(total > 6) {
+						var rn = Math.ceil(total / 6)
+						for(var i = 0; i < rn; i++) {
+							var span = document.createElement("span")
+							span.innerHTML = i + 1;
+							if(i + 1 == pn) {
+								span.className = 'active';
+							}
+
+							span.onclick = function() {
+								pn = this.innerHTML;
+								discuss.gain();
+							};
+							pageW.appendChild(span);
+
+						}
+					}
+				}
+			}
+
+			discuss.init()
+		}());
+
+		//jaxa方法
+		function ajax(json) {
+			/*
+			 * url:  		请求地址
+			 * method		请求方式
+			 * data			数据
+			 * dataType		返回果来的数据类型
+			 * succ			成功后的函数
+			 * fail			失败后的函数
+			 */
+			//默认参数
+			var settings = {
+				url: '',
+				method: 'get',
+				data: {},
+				dataType: 'json',
+				succ: function() {},
+				fail: function() {}
+			}
+			//配置参数覆盖默认参数
+			for(var attr in json) {
+				settings[attr] = json[attr];
+			}
+			//拼接数据
+			var str = [];
+			for(var attr in settings.data) {
+				str.push(attr + '=' + settings.data[attr]);
+			}
+			settings.data = str.join('&');
+
+			//创建对象
+			var ajax = window.XMLHttpRequest ? new XMLHttpRequest : new ActiveXObject('Microsoft.XMLHTTP');
+
+			//发送请求
+			if(settings.method.toLowerCase() == 'get') {
+				ajax.open(settings.method, settings.url + '?' + settings.data + '&' + new Date().getTime(), true); //清缓存也可以用随机数
+				ajax.send();
+			} else {
+				ajax.open(settings.method, settings.url, true)
+				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				ajax.send(settings.data);
+			}
+
+			//完成接收
+			if(ajax.onload === 'undefined') {
+				ajax.onreadystatechange = ready;
+			} else {
+				ajax.onload = ready;
+			}
+
+			function ready() {
+				if(ajax.readyState == 4) {
+					if(ajax.status == 200) {
+						switch(settings.dataType.toLowerCase()) {
+							case 'string':
+								settings.succ(ajax.responseText);
+								break;
+							case 'json':
+								settings.succ(JSON.parse(ajax.responseText));
+								break;
+							case 'xml':
+								settings.succ(ajax.responseXML);
+						}
+					} else {
+						settings.fail(ajax.status);
+					}
+				}
+			}
+		}
+	</script>
+
+</html>
