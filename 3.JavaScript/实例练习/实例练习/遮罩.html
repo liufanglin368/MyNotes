@@ -15,7 +15,6 @@
 				position: absolute;
 				transition: 0.5s;
 				opacity: 0.2;
-				background: #f00;
 				color: #fff;
 			}
 		</style>
@@ -24,33 +23,26 @@
 		<div id="box"></div>
 	</body>
 	<script type="text/javascript">
-		(function(){
-			var shade={
-				init:function(){
-					shade.creationDom();
-				},
-				creationDom:function(){
-					var box=document.getElementById("box");
-					var str='';
-					for(var i=0;i<90;i++){
-						str+='<div></div>';
-					}
-					box.innerHTML=str;
-					var div=document.querySelectorAll("#box div");
+		var box=document.getElementById("box");
 					
-					for(var i=0;i<div.length;i++){
-						
-						div[i].style.top="";
-					}
-				},
-				events:function(){
-					
-				}
-				
-				
+		var str='';
+		for(var i=0; i<9;i++){
+			for(var j=0;j<10;j++){
+				str+='<div style="left:'+j*102+'px;top:'+i*102+'px;background:url(img/pic.jpg) -'+j*100+'px -'+i*100+'px"></div>';
 			}
-			
-			shade.init();
-		}())
+		};
+		box.innerHTML=str;
+		
+		document.querySelectorAll("#box div").forEach(function(element){
+			element.onmouseover=function(){
+				this.style.opacity=1;
+				this.style.transform='scale(1.5)';
+			};
+			element.onmouseout=function(){
+				this.style.transform='scale(1)';
+			};
+		});
+		
+		
 	</script>
 </html>
