@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.demo{
+				width: 1110px;
+				height: 252px;	
+				border: 1px solid #000000;
+			}
+			.rollimg{
+				display: inline-block;
+				position: relative;
+			}
+			.last{
+			    position: absolute;
+			    top: 120px;
+			    left: 0px;
+			}
+			.next{
+				position: absolute;
+			    top: 120px;
+			    right: 0px;
+			}
+		    .rollimg .ico{
+		    	position: absolute;
+		    	top: 230px;
+		    	left: 50%;
+		    }
+		    .rollimg .ico span{
+		    	display: block;
+		    	width: 15px;
+		    	height:15px;
+		    	background: #FF0000;
+		    	float: left;
+		    	margin-right: 10px;
+		    	border-radius: 50%;
+		    }
+			.tnt{
+				width: 150px;
+				height: 250px;
+				display: inline-block;	
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="demo">
+			<div class="rollimg">
+				<img src="img/timg.jpg"/>
+				<input type="button" class="last" id="last" value="上一张" />
+				<input type="button" class="next" value="下一张" />
+				<div class="ico"><span></span><span></span><span></span><span></span><span></span></div>
+			</div>
+		    <div class="tnt">
+			<h4> 图片数量<span>1/5</span></h4>
+			<p>第1张  </p>
+			<p>
+			<input type="button" class="order" value="顺序切换" />
+			</p>
+			<input type="button" class="cycle" value="循环切换" />
+			</div>
+		</div>
+		
+		
+		<script type="text/javascript">
+			var last=document.querySelector(".last");
+			var next=document.querySelector(".next");
+			
+			var img1=document.querySelector("img");
+			var imgs=['timg','timg2','timg3','timg4','timg5'];
+			
+			var span1=document.querySelector("span");
+			var spans=['1/5','2/5','3/5','4/5','5/5'];
+			
+			var p1=document.querySelector("p");
+			var ps=['第1张 ','第2张 ','第3张 ','第4张 ','第5张 '];
+			var n=0;
+			
+			
+		   
+		</script>
+	</body>
+</html>
