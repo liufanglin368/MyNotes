@@ -1,148 +1,158 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
 		<style type="text/css">
-			.demo{
+			.demo {
 				width: 1110px;
-				height: 252px;	
+				height: 252px;
 				border: 1px solid #000000;
 			}
-			.rollimg{
+			
+			.rollimg {
 				display: inline-block;
 				position: relative;
 			}
-			.last{
-			    position: absolute;
-			    top: 120px;
-			    left: 0px;
-			}
-			.next{
+			
+			.last {
 				position: absolute;
-			    top: 120px;
-			    right: 0px;
-			}
-		    .rollimg .ico{
-		    	position: absolute;
-		    	top: 230px;
-		    	left: 50%;
-		    }
-		    .rollimg .ico span{
-		    	display: block;
-		    	width: 15px;
-		    	height:15px;
-		    	background: #FF0000;
-		    	float: left;
-		    	margin-right: 10px;
-		    	border-radius: 50%;
-		    }
-			.tnt{
-				width: 150px;
-				height: 250px;
-				display: inline-block;	
+				top: 120px;
+				left: 0px;
 			}
 			
+			.next {
+				position: absolute;
+				top: 120px;
+				right: 0px;
+			}
+			
+			.rollimg .ico {
+				position: absolute;
+				top: 230px;
+				left: 50%;
+			}
+			
+			.rollimg .ico span {
+				display: block;
+				width: 15px;
+				height: 15px;
+				background: #FF0000;
+				float: left;
+				margin-right: 10px;
+				border-radius: 50%;
+			}
+			
+			.tnt {
+				width: 150px;
+				height: 250px;
+				display: inline-block;
+			}
 		</style>
 	</head>
+
 	<body>
 		<div class="demo">
 			<div class="rollimg">
-				<img src="img/timg.jpg" class="img"/>
+				<img src="img/timg.jpg" class="img" />
 				<input type="button" class="last" id="last" value="上一张" />
 				<input type="button" class="next" value="下一张" />
 				<div class="ico"><span></span><span></span><span></span><span></span><span></span></div>
 			</div>
-		    <div class="tnt">
-			<h4> 图片数量<span class="num">1/5</span></h4>
-			<p class="tht">第1张  </p>
-			<p>
-			<input type="button" class="order" value="顺序切换" />
-			</p>
-			<input type="button" class="cycle" value="循环切换" />
+			<div class="tnt">
+				<h4> 图片数量<span class="num">1/5</span></h4>
+				<p class="tht">第1张 </p>
+				<p>
+					<input type="button" class="order" value="顺序切换" />
+				</p>
+				<input type="button" class="cycle" value="循环切换" />
 			</div>
 		</div>
-		
-		
+
 		<script type="text/javascript">
-			
 			//选择器
-			function $(selct){
+			function $(selct) {
 				return document.querySelector(selct);
 			};
-			
-			
+
 			//构造函数
-			function Cut(){
-				this.settings={
-					btn:'',	//按钮
-					num:'',		//图片数量
-					spans:[]	//第几张
+			function Cut() {
+				this.settings = {
+					btn: '', //按钮
+					num: '', //图片数量
+					spans: [] //第几张
 				}
 			}
-		   
-		    Cut.prototype={
-		    	init:function(obj){
-		    		constructor:Cut;
-		    		for(var attr in obj){
-		    			this.settings[attr]=obj[attr];
-		    		};
-		    	
-		    	},
-		    	ready:function(){
-		    		this.btn=$(this.settings.btn);
-		    		this.num=$(this.settings.num);
-		    		this.tht=$(this.settings.tht);
-		    		this.img=$(this.settings.img);
-		    		this.n=0;
-		    	},
-		    	operation:function(){
-		    		this.num.innerHTML=this.settings.spans[0][this.n];
-	    			this.tht.innerHTML=this.settings.spans[1][this.n];
-	    			this.img.src='img/'+this.settings.spans[2][this.n]+'.jpg';
-		    	},
-		    	xia:function(){
-		    		var This=this;
-		    		This.ready();
-		    		this.btn.onclick=function(){
-		    			This.n++
-		    			This.operation();
-		    		}
-		    	},
-		    	shang:function(){
-		    		var This=this;
-		    		This.ready();
-		    		this.btn.onclick=function(){
-		    			This.n--
-		    			This.operation();
-		    		}
-		    	}
-		    	
-		    }
-		    
-		    
-		    var last=new Cut();
+
+			Cut.prototype = {
+				init: function(obj) {
+					constructor: Cut;
+					for(var attr in obj) {
+						this.settings[attr] = obj[attr];
+					};
+
+				},
+				ready: function() {
+					this.btn = $(this.settings.btn);
+					this.num = $(this.settings.num);
+					this.tht = $(this.settings.tht);
+					this.img = $(this.settings.img);
+					this.n = 0;
+				},
+				operation: function() {
+					this.num.innerHTML = this.settings.spans[0][this.n];
+					this.tht.innerHTML = this.settings.spans[1][this.n];
+					this.img.src = 'img/' + this.settings.spans[2][this.n] + '.jpg';
+				},
+				xia: function() {
+					var This = this;
+					This.ready();
+					this.btn.onclick = function() {
+						This.n++
+							This.operation();
+					}
+				},
+				shang: function() {
+					var This = this;
+					This.ready();
+					this.btn.onclick = function() {
+						This.n--
+							This.operation();
+					}
+				}
+
+			}
+
+			var last = new Cut();
 			last.init({
-				btn:'.last',
-				num:'.num',
-				tht:'.tht',
-				img:'.img',
-				spans:[['1/5','2/5','3/5','4/5','5/5'],['第1张 ','第2张 ','第3张 ','第4张 ','第5张 '],['timg','timg2','timg3','timg4','timg5']]
+				btn: '.last',
+				num: '.num',
+				tht: '.tht',
+				img: '.img',
+				spans: [
+					['1/5', '2/5', '3/5', '4/5', '5/5'],
+					['第1张 ', '第2张 ', '第3张 ', '第4张 ', '第5张 '],
+					['timg', 'timg2', 'timg3', 'timg4', 'timg5']
+				]
 			});
 			last.shang()
-		
-			
-			var next=new Cut();
+
+			var next = new Cut();
 			next.init({
-				btn:'.next',
-				num:'.num',
-				tht:'.tht',
-				img:'.img',
-				spans:[['1/5','2/5','3/5','4/5','5/5'],['第1张 ','第2张 ','第3张 ','第4张 ','第5张 '],['timg','timg2','timg3','timg4','timg5']]
+				btn: '.next',
+				num: '.num',
+				tht: '.tht',
+				img: '.img',
+				spans: [
+					['1/5', '2/5', '3/5', '4/5', '5/5'],
+					['第1张 ', '第2张 ', '第3张 ', '第4张 ', '第5张 '],
+					['timg', 'timg2', 'timg3', 'timg4', 'timg5']
+				]
 			});
-			
+
 			next.xia()
-			
 		</script>
 	</body>
+
 </html>
