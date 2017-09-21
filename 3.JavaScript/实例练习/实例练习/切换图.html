@@ -48,14 +48,14 @@
 	<body>
 		<div class="demo">
 			<div class="rollimg">
-				<img src="img/timg.jpg"/>
+				<img src="img/timg.jpg" class="img"/>
 				<input type="button" class="last" id="last" value="上一张" />
 				<input type="button" class="next" value="下一张" />
 				<div class="ico"><span></span><span></span><span></span><span></span><span></span></div>
 			</div>
 		    <div class="tnt">
-			<h4> 图片数量<span>1/5</span></h4>
-			<p>第1张  </p>
+			<h4> 图片数量<span class="num">1/5</span></h4>
+			<p class="tht">第1张  </p>
 			<p>
 			<input type="button" class="order" value="顺序切换" />
 			</p>
@@ -65,21 +65,104 @@
 		
 		
 		<script type="text/javascript">
-			var last=document.querySelector(".last");
+			/*var last=document.querySelector(".last");
 			var next=document.querySelector(".next");
 			
 			var img1=document.querySelector("img");
 			var imgs=['timg','timg2','timg3','timg4','timg5'];
 			
-			var span1=document.querySelector("span");
+			var span1=document.querySelector("h4 span");
 			var spans=['1/5','2/5','3/5','4/5','5/5'];
 			
 			var p1=document.querySelector("p");
 			var ps=['第1张 ','第2张 ','第3张 ','第4张 ','第5张 '];
 			var n=0;
+			next.onclick=function(){
+				cut(img1,span1,p1);
+			}
+			function cut(img,span,p) {
+					n++
+					img.src='img/'+imgs[n]+'.jpg';
+					span.innerHTML=spans[n];
+					p.innerHTML=ps[n];
+			}*/
+			//选择器
+			function $(selct){
+				return document.querySelector(selct);
+			};
 			
 			
+			//构造函数
+			function Cut(){
+				this.settings={
+					btn:'',	//按钮
+					num:'',		//图片数量
+					spans:[]	//第几张
+				}
+			}
 		   
+		    Cut.prototype={
+		    	init:function(obj){
+		    		constructor:Cut;
+		    		for(var attr in obj){
+		    			this.settings[attr]=obj[attr];
+		    		};
+		    	
+		    	},
+		    	ready:function(){
+		    		this.btn=$(this.settings.btn);
+		    		this.num=$(this.settings.num);
+		    		this.tht=$(this.settings.tht);
+		    		this.img=$(this.settings.img);
+		    		this.n=0;
+		    	},
+		    	operation:function(){
+		    		this.num.innerHTML=this.settings.spans[0][this.n];
+	    			this.tht.innerHTML=this.settings.spans[1][this.n];
+	    			this.img.src='img/'+this.settings.spans[2][this.n]+'.jpg';
+		    	},
+		    	xia:function(){
+		    		var This=this;
+		    		This.ready();
+		    		this.btn.onclick=function(){
+		    			This.n++
+		    			This.operation();
+		    		}
+		    	},
+		    	shang:function(){
+		    		var This=this;
+		    		This.ready();
+		    		this.btn.onclick=function(){
+		    			This.n--
+		    			This.operation();
+		    		}
+		    	}
+		    	
+		    }
+		    
+		    
+		    var last=new Cut();
+			last.init({
+				btn:'.last',
+				num:'.num',
+				tht:'.tht',
+				img:'.img',
+				spans:[['1/5','2/5','3/5','4/5','5/5'],['第1张 ','第2张 ','第3张 ','第4张 ','第5张 '],['timg','timg2','timg3','timg4','timg5']]
+			});
+			last.shang()
+		
+			
+			var next=new Cut();
+			next.init({
+				btn:'.next',
+				num:'.num',
+				tht:'.tht',
+				img:'.img',
+				spans:[['1/5','2/5','3/5','4/5','5/5'],['第1张 ','第2张 ','第3张 ','第4张 ','第5张 '],['timg','timg2','timg3','timg4','timg5']]
+			});
+			
+			next.xia()
+			
 		</script>
 	</body>
 </html>
