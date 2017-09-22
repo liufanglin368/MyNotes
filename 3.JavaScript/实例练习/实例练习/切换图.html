@@ -30,7 +30,8 @@
 			
 			.rollimg .ico {
 				position: absolute;
-				top: 230px;
+				top: 220px;
+				height: 50px;
 				left: 50%;
 			}
 			
@@ -43,7 +44,16 @@
 				margin-right: 10px;
 				border-radius: 50%;
 			}
-			
+			.rollimg .ico span.active{
+				display: block;
+				width: 15px;
+				height: 15px;
+				border: 10px solid #8BC132;
+				background: #FF0000;
+				float: left;
+				margin-right: 10px;
+				border-radius: 50%;
+			}
 			.tnt {
 				width: 150px;
 				height: 250px;
@@ -58,7 +68,7 @@
 				<img src="img/timg.jpg" class="img" />
 				<input type="button" class="last" id="last" value="上一张" />
 				<input type="button" class="next" value="下一张" />
-				<div class="ico"><span></span><span></span><span></span><span></span><span></span></div>
+				<div class="ico"><span class="active"></span><span></span><span></span><span></span><span></span></div>
 			</div>
 			<div class="tnt">
 				<h4> 图片数量<span class="num">1/5</span></h4>
@@ -75,7 +85,9 @@
 			function $(selct) {
 				return document.querySelector(selct);
 			};
-
+			function $$(selct){
+				return document.querySelectorAll(selct)
+			}
 			//构造函数
 			function Cut() {
 				this.settings = {
@@ -91,14 +103,18 @@
 					for(var attr in obj) {
 						this.settings[attr] = obj[attr];
 					};
-
+					this.xia()
+					this.shang()
 				},
 				ready: function() {
 					this.btn = $(this.settings.btn);
+					this.btns=this.btn.children
 					this.num = $(this.settings.num);
 					this.tht = $(this.settings.tht);
 					this.img = $(this.settings.img);
+					this.dian=this.btns[3].children
 					this.n = 0;
+					
 				},
 				operation: function() {
 					this.num.innerHTML = this.settings.spans[0][this.n];
@@ -108,39 +124,41 @@
 				xia: function() {
 					var This = this;
 					This.ready();
-					this.btn.onclick = function() {
+					this.btns[2].onclick = function() {
 						This.n++
+						if(This.n>This.settings.spans[0].length-1){
+							This.n=This.settings.spans[0].length-1
+						}
+						for(var i=0;i<This.dian.length;i++){
+							This.dian[i].className='';
+						}
+						This.dian[This.n].className='active';
 							This.operation();
 					}
 				},
 				shang: function() {
 					var This = this;
 					This.ready();
-					this.btn.onclick = function() {
+					this.btns[1].onclick = function() {
 						This.n--
+						if(This.n<0){
+							This.n=0
+						}
+						for(var i=0;i<This.dian.length;i++){
+							This.dian[i].className='';
+						}
+						This.dian[This.n].className='active';
 							This.operation();
 					}
 				}
 
 			}
 
-			var last = new Cut();
-			last.init({
-				btn: '.last',
-				num: '.num',
-				tht: '.tht',
-				img: '.img',
-				spans: [
-					['1/5', '2/5', '3/5', '4/5', '5/5'],
-					['第1张 ', '第2张 ', '第3张 ', '第4张 ', '第5张 '],
-					['timg', 'timg2', 'timg3', 'timg4', 'timg5']
-				]
-			});
-			last.shang()
+			
 
-			var next = new Cut();
-			next.init({
-				btn: '.next',
+			var move = new Cut();
+			move.init({
+				btn: '.rollimg',
 				num: '.num',
 				tht: '.tht',
 				img: '.img',
@@ -151,7 +169,7 @@
 				]
 			});
 
-			next.xia()
+			
 		</script>
 	</body>
 

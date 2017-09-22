@@ -1,47 +1,57 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
 		<style type="text/css">
-			#box{
+			#box {
 				width: 300px;
 				height: 300px;
 			}
-			a{
+			
+			a {
 				text-decoration: none;
 				color: #FFFFFF;
 			}
-			.lis{
+			
+			.lis {
 				width: 300px;
 				background: #008000;
 				color: #FFFFFF;
 			}
-			.li{
+			
+			.li {
 				height: 64px;
 				display: none;
 			}
-			.lis:hover{
+			
+			.lis:hover {
 				background: #FF0000;
 			}
-			.li a{
+			
+			.li a {
 				width: 100%;
 				display: inline-block;
 				background: #000000;
 			}
-			.close{
+			
+			.close {
 				margin-right: 10px;
 				float: right;
 			}
-			span{
+			
+			span {
 				display: inline-block;
 			}
 		</style>
 	</head>
+
 	<body>
 		<div id="box">
 			<div class="lis">
-				<span>1</span><a href="#" class="close">+</a>
+				<span>1</span>
+				<a href="#" class="close">+</a>
 				<div class="li" style="display: block;">
 					<a href="JavaScript">www</a>
 					<a href="#">www</a>
@@ -49,7 +59,8 @@
 				</div>
 			</div>
 			<div class="lis">
-				<span>2</span><a href="#" class="close">+</a>
+				<span>2</span>
+				<a href="#" class="close">+</a>
 				<div class="li">
 					<a href="#"></a>
 					<a href="#"></a>
@@ -57,7 +68,8 @@
 				</div>
 			</div>
 			<div class="lis">
-				<span></span><a href="#" class="close">+</a>
+				<span></span>
+				<a href="#" class="close">+</a>
 				<div class="li">
 					<a href="#"></a>
 					<a href="#"></a>
@@ -65,7 +77,8 @@
 				</div>
 			</div>
 			<div class="lis">
-				<span></span><a href="#" class="close">+</a>
+				<span></span>
+				<a href="#" class="close">+</a>
 				<div class="li">
 					<a href="#"></a>
 					<a href="#"></a>
@@ -73,7 +86,8 @@
 				</div>
 			</div>
 			<div class="lis">
-				<span></span><a href="#" class="close">+</a>
+				<span></span>
+				<a href="#" class="close">+</a>
 				<div class="li">
 					<a href="#"></a>
 					<a href="#"></a>
@@ -81,7 +95,8 @@
 				</div>
 			</div>
 			<div class="lis">
-				<span></span><a href="#" class="close">+</a>
+				<span></span>
+				<a href="#" class="close">+</a>
 				<div class="li">
 					<a href="#"></a>
 					<a href="#"></a>
@@ -91,73 +106,74 @@
 		</div>
 	</body>
 	<script type="text/javascript">
-		(function(){
-			var data=[{
-					name:'标题1',
-					cont:['aaa','bbb','ccc']
-					},
-					{
-					name:'标题2',
-					cont:['aaa','bbb','ccc']
-					},
-					{
-					name:'标题3',
-					cont:['aaa','bbb','ccc']
-					},
-					{
-					name:'标题4',
-					cont:['aaa','bbb','ccc']   //把这个数组放到和每个li下的a标签对应起来.
-											   //data[i].cont[i]=li[i].a[i]
-					},
-					{
-					name:'标题5',
-					cont:['aaa','bbb','ccc']
-					},
-					{
-					name:'标题6',
-					cont:['aaa','bbb','ccc']
-					}
+		(function() {
+			var data = [{
+					name: '标题1',
+					cont: ['aaa', 'bbb', 'ccc']
+				},
+				{
+					name: '标题2',
+					cont: ['aaa', 'bbb', 'ccc']
+				},
+				{
+					name: '标题3',
+					cont: ['aaa', 'bbb', 'ccc']
+				},
+				{
+					name: '标题4',
+					cont: ['aaa', 'bbb', 'ccc'] //把这个数组放到和每个li下的a标签对应起来.
+					//data[i].cont[i]=li[i].a[i]
+				},
+				{
+					name: '标题5',
+					cont: ['aaa', 'bbb', 'ccc']
+				},
+				{
+					name: '标题6',
+					cont: ['aaa', 'bbb', 'ccc']
+				}
 			]
-				
-			var events={
+
+			var events = {
 				//初始化
-				init:function(){
+				init: function() {
 					events.spanInHtml()
 				},
-				spanInHtml:function(){
-					var lis=document.querySelectorAll(".lis");
-					var spans=document.querySelectorAll("span");
-					var li=document.querySelectorAll(".li");
-					var close=document.querySelectorAll(".close");	
-					
-					for(var i=0;i<data.length;i++){
-						spans[i].innerHTML=data[i].name;
-						events.aInHtml(i,li);
-						close[i].onclick=function(){
-							events.click.call(this,li);
+				spanInHtml: function() {
+					var lis = document.querySelectorAll(".lis");
+					var spans = document.querySelectorAll("span");
+					var li = document.querySelectorAll(".li");
+					var close = document.querySelectorAll(".close");
+
+					for(var i = 0; i < data.length; i++) {
+						spans[i].innerHTML = data[i].name;
+						events.aInHtml(i, li);
+						close[i].onclick = function() {
+							events.click.call(this, li);
 						}
 					}
 				},
-				aInHtml:function(b,li1){
-					for(var i=0;i<data[0].cont.length;i++){
-						li1[b].querySelectorAll('a')[i].innerHTML=data[b].cont[i];
-					}	
+				aInHtml: function(b, li1) {
+					for(var i = 0; i < data[0].cont.length; i++) {
+						li1[b].querySelectorAll('a')[i].innerHTML = data[b].cont[i];
+					}
 				},
-				click:function(dd){
-					
-					if(this.nextElementSibling.style.display=='block'){
-						this.nextElementSibling.style.display='none';
-						this.style.transform='rotate(45deg)';
-					}else{
-						for(var i=0;i<dd.length;i++){
-							dd[i].style.display='none';
+				click: function(dd) {
+
+					if(this.nextElementSibling.style.display == 'block') {
+						this.nextElementSibling.style.display = 'none';
+						this.style.transform = 'rotate(45deg)';
+					} else {
+						for(var i = 0; i < dd.length; i++) {
+							dd[i].style.display = 'none';
 						}
-						this.nextElementSibling.style.display='block';
-						this.style.transform='rotate(90deg)';
+						this.nextElementSibling.style.display = 'block';
+						this.style.transform = 'rotate(90deg)';
 					}
 				}
-			}	
-		events.init();
+			}
+			events.init();
 		}());
 	</script>
+
 </html>

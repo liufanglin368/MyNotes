@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
 		<style type="text/css">
-			#box{
+			#box {
 				position: relative;
 				left: 50px;
-				top:20px
+				top: 20px
 			}
-			#box div{
+			
+			#box div {
 				width: 100px;
 				height: 100px;
 				position: absolute;
@@ -19,13 +21,14 @@
 			}
 		</style>
 	</head>
+
 	<body>
 		<div id="box"></div>
 	</body>
 	<script type="text/javascript">
-		var box=document.getElementById("box");
-					
-		var str='';
+		var box = document.getElementById("box");
+
+		var str = '';
 		/*for嵌套
 		for(let i=0; i<9;i++){
 			for(let j=0;j<10;j++){
@@ -33,25 +36,23 @@
 			}
 		};*/
 		//取模
-		for(let i=0; i<90;i++){
-			str+='<div style="left:'+i%10*102+'px;top:'+(parseInt(i/10)*102)+'px;background:url(img/pic.jpg) -'+i%10*102+'px -'+(parseInt(i/10)*102)+'px"></div>';
+		for(let i = 0; i < 90; i++) {
+			str += '<div style="left:' + i % 10 * 102 + 'px;top:' + (parseInt(i / 10) * 102) + 'px;background:url(img/pic.jpg) -' + i % 10 * 102 + 'px -' + (parseInt(i / 10) * 102) + 'px"></div>';
 		};
-		
-		
-		
-		box.innerHTML=str;
-		
-		var element=document.querySelectorAll("#box div");
-		for(let i=0; i<element.length;i++){
-			element[i].onmouseover=function(){
-				this.style.opacity=1;
-				this.style.transform='scale(1.5)';
+
+		box.innerHTML = str;
+
+		var element = document.querySelectorAll("#box div");
+		for(let i = 0; i < element.length; i++) {
+			element[i].onmouseover = function() {
+				this.style.opacity = 1;
+				this.style.transform = 'scale(1.5)';
 			};
-			element[i].onmouseout=function(){
-				this.style.transform='scale(1)';
+			element[i].onmouseout = function() {
+				this.style.transform = 'scale(1)';
 			};
 		}
-		
+
 		/*document.querySelectorAll("#box div").forEach(function(element){
 			element.onmouseover=function(){
 				this.style.opacity=1;
@@ -62,4 +63,5 @@
 			};
 		});*/
 	</script>
+
 </html>

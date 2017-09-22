@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
 		<style type="text/css">
-			#box{
-				 width: 200px;
-				 height: 200px;
-				 background: green;
-				 position: absolute;
-				 top: 0;
-				 left: 0;
+			#box {
+				width: 200px;
+				height: 200px;
+				background: green;
+				position: absolute;
+				top: 0;
+				left: 0;
 			}
 		</style>
 		<script type="text/javascript">
@@ -27,26 +28,26 @@
 			 * 		3.鼠标抬起
 			 * 			清除掉鼠标身上的事件
 			 */
-			window.onload=function(){
-				var box=document.getElementById("box");
-				
+			window.onload = function() {
+				var box = document.getElementById("box");
+
 				//鼠标按下
-					box.onmousedown=function(ev){
-						var	misX=ev.clientX-box.offsetLeft;
-						var	misY=ev.clientY-box.offsetTop;
-						//鼠标移动
-						document.onmousemove=function(ev){
-							box.style.left=ev.clientX-misX+'px';
-							box.style.top=ev.clientY-misY+'px';
-						}
-						//鼠标抬起
-						document.onmouseup=function(){
-							document.onmousemove=null
-						}
-						
-						return false;   //移除浏览器默认行为
+				box.onmousedown = function(ev) {
+					var misX = ev.clientX - box.offsetLeft;
+					var misY = ev.clientY - box.offsetTop;
+					//鼠标移动
+					document.onmousemove = function(ev) {
+						box.style.left = ev.clientX - misX + 'px';
+						box.style.top = ev.clientY - misY + 'px';
 					}
-				
+					//鼠标抬起
+					document.onmouseup = function() {
+						document.onmousemove = null
+					}
+
+					return false; //移除浏览器默认行为
+				}
+
 				/*
 				 *  div遇到文字会选中,?
 				 * 		原因是浏览器的默认行为,移除浏览器默认行为就可以
@@ -57,8 +58,10 @@
 			}
 		</script>
 	</head>
+
 	<body>
 		文字
 		<div id="box"></div>
 	</body>
+
 </html>
