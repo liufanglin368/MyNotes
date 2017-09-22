@@ -44,7 +44,8 @@
 				margin-right: 10px;
 				border-radius: 50%;
 			}
-			.rollimg .ico span.active{
+			
+			.rollimg .ico span.active {
 				display: block;
 				width: 15px;
 				height: 15px;
@@ -54,6 +55,7 @@
 				margin-right: 10px;
 				border-radius: 50%;
 			}
+			
 			.tnt {
 				width: 150px;
 				height: 250px;
@@ -85,7 +87,8 @@
 			function $(selct) {
 				return document.querySelector(selct);
 			};
-			function $$(selct){
+
+			function $$(selct) {
 				return document.querySelectorAll(selct)
 			}
 			//构造函数
@@ -108,13 +111,13 @@
 				},
 				ready: function() {
 					this.btn = $(this.settings.btn);
-					this.btns=this.btn.children
+					this.btns = this.btn.children
 					this.num = $(this.settings.num);
 					this.tht = $(this.settings.tht);
 					this.img = $(this.settings.img);
-					this.dian=this.btns[3].children
+					this.dian = this.btns[3].children
 					this.n = 0;
-					
+
 				},
 				operation: function() {
 					this.num.innerHTML = this.settings.spans[0][this.n];
@@ -126,14 +129,14 @@
 					This.ready();
 					this.btns[2].onclick = function() {
 						This.n++
-						if(This.n>This.settings.spans[0].length-1){
-							This.n=This.settings.spans[0].length-1
+							if(This.n > This.settings.spans[0].length - 1) {
+								This.n = This.settings.spans[0].length - 1
+							}
+						for(var i = 0; i < This.dian.length; i++) {
+							This.dian[i].className = '';
 						}
-						for(var i=0;i<This.dian.length;i++){
-							This.dian[i].className='';
-						}
-						This.dian[This.n].className='active';
-							This.operation();
+						This.dian[This.n].className = 'active';
+						This.operation();
 					}
 				},
 				shang: function() {
@@ -141,20 +144,18 @@
 					This.ready();
 					this.btns[1].onclick = function() {
 						This.n--
-						if(This.n<0){
-							This.n=0
+							if(This.n < 0) {
+								This.n = 0
+							}
+						for(var i = 0; i < This.dian.length; i++) {
+							This.dian[i].className = '';
 						}
-						for(var i=0;i<This.dian.length;i++){
-							This.dian[i].className='';
-						}
-						This.dian[This.n].className='active';
-							This.operation();
+						This.dian[This.n].className = 'active';
+						This.operation();
 					}
 				}
 
 			}
-
-			
 
 			var move = new Cut();
 			move.init({
@@ -168,8 +169,6 @@
 					['timg', 'timg2', 'timg3', 'timg4', 'timg5']
 				]
 			});
-
-			
 		</script>
 	</body>
 
