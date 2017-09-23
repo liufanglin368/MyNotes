@@ -31,28 +31,34 @@
 			.rollimg .ico {
 				position: absolute;
 				top: 220px;
-				height: 50px;
 				left: 50%;
+				width: 160px;
+				height: 25px;
+				overflow: hidden;
+				display: flex;
+				justify-content: space-between;
 			}
 			
 			.rollimg .ico span {
-				display: block;
-				width: 15px;
-				height: 15px;
+				width: 25px;
+				height: 25px;
 				background: #FF0000;
-				float: left;
-				margin-right: 10px;
 				border-radius: 50%;
 			}
 			
+			.rollimg .ico span:hover {
+				width: 25px;
+				height: 25px;
+				background: #FF0000;
+				border-radius: 50%;
+				cursor: pointer;
+			}
+			
 			.rollimg .ico span.active {
-				display: block;
 				width: 15px;
 				height: 15px;
-				border: 10px solid #8BC132;
+				border: 5px solid #8BC132;
 				background: #FF0000;
-				float: left;
-				margin-right: 10px;
 				border-radius: 50%;
 			}
 			
@@ -76,7 +82,7 @@
 				<h4> 图片数量<span class="num">1/5</span></h4>
 				<p class="tht">第1张 </p>
 				<p>
-					<input type="button" class="order" value="顺序切换" />
+					<input type="button" class="order" value="顺序切换" style="background: red;" />
 				</p>
 				<input type="button" class="cycle" value="循环切换" />
 			</div>
@@ -106,8 +112,11 @@
 					for(var attr in obj) {
 						this.settings[attr] = obj[attr];
 					};
-					this.xia()
-					this.shang()
+					this.xia();
+					this.shang();
+					this.cycle1();
+					this.order1();
+					this.span();
 				},
 				ready: function() {
 					this.btn = $(this.settings.btn);
@@ -115,9 +124,12 @@
 					this.num = $(this.settings.num);
 					this.tht = $(this.settings.tht);
 					this.img = $(this.settings.img);
+					this.order = $(this.settings.order); //顺序
+					this.cycle = $(this.settings.cycle)
 					this.dian = this.btns[3].children
+					this.isTrue = true;
 					this.n = 0;
-
+					console.log(this.dian)
 				},
 				operation: function() {
 					this.num.innerHTML = this.settings.spans[0][this.n];
@@ -129,8 +141,14 @@
 					This.ready();
 					this.btns[2].onclick = function() {
 						This.n++
-							if(This.n > This.settings.spans[0].length - 1) {
-								This.n = This.settings.spans[0].length - 1
+							if(This.isTrue) {
+								if(This.n > This.settings.spans[0].length - 1) {
+									This.n = This.settings.spans[0].length - 1
+								}
+							} else {
+								if(This.n > This.settings.spans[0].length - 1) {
+									This.n = 0
+								}
 							}
 						for(var i = 0; i < This.dian.length; i++) {
 							This.dian[i].className = '';
@@ -144,15 +162,60 @@
 					This.ready();
 					this.btns[1].onclick = function() {
 						This.n--
-							if(This.n < 0) {
-								This.n = 0
+							if(This.isTrue) {
+								if(This.n < 0) {
+									This.n = 0
+								}
+
+							} else {
+								if(This.n < 0) {
+									This.n = This.settings.spans[0].length - 1
+								}
 							}
+
 						for(var i = 0; i < This.dian.length; i++) {
 							This.dian[i].className = '';
 						}
 						This.dian[This.n].className = 'active';
 						This.operation();
 					}
+				},
+				order1: function() {
+					var This = this;
+					this.order.onclick = function() {
+						This.isTrue = true;
+						this.style.background = 'red';
+						This.cycle.style.background = '';
+					}
+				},
+				cycle1: function() {
+					var This = this;
+					this.cycle.onclick = function() {
+						This.isTrue = false;
+						this.style.background = 'red';
+						This.order.style.background = '';
+					}
+				},
+				span: function() {
+					var sp = [];
+					var This = this;
+
+					for(let attr in This.dian) {
+						sp[attr] = This.dian[attr]
+					}
+
+					sp.forEach(function(element, index) {
+						element.onclick = function() {
+							for(var i = 0; i < This.dian.length; i++) {
+								This.dian[i].className = '';
+							}
+							This.n = index;
+							This.dian[This.n].className = 'active';
+							This.num.innerHTML = This.settings.spans[0][index];
+							This.tht.innerHTML = This.settings.spans[1][index];
+							This.img.src = 'img/' + This.settings.spans[2][index] + '.jpg';
+						}
+					});
 				}
 
 			}
@@ -163,6 +226,8 @@
 				num: '.num',
 				tht: '.tht',
 				img: '.img',
+				order: '.order',
+				cycle: '.cycle',
 				spans: [
 					['1/5', '2/5', '3/5', '4/5', '5/5'],
 					['第1张 ', '第2张 ', '第3张 ', '第4张 ', '第5张 '],
