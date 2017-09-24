@@ -1,88 +1,97 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
 		<style type="text/css">
-			#demo{
+			#demo {
 				width: 600px;
 				height: 360px;
 				border: 1px solid #E9E9E9;
 				margin: 0 auto;
 			}
-			#demo div{
+			
+			#demo div {
 				padding-right: 30px;
 				text-align: right;
 				margin-top: 60px;
 			}
-			textarea{
+			
+			textarea {
 				width: 578px;
 				height: 60px;
 				margin: 10px 9px;
 			}
-			input{
+			
+			input {
 				margin-top: 20px;
 				width: 380px;
 				font-size: 12px;
 			}
-			#demo .btn{
+			
+			#demo .btn {
 				width: 80px;
 				float: right;
 				margin-right: 30px;
 			}
-			span{
+			
+			span {
 				font-size: 12px;
 			}
 		</style>
 		<script type="text/javascript">
-			window.onload=function(){
-				(function(){
-					var arr=[-27, 'kaivon', 6-'20%', [], -5900, '800km', function(){alert('陈学辉');},'xyz'-90, null, 66, document, [], true, '198px'-30, '49.9元', 5,function(){alert(3);}, Number('abc')];
-					var inputs=document.querySelectorAll("input");
-					var num=[];
-					var result={
-						events:function(){
-							inputs[0].onclick=function(){
-								for(var i=0;i<arr.length;i++){
+			window.onload = function() {
+				(function() {
+					var arr = [-27, 'kaivon', 6-'20%', [], -5900, '800km', function(){alert('陈学辉');},'xyz'-90, null, 66, document, [], true, '198px'-30, '49.9元', 5,function(){alert(3);}, Number('abc')];
+					var inputs = document.querySelectorAll("input");
+					var num = [];
+					
+					var result = {
+						events: function() {
+							inputs[0].onclick = function() {
+								for(var i = 0; i < arr.length; i++) {
 									//所有数字
-									if(typeof arr[i]=='number' && isNaN(arr[i])==false){
-										inputs[1].value+=arr[i]+',';
+									if(typeof arr[i] == 'number' && isNaN(arr[i]) == false) {
+										inputs[1].value += arr[i] + ',';
 									};
 									//可转成数字的值
-									if(parseFloat(arr[i])){
-										inputs[2].value+=arr[i]+',';
+									if(parseFloat(arr[i])) {
+										inputs[2].value += arr[i] + ',';
 									};
 									//最大值
-									if(parseFloat(arr[i])&&Number(arr[i])){
+									if(parseFloat(arr[i]) && Number(arr[i])) {
 										num.push(arr[i])
-										inputs[3].value=result.mixNum(num);
+										inputs[3].value = result.mixNum(num);
 									};
 									//NaN位置
-									if(arr[i]!=arr[i]){
-										inputs[4].value+=i+',';
+									if(arr[i] != arr[i]) {
+										inputs[4].value += i + ',';
 									};
 								}
 							}
 						},
-						mixNum:function(data){
-							return Math.max.apply(null,data);
+						mixNum: function(data) {
+							return Math.max.apply(null, data);
 						}
-					}	
+					}
 					result.events();
 				}());
 			}
 		</script>
 	</head>
+
 	<body>
 		<div id="demo">
 			<textarea>[-27, 'kaivon', 6-'20%', [], -5900, '800km', function(){alert('陈学辉');},'xyz'-90, null, 66, document, [], true, '198px'-30, '49.9元', 5,function(){alert(3);}, Number('abc')]</textarea>
-			<input type="button" value="查看结果" class="btn"/><br />
+			<input type="button" value="查看结果" class="btn" /><br />
 			<div>
-			<span>所有数字：</span><input type="text"/><br />
-			<span>可转成数字的值：</span><input type="text"/><br />
-			<span>转换后的最大数值：</span><input type="text"/><br />
-			<span>数组中NaN的位置：</span><input type="text"/>
+				<span>所有数字：</span><input type="text" /><br />
+				<span>可转成数字的值：</span><input type="text" /><br />
+				<span>转换后的最大数值：</span><input type="text" /><br />
+				<span>数组中NaN的位置：</span><input type="text" />
 			</div>
 		</div>
 	</body>
+
 </html>
