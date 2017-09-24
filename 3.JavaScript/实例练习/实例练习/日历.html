@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.demo{
+				width: 360px;
+				height: 500px;
+				background: #212830;
+				
+				margin: 0px auto;
+				color: #FFFFFF;
+				border: 1px solid #F9F9F9;
+			}
+			.top{
+				width: 100%;
+				height: 110px;
+				border-bottom: 1px solid #A5BCFF;
+			}
+			.top p:nth-child(1){
+				height: 40px;
+				margin: 20px 0px 10px 12px;
+				font-size: 30px;
+			}
+			.top p:nth-child(2){
+				margin-left: 14px;
+				color: #417fb0;
+			}
+			h3{
+				margin: 12px;
+				font-size: 18px;
+				font-weight: 100;
+			}
+			h3 a{
+				float: right;
+				display: inline-block;
+				font-size: 22px;
+				color: blue;
+				margin-right: 24px;
+				text-decoration: none;
+				cursor: pointer;
+				font-weight:bold;
+			}
+			
+			.demo ul{
+				width: 100%;
+				height:50px ;
+				padding: 0px;
+				margin: 0;
+				margin-top: 20px;
+			}
+			.demo ul li,.calendar span{
+				float: left;
+				list-style: none;
+				width: 50px;
+				height: 50px;
+				text-align: center;
+			}
+			.calendar{
+				width: 350px;
+				height: 300px;
+				position: relative;
+			}
+			.calendar .theMonth{
+				width: 350px;
+				height: 300px;
+				position: absolute;
+				top: 0;
+			}
+			.calendar.nextMonth{
+				width: 350px;
+				height: 300px;
+				position: absolute;
+				top:0;
+			}
+			.active{
+				background: #007de1;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				(function(){
+					var d=new Date();
+					
+					var kalendar={
+						init:function(){
+							let timer=setInterval(kalendar.clock,1000);
+							kalendar.calendar(d);
+						},
+						clock:function(){
+							let time=document.querySelectorAll(".top p");
+							let d=new Date();
+							time[0].innerHTML=kalendar.fill(d.getHours()) +':'+
+											  kalendar.fill(d.getMinutes())+':'+
+											  kalendar.fill(d.getSeconds());
+											 
+							time[1].innerHTML=d.getFullYear()+'年'+
+											  (d.getMonth()+1)+'月'+
+											  d.getDate()+'日  '+'星期'+
+											  kalendar.fillWeek(d.getDay());
+						},
+						fill:function(v){
+							return v<10?'0'+v:v;
+						},
+						fillWeek:function(v){
+							return ['一','二','三','四','五','六','日'][v]
+						},
+						getEndDay:function(year,month){//获取某个月的最后一天
+							return new Date(year,month,0).getDate();
+						},
+						getWeek:function(year,month){//获取第一天是周几
+							return new Date(year,month-1,1).getDay();
+						},
+						calendar:function(d,month){
+							let lastEndDay=kalendar.getEndDay(d.getFullYear(),d.getMonth());//上个月的天数
+							let	theDay=kalendar.getEndDay(d.getFullYear(),d.getMonth()+1);  //这个月的天数
+							let	week=kalendar.getWeek(d.getFullYear(),d.getMonth()+1);		//1号是周几
+						}
+					}
+					kalendar.clock();
+					kalendar.init();
+				}());
+			}
+		</script>
+	</head>
+	<body>
+		<div class="demo">
+			<div class="top">
+				<p></p>
+				<p>2017年5月6日</p>
+			</div>
+			<h3><span>2017年5月</span> <a href="#">+</a><a href="#">-</a></h3>
+			<ul>
+				<li>一</li>
+				<li>二</li>
+				<li>三</li>
+				<li>四</li>
+				<li>五</li>
+				<li>六</li>
+				<li>日</li>
+			</ul>
+			<div class="calendar">
+				<div class="theMonth">
+					<span>1</span>
+					<span>2</span>
+					<span>3</span>
+					<span>4</span>
+					<span>5</span>
+					<span>6</span>
+					<span>7</span>
+					<span>8</span>
+					<span>9</span>
+					<span>10</span>
+					<span>11</span>
+					<span>12</span>
+					<span>13</span>
+					<span>14</span>
+					<span>15</span>
+					<span>16</span>
+					<span>17</span>
+					<span>18</span>
+					<span>19</span>
+					<span>20</span>
+					<span>21</span>
+					<span>22</span>
+					<span>23</span>
+					<span>24</span>
+					<span>25</span>
+					<span>26</span>
+					<span>27</span>
+					<span>28</span>
+					<span>29</span>
+					<span>30</span>
+				</div>
+				<div class="nextMonth">
+					
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
