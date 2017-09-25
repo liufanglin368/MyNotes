@@ -1,38 +1,44 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
 		<style type="text/css">
-			.demo{
+			.demo {
 				width: 360px;
-				height: 500px;
+				height: 540px;
 				background: #212830;
-				
 				margin: 0px auto;
 				color: #FFFFFF;
 				border: 1px solid #F9F9F9;
+				opacity: 0.9;
 			}
-			.top{
+			
+			.top {
 				width: 100%;
 				height: 110px;
 				border-bottom: 1px solid #A5BCFF;
 			}
-			.top p:nth-child(1){
+			
+			.top p:nth-child(1) {
 				height: 40px;
 				margin: 20px 0px 10px 12px;
 				font-size: 30px;
 			}
-			.top p:nth-child(2){
+			
+			.top p:nth-child(2) {
 				margin-left: 14px;
 				color: #417fb0;
 			}
-			h3{
+			
+			h3 {
 				margin: 12px;
 				font-size: 18px;
 				font-weight: 100;
 			}
-			h3 a{
+			
+			h3 a {
 				float: right;
 				display: inline-block;
 				font-size: 22px;
@@ -40,90 +46,177 @@
 				margin-right: 24px;
 				text-decoration: none;
 				cursor: pointer;
-				font-weight:bold;
+				font-weight: bold;
 			}
 			
-			.demo ul{
+			.demo ul {
 				width: 100%;
-				height:50px ;
+				height: 50px;
 				padding: 0px;
 				margin: 0;
-				margin-top: 20px;
 			}
-			.demo ul li,.calendar span{
+			
+			.demo ul li,
+			.calendar span {
 				float: left;
 				list-style: none;
 				width: 50px;
 				height: 50px;
+				line-height: 50px;
 				text-align: center;
+				box-sizing: border-box;
 			}
-			.calendar{
+			
+			.calendar span:hover {
+				border: 1px solid #A9A9A9;
+			}
+			
+			.calendar {
 				width: 350px;
 				height: 300px;
 				position: relative;
+				overflow: hidden;
 			}
-			.calendar .theMonth{
+			
+			.calendar .theMonth {
 				width: 350px;
 				height: 300px;
 				position: absolute;
 				top: 0;
 			}
-			.calendar.nextMonth{
+			
+			.calendar .nextMonth {
 				width: 350px;
 				height: 300px;
 				position: absolute;
-				top:0;
+				top: 300px;
 			}
-			.active{
+			
+			.active {
 				background: #007de1;
 			}
 		</style>
+		<script src="js/move.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			window.onload=function(){
-				(function(){
-					var d=new Date();
-					
-					var kalendar={
-						init:function(){
-							let timer=setInterval(kalendar.clock,1000);
-							kalendar.calendar(d);
+			window.onload = function() {
+				(function() {
+					var d = new Date();
+					var theMonth = document.querySelector(".theMonth");
+					var nextMonth = document.querySelector(".nextMonth");
+
+					var kalendar = {
+						init: function() {
+							let timer = setInterval(kalendar.clock, 1000);
+							kalendar.calendar(d, theMonth);
+							kalendar.cut();
 						},
-						clock:function(){
-							let time=document.querySelectorAll(".top p");
-							let d=new Date();
-							time[0].innerHTML=kalendar.fill(d.getHours()) +':'+
-											  kalendar.fill(d.getMinutes())+':'+
-											  kalendar.fill(d.getSeconds());
-											 
-							time[1].innerHTML=d.getFullYear()+'年'+
-											  (d.getMonth()+1)+'月'+
-											  d.getDate()+'日  '+'星期'+
-											  kalendar.fillWeek(d.getDay());
+						clock: function() {
+							let time = document.querySelectorAll(".top p");
+							let d = new Date();
+							time[0].innerHTML = kalendar.fill(d.getHours()) + ':' +
+								kalendar.fill(d.getMinutes()) + ':' +
+								kalendar.fill(d.getSeconds());
+
+							time[1].innerHTML = d.getFullYear() + '年' +
+								(d.getMonth() + 1) + '月' +
+								d.getDate() + '日  ' + '星期' +
+								kalendar.fillWeek(d.getDay());
 						},
-						fill:function(v){
-							return v<10?'0'+v:v;
+						fill: function(v) {
+							return v < 10 ? '0' + v : v;
 						},
-						fillWeek:function(v){
-							return ['一','二','三','四','五','六','日'][v]
+						fillWeek: function(v) {
+							return ['一', '二', '三', '四', '五', '六', '日'][v]
 						},
-						getEndDay:function(year,month){//获取某个月的最后一天
-							return new Date(year,month,0).getDate();
+						getEndDay: function(year, month) { //某个月的最后一天
+							return new Date(year, month, 0).getDate();
 						},
-						getWeek:function(year,month){//获取第一天是周几
-							return new Date(year,month-1,1).getDay();
+						getWeek: function(year, month) { //第一天是周几
+							return new Date(year, month - 1, 1).getDay();
 						},
-						calendar:function(d,month){
-							let lastEndDay=kalendar.getEndDay(d.getFullYear(),d.getMonth());//上个月的天数
-							let	theDay=kalendar.getEndDay(d.getFullYear(),d.getMonth()+1);  //这个月的天数
-							let	week=kalendar.getWeek(d.getFullYear(),d.getMonth()+1);		//1号是周几
+						calendar: function(d, month) {
+
+							let time2 = document.querySelector("h3 span")
+							let lastEndDay = kalendar.getEndDay(d.getFullYear(), d.getMonth()); //上个月的天数
+							let theDay = kalendar.getEndDay(d.getFullYear(), d.getMonth() + 1); //这个月的天数
+							let week = kalendar.getWeek(d.getFullYear(), d.getMonth() + 1); //1号是周几
+							console.log(time2)
+							let str = '';
+							let fistDay = 1
+							let nextFistDay = 1;
+							let fistWeek = week - 1
+							if(fistWeek == 0) {
+								fistWeek = 7;
+							}
+
+							if(fistWeek < 0) {
+								fistWeek = 6;
+							}
+							for(let i = 0; i < 42; i++) {
+								if(i < fistWeek) {
+									str = '<span style="color: #8D8C89;">' + lastEndDay-- + '</span>' + str;
+								} else if(i < fistWeek + theDay) {
+
+									if(d.getFullYear() == new Date().getFullYear() &&
+									   d.getMonth() == new Date().getMonth() &&
+									   fistDay == new Date().getDate()) {
+											str += '<span class="active">' + fistDay++ + '</span>';
+									} else {
+										str += '<span>' + fistDay++ + '</span>';
+									};
+
+								} else {
+									str += '<span style="color: #8D8C89;">' + nextFistDay++ + '</span>';
+								};
+							};
+
+							month.innerHTML = str;
+							time2.innerHTML = d.getFullYear() + '年' + (d.getMonth() + 1) + '月';
+						},
+						cut: function() {
+							let a = document.querySelectorAll("h3 a");
+
+							a[0].onclick = function() {
+								d.setMonth(d.getMonth() + 1);
+								kalendar.calendar(d, theMonth);
+								kalendar.calendar(d, nextMonth);
+								
+								document.querySelectorAll(".theMonth span").forEach(function(ietm){
+									ietm.className='';
+								});
+								
+								nextMonth.style.top = 300 + 'px';
+								move(theMonth, {top: -300}, 300, 'linear');
+								move(nextMonth, {top: 0}, 300, 'linear', function() {
+									theMonth.style.top = 300 + 'px';
+								});
+
+							};
+							a[1].onclick = function() {
+								d.setMonth(d.getMonth() - 1);
+								kalendar.calendar(d, theMonth);
+								kalendar.calendar(d, nextMonth);
+								
+								document.querySelectorAll(".theMonth span").forEach(function(ietm){
+									ietm.className='';
+								});
+								
+								nextMonth.style.top = -300 + 'px';
+								move(theMonth, {top: 300}, 300, 'linear');
+								move(nextMonth, {top: 0}, 300, 'linear', function() {
+									theMonth.style.top = -300 + 'px';
+								});
+							};
 						}
 					}
+
 					kalendar.clock();
 					kalendar.init();
 				}());
 			}
 		</script>
 	</head>
+
 	<body>
 		<div class="demo">
 			<div class="top">
@@ -142,7 +235,7 @@
 			</ul>
 			<div class="calendar">
 				<div class="theMonth">
-					<span>1</span>
+					<!--<span>1</span>
 					<span>2</span>
 					<span>3</span>
 					<span>4</span>
@@ -171,12 +264,13 @@
 					<span>27</span>
 					<span>28</span>
 					<span>29</span>
-					<span>30</span>
+					<span>30</span>-->
 				</div>
 				<div class="nextMonth">
-					
+
 				</div>
 			</div>
 		</div>
 	</body>
+
 </html>
