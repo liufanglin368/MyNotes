@@ -140,7 +140,7 @@
 							let lastEndDay = kalendar.getEndDay(d.getFullYear(), d.getMonth()); //上个月的天数
 							let theDay = kalendar.getEndDay(d.getFullYear(), d.getMonth() + 1); //这个月的天数
 							let week = kalendar.getWeek(d.getFullYear(), d.getMonth() + 1); //1号是周几
-							console.log(time2)
+							//console.log(time2)
 							let str = '';
 							let fistDay = 1
 							let nextFistDay = 1;
@@ -175,7 +175,7 @@
 						},
 						cut: function() {
 							let a = document.querySelectorAll("h3 a");
-
+							let h=theMonth.offsetHeight;
 							a[0].onclick = function() {
 								d.setMonth(d.getMonth() + 1);
 								kalendar.calendar(d, theMonth);
@@ -185,10 +185,10 @@
 									ietm.className='';
 								});
 								
-								nextMonth.style.top = 300 + 'px';
-								move(theMonth, {top: -300}, 300, 'linear');
-								move(nextMonth, {top: 0}, 300, 'linear', function() {
-									theMonth.style.top = 300 + 'px';
+								nextMonth.style.top = h + 'px';
+								move(theMonth, {top: -h}, h, 'linear');
+								move(nextMonth, {top: 0}, h, 'linear', function() {
+									theMonth.style.top = h + 'px';
 								});
 
 							};
@@ -201,10 +201,10 @@
 									ietm.className='';
 								});
 								
-								nextMonth.style.top = -300 + 'px';
-								move(theMonth, {top: 300}, 300, 'linear');
-								move(nextMonth, {top: 0}, 300, 'linear', function() {
-									theMonth.style.top = -300 + 'px';
+								nextMonth.style.top = -h + 'px';
+								move(theMonth, {top: h}, h, 'linear');
+								move(nextMonth, {top: 0}, h, 'linear', function() {
+									theMonth.style.top = -h + 'px';
 								});
 							};
 						}
