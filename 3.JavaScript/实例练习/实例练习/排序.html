@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#demo {
+				width: 524px;
+				height: 320px;
+				border: 1px solid #8A2BE2;
+				position: relative;
+				margin: 50px auto;
+			}
+			
+			#demo #order {
+				width: 100px;
+				height: 30px;
+				color: #fff;
+				background: blueviolet;
+				border: none;
+				position: absolute;
+				left: 150px;
+			}
+			
+			#demo #random {
+				width: 100px;
+				height: 30px;
+				color: #fff;
+				background: blueviolet;
+				border: none;
+				position: absolute;
+				left: 280px;
+			}
+			
+			#demo div li {
+				list-style: none;
+				position: absolute;
+			}
+			
+			#demo div li p {
+				margin-top: 6px;
+			}
+		</style>
+		<script src="js/move.js"></script>
+		<script type="text/javascript">
+			window.onload = function() {
+
+				(function() {
+					var lis = document.querySelectorAll("li");
+					var demo = {
+						getSize: function() {
+							let order = [];
+							let random = [];
+							for(let i = 0; i < lis.length; i++) {
+								order.push({
+									'top': getComputedStyle(lis[i]).top,
+									'left': getComputedStyle(lis[i]).left
+								});
+
+								random.push({
+									'top': getComputedStyle(lis[i]).top,
+									'left': getComputedStyle(lis[i]).left
+								});
+							}
+
+							demo.incident(order, random)
+						},
+						incident: function(order, random) {
+							let inputs = document.querySelectorAll("input");
+							//顺序
+							inputs[0].onclick = function() {
+								inputs[0].value == '从小到大' ? inputs[0].value = '从大到小' : inputs[0].value = '从小到大';
+								order.reverse()
+								demo.movement(order)
+							}
+							//随机
+							inputs[1].onclick = function() {
+								random.sort(function() {
+									return 0.5 - Math.random()
+								})
+								demo.movement(random)
+							}
+						},
+						movement: function(obj) {
+							for(let i = 0; i < obj.length; i++) {
+								move(lis[i], {
+									top: parseInt(obj[i].top),
+									left: parseInt(obj[i].left)
+								}, 1000, 'linear')
+
+							}
+						}
+					}
+
+					demo.getSize()
+				}());
+			}
+		</script>
+
+	</head>
+
+	<body>
+		<div id="demo">
+			<input type="button" id="order" value="从小到大" />
+			<input type="button" id="random" value="打乱顺序" />
+			<div>
+				<ul>
+					<li style="left:4px;top:80px;"><img src="img/1.jpg" />
+						<p>1</p>
+					</li>
+					<li style="left:130px;top:80px;"><img src="img/2.jpg" />
+						<p>2</p>
+					</li>
+					<li style="left:250px;top:80px;"><img src="img/3.jpg" />
+						<p>3</p>
+					</li>
+					<li style="left:370px;top:80px;"><img src="img/4.jpg" />
+						<p>4</p>
+					</li>
+					<li style="left:1px;top:200px;"><img src="img/5.jpg" />
+						<p>5</p>
+					</li>
+					<li style="left:122px;top:200px;"><img src="img/6.jpg" />
+						<p>6</p>
+					</li>
+					<li style="left:244px;top:200px;"><img src="img/7.jpg" />
+						<p>7</p>
+					</li>
+					<li style="left:364px;top:200px;"><img src="img/9.jpg" />
+						<p>8</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+
+</html>
