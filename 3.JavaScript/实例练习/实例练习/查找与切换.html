@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			p,
+			dl,
+			dt,
+			dd,
+			input {
+				margin: 0;
+				padding: 0;
+			}
+			
+			a {
+				text-decoration: none;
+				color: #FFFFFF;
+			}
+			
+			.demo {
+				width: 740px;
+				border-radius: 8px;
+				box-shadow: 0px 0px 20px #92999a;
+				margin: 50px auto;
+				padding: 30px;
+			}
+			
+			.top p {
+				width: 540px;
+				height: 200px;
+				background: #ecf8fb;
+				border: 1px solid #b7e1ea;
+				border-radius: 6px;
+				font: 20px/38px "微软雅黑";
+				padding: 20px;
+				display: inline-block;
+			}
+			
+			dl {
+				height: 240px;
+				float: right;
+			}
+			
+			dt,
+			dd {
+				width: 120px;
+				height: 70px;
+				font: 17px/70px "微软雅黑";
+				color: #FFFFFF;
+				text-align: center;
+				border-radius: 6px;
+				margin-bottom: 16px;
+			}
+			
+			dt {
+				background: #90e1f2;
+			}
+			
+			dl dd:nth-of-type(1) {
+				background: #A5BCFF;
+				display: none;
+			}
+			
+			dl dd:nth-of-type(2) {
+				background: #92999A;
+				display: none;
+			}
+			
+			.bottom {
+				width: 700px;
+				height: 210px;
+				border: 1px solid #b7e1ea;
+				border-radius: 6px;
+				background: #ecf8fb;
+				margin-top: 40px;
+				padding: 16px 20px;
+				display: none;
+			}
+			
+			.bottom p {
+				width: 100%;
+				line-height: 50px;
+				font-size: 20px;
+				border-bottom: 1px solid #b7e1ea;
+				;
+			}
+			
+			.bottom p span {
+				display: inline-block;
+				width: 80px;
+				height: 40px;
+				line-height: 40px;
+				text-align: center;
+				cursor: pointer;
+			}
+			
+			.bottom p a {
+				float: right;
+				color: #90e2f2;
+			}
+			
+			.find {
+				margin-top: 50px;
+			}
+			
+			.find input {
+				width: 410px;
+				height: 50px;
+				float: left;
+			}
+			
+			.find a,
+			.replace a {
+				display: inline-block;
+				width: 80px;
+				height: 54px;
+				font: 18px/54px "微软雅黑";
+				background: #a8a6f5;
+				text-align: center;
+				margin-left: 10px;
+			}
+			
+			.replace {
+				margin-top: 50px;
+				display: none;
+			}
+			
+			.replace input:nth-child(1) {
+				width: 170px;
+				height: 50px;
+				margin-right: 8px;
+				float: left;
+			}
+			
+			.replace input:nth-child(2) {
+				width: 240px;
+				height: 50px;
+				margin-right: 8px;
+				float: left;
+			}
+			.replace a{
+				background: #92999A;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				
+				function $(element){
+						return document.querySelector(element);
+					}
+				
+				(function(){
+					
+					
+					var demo={
+						init:function(){
+							demo.unfold();
+							demo.chazhao();
+						},
+						unfold:function(){
+							let dds=document.querySelectorAll("dd");
+							let bottom=$('.bottom');
+							let find=$('.find');
+							let replace=$('.replace');
+							let spans=document.querySelectorAll(".bottom p span")
+							
+							$('dt').onclick=function(){
+								dds.forEach(function(iem){iem.style.display='block';})
+							}
+							
+							dds[0].onclick=function(){
+								bottom.style.display='block';
+								find.style.display='block';
+								replace.style.display='none';
+								spans[0].style.background='#a8a6f5';
+								spans[1].style.background='';
+							}
+							
+							dds[1].onclick=function(){
+								bottom.style.display='block';
+								replace.style.display='block';
+								find.style.display='none'
+								spans[1].style.background='#92999A';
+								spans[0].style.background='';
+							}
+						},
+						chazhao:function(){
+							let input1=$('.find input');
+							let	btn1=$('.find a');
+							let	content=$('.top p')
+							btn1.onclick=function(){
+								if(!input1.value){
+									alert('请输入内容')
+								}else if(content.innerHTML.indexOf(input1.value)==-1){
+									alert('你输入的内容未找到')
+								}else{
+									console.log(content.innerHTML.indexOf(input1.value))
+								}
+							}
+						}
+					}
+					demo.init()
+				}());
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="demo">
+			<div class="top">
+				<p>JavaScript一种直译式脚本语言，是一种动态类型、弱类型、基于原型的语言，内置支持类型。它的解释器被称为JavaScript引擎，为浏览器的一部分，广泛用于客户端的脚本语言，最早是在HTML（标准通用标记语言下的一个应用）网页上使用，用来给HTML网页增加动态功能</p>
+				<dl>
+					<dt><a href="#">展开</a></dt>
+					<dd>
+						<a href="#">查找</a>
+					</dd>
+					<dd>
+						<a href="#">替换</a>
+					</dd>
+				</dl>
+			</div>
+			<div class="bottom">
+				<p><span>查找</span><span>替换</span>
+					<a href="#">X</a>
+				</p>
+				<div class="find">
+					<input type="text" />
+					<a href="#">查找</a>
+				</div>
+				<div class="replace">
+					<input type="text" /><input type="text" />
+					<a href="#">查找</a>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
