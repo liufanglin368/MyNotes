@@ -38,6 +38,10 @@
 				display: inline-block;
 			}
 			
+			.top p span {
+				background: yellow;
+			}
+			
 			dl {
 				height: 240px;
 				float: right;
@@ -140,67 +144,139 @@
 				margin-right: 8px;
 				float: left;
 			}
-			.replace a{
+			
+			.replace a {
 				background: #92999A;
 			}
 		</style>
 		<script type="text/javascript">
-			window.onload=function(){
-				
-				function $(element){
-						return document.querySelector(element);
-					}
-				
-				(function(){
-					
-					
-					var demo={
-						init:function(){
+			window.onload = function() {
+
+				function $(element) {
+					return document.querySelector(element);
+				}
+
+				(function() {
+					var demo = {
+						init: function() {
 							demo.unfold();
+						},
+						unfold: function() {
+							let dds = document.querySelectorAll("dd");
+							let bottom = $('.bottom');
+							let find = $('.find');
+							let replace = $('.replace');
+							let spans = document.querySelectorAll(".bottom p span")
+							let close = $(".bottom p a");
+
+							$('dt').onclick = function() {
+								dds.forEach(function(iem) {
+									iem.style.display = 'block'
+								});
+							}
+
+							spans[0].onclick = dds[0].onclick = function() {
+								demo.unfoldFn(bottom, find, replace, spans[0], spans[1], '#a8a6f5')
+								demo.removeSpan();
+							}
+
+							spans[1].onclick = dds[1].onclick = function() {
+								demo.unfoldFn(bottom, replace, find, spans[1], spans[0], '#92999A')
+								demo.removeSpan();
+							}
+
+							close.onclick = function() {
+								bottom.style.display = 'none';
+								dds.forEach(function(iem) {
+									iem.style.display = 'none'
+								});
+							}
+						},
+						unfoldFn: function(elemen, cz, th, btn1, btn2, color) {
+							elemen.style.display = 'block';
+							cz.style.display = 'block';
+							th.style.display = 'none'
+							btn1.style.background = color;
+							btn2.style.background = '';
+
 							demo.chazhao();
+							demo.tihuan();
 						},
-						unfold:function(){
-							let dds=document.querySelectorAll("dd");
-							let bottom=$('.bottom');
-							let find=$('.find');
-							let replace=$('.replace');
-							let spans=document.querySelectorAll(".bottom p span")
-							
-							$('dt').onclick=function(){
-								dds.forEach(function(iem){iem.style.display='block';})
-							}
-							
-							dds[0].onclick=function(){
-								bottom.style.display='block';
-								find.style.display='block';
-								replace.style.display='none';
-								spans[0].style.background='#a8a6f5';
-								spans[1].style.background='';
-							}
-							
-							dds[1].onclick=function(){
-								bottom.style.display='block';
-								replace.style.display='block';
-								find.style.display='none'
-								spans[1].style.background='#92999A';
-								spans[0].style.background='';
+						chazhao: function() {
+							let input1 = $('.find input');
+							let btn1 = $('.find a');
+							let content = $('.top p');
+
+							btn1.onclick = function() {
+								let val = input1.value;
+								if(!val) {
+									alert('请输入内容');
+									return;
+								};
+
+								if(content.innerHTML.indexOf(val) == -1) {
+									alert('你输入的内容未找到');
+									input1.value = '';
+									return;
+								};
+								demo.removeSpan();
+								let result = content.innerHTML.split(val);
+								content.innerHTML = result.join('<span>' + val + '</span>');
+								input1.value = '';
 							}
 						},
-						chazhao:function(){
-							let input1=$('.find input');
-							let	btn1=$('.find a');
-							let	content=$('.top p')
-							btn1.onclick=function(){
-								if(!input1.value){
-									alert('请输入内容')
-								}else if(content.innerHTML.indexOf(input1.value)==-1){
-									alert('你输入的内容未找到')
-								}else{
-									console.log(content.innerHTML.indexOf(input1.value))
-								}
+						tihuan: function() {
+							let inputs = document.querySelectorAll(".replace input");
+							let btn2 = $('.replace a');
+							let content = $('.top p');
+
+							btn2.onclick = function() {
+								let val0 = inputs[0].value;
+								let val1 = inputs[1].value;
+								if(!val0) {
+									alert('请输入要替换的内容');
+									inputs[0].value = inputs[1].value = '';
+									return;
+								};
+
+								if(content.innerHTML.indexOf(val0) == -1) {
+									alert('你输入的内容未找到');
+									inputs[0].value = inputs[1].value = '';
+									return;
+								};
+
+								if(!val1) {
+									let cancel = confirm('你确定要删除么')
+									if(!cancel) {
+										inputs[0].value = '';
+										console.log(cancel)
+										return;
+									}
+
+								};
+								demo.removeSpan();
+								let result = content.innerHTML.split(val0);
+								content.innerHTML = result.join(val1)
+								inputs[0].value = inputs[1].value = '';
 							}
+						},
+						removeSpan: function() {
+							let inputs = document.querySelectorAll("input");
+							let content = $('.top p');
+							for(let i = 0; i < inputs.length; i++) {
+								inputs[i].value = ''
+							}
+
+							let deletArr = content.innerHTML.split('<span>');
+							deletArr = deletArr.join('')
+
+							deletArr = deletArr.split('</span>');
+							deletArr = deletArr.join('');
+							content.innerHTML = deletArr;
 						}
+
 					}
+					
 					demo.init()
 				}());
 			}
@@ -231,7 +307,7 @@
 				</div>
 				<div class="replace">
 					<input type="text" /><input type="text" />
-					<a href="#">查找</a>
+					<a href="#">替换</a>
 				</div>
 			</div>
 		</div>
