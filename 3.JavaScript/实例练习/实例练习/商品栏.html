@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#demo {
+				width: 850px;
+				height: 270px;
+				border: 14px solid #b1a7af;
+				background: #f0eef0;
+			}
+			
+			#demo ul {
+				margin: 0px;
+				padding: 0px;
+				width: 850px;
+				display: inline-block;
+				margin-top: 29px;
+				border-bottom: 1px dashed #fad8e6;
+			}
+			
+			#demo ul li {
+				list-style: none;
+				float: left;
+				display: inline-block;
+				margin-right: 10px;
+				font-size: 14px;
+				position: relative;
+				cursor: pointer;
+			}
+			
+			#demo ul p {
+				width: 70px;
+				margin: 0px;
+				color: #cccccc;
+				float: left;
+				display: inline-block;
+				margin-left: 16px;
+			}
+			
+			a {
+				text-decoration: none;
+				color: black;
+			}
+			
+			.jia {
+				background: #ebe4e4;
+				margin-top: 20px;
+				border: none;
+			}
+			
+			p {
+				width: 70px;
+				margin: 0px;
+				color: #cccccc;
+				float: left;
+				display: inline-block;
+				margin-left: 16px;
+			}
+			
+			.jia span {
+				padding: 0px 0px 0px 20px;
+				margin-left: 4px;
+				border: 1px solid #B1A7AF;
+				border-right: none;
+				color: black;
+			}
+			
+			.jia span a {
+				margin-left: 20px;
+				background: #FF0000;
+				color: #FFFFFF;
+				padding: 0 10px;
+				border-right: 1px solid #B1A7AF;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function() {
+				(function() {
+					var ul = document.querySelectorAll("ul");
+
+					var app = {
+						init: function() {
+							app.circulation()
+						},
+						circulation: function() {
+							for(let i = 0; i < ul.length; i++) {
+								app.events(i);
+							}
+						},
+						events: function(n) {
+							var lis = ul[n].querySelectorAll(':not(p)');
+							for(var i = 0; i < lis.length; i++) {
+									
+									lis[i].onclick=function(){
+										let selected=document.querySelector(".jia");
+										let spans=selected.getElementsByTagName("span");
+										//console.log(JSON.stringify(selected.querySelectorAll('span')))
+										if(JSON.stringify(spans)=='{}'){
+											let newSpan=document.createElement("span");
+											selected.appendChild(newSpan)
+											spans[0].innerHTML=this.innerHTML
+										}else{
+											for(let i=0;i<spans.length;i++){
+												if(spans[i].innerHTML==this.innerHTML){
+													console.log(9)
+												}else{
+													let newSpan=document.createElement("span");
+													selected.appendChild(newSpan)
+													spans[n].innerHTML==this.innerHTML
+												}
+											}
+										}
+										
+										
+//										let spans=document.querySelectorAll(".jia span")
+//										
+//										for(var i=0;i<spans.length;i++){
+//											
+//										}
+//										spans.innerHTML=this.innerHTML
+//										console.log(this.innerHTML)
+										
+									}
+							}
+						}
+					}
+
+					app.init()
+				}());
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="demo">
+			<ul>
+				<p>品牌:</p>
+				<li>惠普</li>
+				<li>联想</li>
+				<li>戴尔</li>
+				<li>三星</li>
+				<li>宏基</li>
+				<li>苹果</li>
+				<li>神州</li>
+				<li>华硕</li>
+				<li>方正</li>
+			</ul>
+			<ul>
+				<p>价格:</p>
+				<li>3000-3999</li>
+				<li>4000-4999</li>
+				<li>5000-5900</li>
+				<li>6000-6999</li>
+				<li>000-7999</li>
+				<li>8000-8999</li>
+				<li>9000-9999</li>
+				<li>10000以上</li>
+			</ul>
+			<ul>
+				<p>尺寸:</p>
+				<li>8.9英寸以及以下</li>
+				<li>11英寸</li>
+				<li>12英寸</li>
+				<li>13英寸</li>
+				<li>14英寸</li>
+				<li>15英寸</li>
+				<li>16英寸</li>
+			</ul>
+			<ul>
+				<p>显卡:</p>
+				<li>独立显卡</li>
+				<li>集成显卡</li>
+				<li>核心显卡</li>
+			</ul>
+			<div class="jia">
+				<p>已选条件</p>
+			</div>
+		</div>
+	</body>
+
+</html>
