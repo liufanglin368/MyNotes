@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#demo {
+				width: 420px;
+				height: 270px;
+				border: 1px solid #000000;
+				background: #fafafa;
+			}
+			
+			#demo ul {
+				padding: 0px;
+			}
+			
+			ul li {
+				position: relative;
+				top: 0;
+			}
+			
+			#demo ul li {
+				width: 400px;
+				height: 50px;
+				margin: 15px 10px 0px 10px;
+				background: #61a56c;
+				list-style: none;
+				color: #FFFFFF;
+				line-height: 50px;
+				text-indent: 4px;
+			}
+			
+			#demo ul li a {
+				width: 50px;
+				height: 28px;
+				border: 1px solid #FFFFFF;
+				font-size: 14px;
+				line-height: 28px;
+				text-align: center;
+				text-decoration: none;
+				color: #FFFFFF;
+				float: right;
+				margin: 10px 10px;
+			}
+		</style>
+		<script src="js/move.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload=function(){
+				(function(){
+					lis=document.querySelectorAll("li");
+					var app={
+						init:function(){
+							app.moves();
+						},
+						moves:function(){
+							for(let i=0;i<lis.length;i++){
+								let a=lis[i].getElementsByTagName("a");
+								a[0].onclick=function(){
+									app.moveUp.call(this);
+								}
+								
+								a[1].onclick=function(){
+									app.moveDown.call(this);
+								}
+							}
+						},
+						moveUp:function(){
+							let thisLi=this.parentNode;
+							let lastLi=thisLi.previousElementSibling;
+							let ul=document.querySelector("ul")
+							if(!lastLi){
+								alert("到头了");
+								return;
+							}
+							move(thisLi,{top:-thisLi.offsetHeight-20},300,'linear',function(){
+								ul.insertBefore(thisLi,lastLi)
+								thisLi.style.top=0+'px';
+								lastLi.style.top=0+'px';
+							});
+							move(lastLi,{top:+lastLi.offsetHeight+20},300,'linear',function(){
+								ul.insertBefore(thisLi,lastLi)
+								thisLi.style.top=0+'px';
+								lastLi.style.top=0+'px';
+							});
+						},
+						moveDown:function(){
+							let thisLi=this.parentNode;
+							let nextLi=thisLi.nextElementSibling;
+							let ul=document.querySelector("ul")
+							if(!nextLi){
+								alert("到头了");
+								return;
+							}
+							move(thisLi,{top:+thisLi.offsetHeight+20},300,'linear',function(){
+								ul.insertBefore(nextLi,thisLi)
+								thisLi.style.top=0+'px';
+								nextLi.style.top=0+'px';
+							});
+							move(nextLi,{top:-nextLi.offsetHeight-20},300,'linear',function(){
+								ul.insertBefore(nextLi,thisLi)
+								thisLi.style.top=0+'px';
+								nextLi.style.top=0+'px';
+							});
+						}
+					}
+					
+					app.init();
+				}());
+			}
+			
+		</script>
+	</head>
+
+	<body>
+		<div id="demo">
+			<ul>
+				<li style="background: red;">red
+					<a href="#" class="top">上移</a>
+					<a href="#" class="bot">下移</a>
+				</li>
+				<li style="background: green;">green
+					<a href="#" class="top">上移</a>
+					<a href="#" class="bot">下移</a>
+				</li>
+				<li style="background: blue;">blue
+					<a href="#" class="top">上移</a>
+					<a href="#" class="bot">下移</a>
+				</li>
+				<li style="background: yellow;">yellow
+					<a href="#" class="top">上移</a>
+					<a href="#" class="bot">下移</a>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>
