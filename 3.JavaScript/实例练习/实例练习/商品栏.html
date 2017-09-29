@@ -76,21 +76,44 @@
 				border-right: 1px solid #B1A7AF;
 			}
 		</style>
-		<script type="text/javascript">
-			window.onload = function() {
-				var ul=document.querySelectorAll("ul");
+		
+	</head>
+	<script type="text/javascript">
+		window.onload=function(){
+			var ul=document.querySelectorAll("ul");
+			var jia=document.querySelector(".jia");
+			for(var i=0;i<ul.length;i++){
+				ul[i].mark=false;
+				cap(i);
+			}
+			
+			function cap(n){
+				var lis=ul[n].querySelectorAll('li:not(p)')
 				
-				for(var i=0;i<ul.length;i++){
-					let lis=ul[i].querySelectorAll('li');
-					
+				for(var i=0;i<lis.length;i++){
 					lis[i].onclick=function(){
-						console.log(1)
+						
+						var parent=this.parentNode;
+						if(!parent.mark){
+								//这个条件成立，说明现在需要创建一个标签
+								dd=document.createElement("span");
+								
+								jia.appendChild(dd);
+							}
+							
+							var This=this;		//在这里存一下当前点击的那个对象，为了在span标签点击的时候要用到它
+							//点击的时候都需要去修改内容，并且创建一个span标签
+							dd.innerHTML=this.innerHTML;
+							var span=document.createElement("span");
+							
+							
+							//3
+							parent.mark=true;
 					}
 				}
 			}
-		</script>
-	</head>
-
+		}
+	</script>
 	<body>
 		<div id="demo">
 			<ul>
