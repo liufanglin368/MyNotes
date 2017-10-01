@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 100px;
+				height: 100px;
+				background: #FF0000;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+	</body>
+	<script type="text/javascript">
+		var div=document.querySelector("div");
+		var n=7;
+		document.onkeydown=function(ev){
+			console.log(ev.keyCode)
+			
+			switch(ev.keyCode){
+				case 37 :
+						div.style.left=div.offsetLeft-n+'px';
+						break;
+				case 38 :
+						div.style.top=div.offsetTop-n+'px';
+						break;
+				case 39 :
+						div.style.left=div.offsetLeft+n+'px';
+						break;
+				case 40 :
+						div.style.top=div.offsetTop+n+'px';
+						break;
+			}
+		}
+	</script>
+</html>
