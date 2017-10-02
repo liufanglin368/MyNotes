@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
 		<style type="text/css">
-			div{
+			div {
 				width: 100px;
 				height: 100px;
 				background: #FF0000;
@@ -14,43 +15,46 @@
 			}
 		</style>
 	</head>
+
 	<body>
 		<div></div>
 	</body>
 	<script type="text/javascript">
-		var div=document.querySelector("div");
-		var n=7;
-		
-		var code={
-			37:false,
-			38:false,
-			39:false,
-			40:false
+		var div = document.querySelector("div");
+		var n = 7;
+
+		var code = {
+			37: false,
+			38: false,
+			39: false,
+			40: false
 		};
-		
-		document.onkeydown=function(ev){
-			code[ev.keyCode]=true;
+
+		document.onkeydown = function(ev) {
+			code[ev.keyCode] = true;
 			console.log(ev.keyCode)
 			key();
 		};
-		
-		document.onkeyup=function(ev){
-			code[ev.keyCode]=false;
+
+		document.onkeyup = function(ev) {
+			code[ev.keyCode] = false;
 		};
-		var time=setInterval(key,16);
-		function key(){
-			if(code[37]){
-				div.style.left=div.offsetLeft-n+'px';
+		var time = setInterval(key, 16);
+
+		function key() {
+			if(code[37]) {
+				div.style.left = div.offsetLeft - n + 'px';
 			};
-			if(code[38]){
-				div.style.top=div.offsetTop-n+'px';
+			if(code[38]) {
+				div.style.top = div.offsetTop - n + 'px';
 			};
-			if(code[39]){
-				div.style.left=div.offsetLeft+n+'px';
+			if(code[39]) {
+				div.style.left = div.offsetLeft + n + 'px';
 			};
-			if(code[40]){
-				div.style.top=div.offsetTop+n+'px';
+			if(code[40]) {
+				div.style.top = div.offsetTop + n + 'px';
 			};
 		}
 	</script>
+
 </html>
