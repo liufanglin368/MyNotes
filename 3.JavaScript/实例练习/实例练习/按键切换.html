@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#demo{
+				width: 320px;
+				height: 480px;
+				border: 10px solid blueviolet;
+				margin: 100px auto 0px;
+				overflow: hidden;
+				position: relative;
+				
+			}
+			ul{
+				margin: 0;
+				padding: 0;
+				position: absolute;
+				left: 0;
+				top: 0;
+				font-size: 0;
+			}
+			li{
+				width:320px ;
+				height: 480px;
+				list-style: none;
+				margin: 0px;
+				display: inline-block;
+			}
+		</style>
+		<script src="js/move.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="demo">
+			<ul>
+				<li><img src="img/img_1.jpg"/></li>
+				<li><img src="img/img_2.jpg"/></li>
+				<li><img src="img/img_3.jpg"/></li>
+				<li><img src="img/img_4.jpg"/></li>
+				<li><img src="img/img_5.jpg"/></li>
+				<li><img src="img/img_6.jpg"/></li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		
+		var ul=document.querySelector("ul");
+		var lis=document.querySelectorAll("li");
+		var n=0;
+		document.onkeydown=function(ev){
+			console.log(ev.keyCode)
+			if(ev.keyCode==39){
+				let w = parseFloat(getComputedStyle(lis[0]).width)*lis.length;
+				ul.style.width=w+'px';
+				n++;
+				
+				console.log(n)
+				move(ul,{left:-parseFloat(getComputedStyle(lis[0]).width)*n},1000,'linear',function(){
+					if(n>lis.length-1){
+						n=0;
+						ul.style.left=0
+					}
+				})
+			}
+		}
+	</script>
+</html>
+
