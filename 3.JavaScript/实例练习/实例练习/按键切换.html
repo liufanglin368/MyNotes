@@ -57,7 +57,7 @@
 				
 				console.log(n)
 				move(ul,{left:-parseFloat(getComputedStyle(lis[0]).width)*n},1000,'linear',function(){
-					if(n>lis.length-1){
+					if(n>=lis.length-1){
 						n=0;
 						ul.style.left=0
 					}
