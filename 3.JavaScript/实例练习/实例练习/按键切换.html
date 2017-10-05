@@ -62,6 +62,20 @@
 						ul.style.left=0
 					}
 				})
+			};
+			
+			if(ev.keyCode==40){
+				let w = parseFloat(getComputedStyle(lis[0]).height);
+				ul.style.height=w+'px';
+				n++;
+				
+				console.log(n)
+				move(ul,{top:-parseFloat(getComputedStyle(lis[0]).height)*n},1000,'linear',function(){
+					if(n>=lis.length-1){
+						n=0;
+						ul.style.top=0
+					}
+				})
 			}
 		}
 	</script>
