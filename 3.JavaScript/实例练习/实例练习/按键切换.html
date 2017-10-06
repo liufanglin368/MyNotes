@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
 		<style type="text/css">
-			#demo{
+			#demo {
 				width: 320px;
 				height: 480px;
 				border: 10px solid blueviolet;
-				margin: 100px auto 0px;
+				margin: 100px auto;
 				overflow: hidden;
 				position: relative;
-				
 			}
-			ul{
+			
+			ul {
 				margin: 0;
 				padding: 0;
 				position: absolute;
@@ -21,8 +22,9 @@
 				top: 0;
 				font-size: 0;
 			}
-			li{
-				width:320px ;
+			
+			li {
+				width: 320px;
 				height: 480px;
 				list-style: none;
 				margin: 0px;
@@ -31,42 +33,69 @@
 		</style>
 		<script src="js/move.js" type="text/javascript" charset="utf-8"></script>
 	</head>
+
 	<body>
 		<div id="demo">
 			<ul>
-				<li><img src="img/img_1.jpg"/></li>
-				<li><img src="img/img_2.jpg"/></li>
-				<li><img src="img/img_3.jpg"/></li>
-				<li><img src="img/img_4.jpg"/></li>
-				<li><img src="img/img_5.jpg"/></li>
-				<li><img src="img/img_6.jpg"/></li>
+				<li><img src="img/img_1.jpg" /></li>
+				<li><img src="img/img_2.jpg" /></li>
+				<li><img src="img/img_3.jpg" /></li>
+				<li><img src="img/img_4.jpg" /></li>
+				<li><img src="img/img_5.jpg" /></li>
+				<li><img src="img/img_6.jpg" /></li>
 			</ul>
 		</div>
 	</body>
 	<script type="text/javascript">
-		
-		var ul=document.querySelector("ul");
-		var lis=document.querySelectorAll("li");
-		var n=0;
-		document.onkeydown=function(ev){
-			console.log(ev.keyCode)
-			if(ev.keyCode==39){
-				let w = parseFloat(getComputedStyle(lis[0]).width)*lis.length;
-				ul.style.width=w+'px';
-				n++;
-				
-				console.log(n)
-				move(ul,{left:-parseFloat(getComputedStyle(lis[0]).width)*n},1000,'linear',function(){
-					if(n>=lis.length-1){
-						n=0;
-						ul.style.left=0
-					}
-				})
-			};
-			
-			
+		var ul = document.querySelector("ul");
+		var lis = document.getElementsByTagName("li");
+		var n = lis[0].offsetWidth;
+		var isTrue = true;
+		document.onkeydown = function(ev) {
+			//console.log(ev.keyCode)
+
+			//isTrue=true时说明运动已经完成了
+			if(!isTrue) {
+				return;
 			}
+
+			isTrue = false;
+
+			switch(ev.keyCode) {
+				case 37:
+					ul.style.width = n * lis.length + 'px';
+					move(ul, {left: -n}, 500, 'linear', function() {
+						ul.appendChild(lis[0])
+						ul.style.left = 0;
+						isTrue = true;
+					});
+					break;
+				case 38:
+					ul.style.width = n + 'px';
+					move(ul, {top: -lis[0].offsetHeight}, 500, 'linear', function() {
+						ul.appendChild(lis[0]);
+						ul.style.top = 0;
+						isTrue = true;
+					});
+					break;
+				case 39:
+					ul.style.width = n * lis.length + 'px';
+					ul.insertBefore(lis[lis.length - 1], lis[0]);
+					ul.style.left = -n + 'px';
+					move(ul, {left: 0}, 500, 'linear', function() {
+						isTrue = true;
+					});
+					break;
+				case 40:
+					ul.style.width = n + 'px';
+					ul.insertBefore(lis[lis.length - 1], lis[0]);
+					ul.style.top = -lis[0].offsetHeight + 'px';
+					move(ul, {top: 0}, 500, 'linear', function() {
+						isTrue = true;
+					});
+			};
+
 		}
 	</script>
-</html>
 
+</html>
