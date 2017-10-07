@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#text {
+				width: 500px;
+				height: 40px;
+				margin: 50px 400px 0px;
+			}
+			
+			ul {
+				width: 502px;
+				border: 1px solid #333333;
+				margin: 0px 400px;
+				padding: 0;
+				display: none;
+			}
+			
+			ul li {
+				list-style: none;
+				width: 100%;
+				height: 40px;
+				margin-top: 4px;
+				background: #ccc;
+			}
+			
+			li:nth-child(1) {
+				margin-top: 0px;
+			}
+			
+			li:hover {
+				background: brown;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div>
+			<input type="text" id="text" />
+			<ul id="ul"></ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var input = document.querySelector("input");
+		var ul = document.querySelector("ul");
+		var arr = ['《第七个读者》', '《心理罪 画像》', '《心理罪 教化场》', '《心理罪 暗河》', '《心理罪 城市之光》', '《地球往事》', '《黑暗森林》', '《死神永生》', '《乡村教师》', '《地球大炮》'];
+
+		function creatDom() {
+			var str = [];
+			for(var i = 0; i < arr.length; i++) {
+				str.push('<li>' + arr[i] + '</li>');
+				//lis[i].onclick=pick;
+			}
+			ul.innerHTML = str.join('')
+		};
+
+		input.onclick = function() {
+			ul.style.display = 'block';
+			creatDom();
+
+			var lis = document.getElementsByTagName('li');
+			
+			for(var i = 0; i < lis.length; i++) {
+				lis[i].index = i
+				lis[i].onclick = function() {
+					n = this.index;
+					
+					input.focus()
+					if(this.style.background == '') {
+						for(var i = 0; i < lis.length; i++) {
+							lis[i].style.background = '';
+						}
+						input.value = this.innerHTML;
+						this.style.background = 'brown';
+						return;
+					}
+					input.value = '';
+					this.style.background = '';
+				};
+			};
+				var n=0;
+				console.log(n)
+			input.onkeydown = function(ev) {
+				if(ev.keyCode == 13) {
+					ul.style.display == 'block' ? ul.style.display = '' : ul.style.display = 'block';
+				};
+
+				if(ev.keyCode == 38) {
+					n--
+					for(var i = 0; i < lis.length; i++) {
+						lis[i].style.background = '';
+					}
+
+					if(n < 0) {
+						lis[lis.length - 1].style.background = 'brown';
+						n = lis.length - 1
+						input.value=lis[n].innerHTML
+						return;
+					}
+					lis[n].style.background = 'brown';
+					input.value=lis[n].innerHTML
+				};
+
+				if(ev.keyCode == 40) {
+					if(n<0){
+						n=-1;
+					};
+					n++;
+					for(var i = 0; i < lis.length; i++) {
+						lis[i].style.background = '';
+					}
+
+					if(n > lis.length - 1) {
+						lis[0].style.background = 'brown';
+						n = 0
+						input.value=lis[n].innerHTML
+						return;
+					}
+					lis[n].style.background = 'brown';
+					input.value=lis[n].innerHTML
+				}
+			}
+		};
+	</script>
+
+</html>
