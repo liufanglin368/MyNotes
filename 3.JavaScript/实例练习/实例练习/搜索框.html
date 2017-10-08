@@ -34,96 +34,132 @@
 			li:hover {
 				background: brown;
 			}
+			
+			.active {
+				background: brown;
+			}
 		</style>
 	</head>
 
 	<body>
 		<div>
 			<input type="text" id="text" />
-			<ul id="ul"></ul>
+			<ul></ul>
 		</div>
 	</body>
 	<script type="text/javascript">
-		var input = document.querySelector("input");
-		var ul = document.querySelector("ul");
-		var arr = ['《第七个读者》', '《心理罪 画像》', '《心理罪 教化场》', '《心理罪 暗河》', '《心理罪 城市之光》', '《地球往事》', '《黑暗森林》', '《死神永生》', '《乡村教师》', '《地球大炮》'];
+		(function() {
+			var input = document.querySelector("input");
+			var ul = document.querySelector("ul");
+			var arr = ['《第七个读者》', '《心理罪 画像》', '《心理罪 教化场》', '《心理罪 暗河》', '《心理罪 城市之光》', '《地球往事》', '《黑暗森林》', '《死神永生》', '《乡村教师》', '《地球大炮》'];
+			var last = null; //上一个点击的li
+			var n = -1; //上下键盘起始值
 
-		function creatDom() {
-			var str = [];
-			for(var i = 0; i < arr.length; i++) {
-				str.push('<li>' + arr[i] + '</li>');
-				//lis[i].onclick=pick;
-			}
-			ul.innerHTML = str.join('')
-		};
+			var app = {
+				init: function() {
+					app.creatDom(arr);
+					app.keyBoard();
+					app.backSpace();
+				},
+				creatDom: function(obj) {
+					ul.innerHTML = '';
+					for(let i = 0; i < obj.length; i++) {
+						li = document.createElement("li");
+						li.innerHTML = obj[i];
+						ul.appendChild(li);
+						let lis = document.getElementsByTagName('li');
+						lis[i].index = i;
+						lis[i].onclick = app.lisClick;
+					}
 
-		input.onclick = function() {
-			ul.style.display = 'block';
-			creatDom();
+					app.inputClick();
+				},
+				inputClick: function() {
+					input.onclick = function(ev) {
+						ul.style.display = 'block';
+						ev.cancelBubble = true;
+					};
 
-			var lis = document.getElementsByTagName('li');
-			
-			for(var i = 0; i < lis.length; i++) {
-				lis[i].index = i
-				lis[i].onclick = function() {
-					n = this.index;
-					
-					input.focus()
-					if(this.style.background == '') {
-						for(var i = 0; i < lis.length; i++) {
-							lis[i].style.background = '';
-						}
+					document.onclick = function() {
+						ul.style.display = 'none';
+					};
+				},
+				lisClick: function() {
+					if(last && last != this) {
+						last.className = '';
+					};
+
+					if(this.className == '') {
+						this.className = 'active';
 						input.value = this.innerHTML;
-						this.style.background = 'brown';
-						return;
-					}
-					input.value = '';
-					this.style.background = '';
-				};
-			};
-				var n=0;
-				console.log(n)
-			input.onkeydown = function(ev) {
-				if(ev.keyCode == 13) {
-					ul.style.display == 'block' ? ul.style.display = '' : ul.style.display = 'block';
-				};
-
-				if(ev.keyCode == 38) {
-					n--
-					for(var i = 0; i < lis.length; i++) {
-						lis[i].style.background = '';
-					}
-
-					if(n < 0) {
-						lis[lis.length - 1].style.background = 'brown';
-						n = lis.length - 1
-						input.value=lis[n].innerHTML
-						return;
-					}
-					lis[n].style.background = 'brown';
-					input.value=lis[n].innerHTML
-				};
-
-				if(ev.keyCode == 40) {
-					if(n<0){
+						last = this;
+						n = this.index;
+					} else {
+						this.className = '';
+						input.value = '';
 						n=-1;
 					};
-					n++;
-					for(var i = 0; i < lis.length; i++) {
-						lis[i].style.background = '';
-					}
+				},
+				keyBoard: function() {
+					let lis = document.getElementsByTagName('li');
+					input.onkeydown = function(ev) {
+						switch(ev.keyCode) {
+							case 13:
+								ul.style.display == 'block' ? ul.style.display = 'none' : ul.style.display = 'block';
 
-					if(n > lis.length - 1) {
-						lis[0].style.background = 'brown';
-						n = 0
-						input.value=lis[n].innerHTML
-						return;
-					}
-					lis[n].style.background = 'brown';
-					input.value=lis[n].innerHTML
+								break;
+
+							case 38:
+								ul.style.display = 'block';
+								n--;
+								if(n < 0) {
+									n = lis.length - 1;
+								};
+								if(last) {
+									last.className = '';
+								};
+								lis[n].className = 'active';
+								input.value = lis[n].innerHTML;
+								last = lis[n];
+
+								break;
+
+							case 40:
+								ul.style.display = 'block';
+								n++;
+								if(n == lis.length) {
+									n = 0;
+								};
+								if(last) {
+									last.className = '';
+								};
+								lis[n].className = 'active';
+								input.value = lis[n].innerHTML;
+								last = lis[n];
+
+								break;
+						};
+					};
+				},
+				backSpace: function() {
+					input.oninput = function() {
+						var str = [];
+						var val = this.value;
+						for(let i = 0; i < arr.length; i++) {
+							if(arr[i].indexOf(val) != -1) {
+								str.push(arr[i]);
+							}
+						}
+
+						app.creatDom(str);
+						ul.style.display = 'block';
+						n = -1;
+					};
 				}
-			}
-		};
+			};
+
+			app.init();
+		}());
 	</script>
 
 </html>
