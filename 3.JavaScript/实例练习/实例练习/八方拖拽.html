@@ -36,7 +36,7 @@
 		window.onload=function(){
 			var box=document.getElementById("box")
 		
-			box.onmousedown=function(ev){
+		/*	box.onmousedown=function(ev){
 				var disY=ev.clientY-box.offsetTop;
 				var disX=ev.clientX-box.offsetLeft;
 				
@@ -52,6 +52,14 @@
 				}
 				
 				return false;
+			};*/
+			console.log(box.offsetTop)
+			document.onmousemove=function(ev){
+					box.style.cursor='auto';
+				if(ev.clientY<box.offsetTop+10){
+					box.style.cursor='n-resize';
+				}
+				
 			}
 		}
 		
