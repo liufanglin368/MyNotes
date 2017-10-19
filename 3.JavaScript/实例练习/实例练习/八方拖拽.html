@@ -90,37 +90,37 @@
 								//往右
 								if(dir.indexOf('e') != -1) {
 									var w = mes.w + ev.clientX - mes.x;
-									if(w < 100) {
-										w = 100;
+									if(w < mes.w) {
+										w = mes.w;
 									}
 									box.style.width = w + 'px';
 								}
 								//往下
 								if(dir.indexOf('s') != -1) {
-									var h = mes.h + ev.clientY - mes.y;
-									if(h < 100) {
-										h = 100;
+									let h = mes.h + ev.clientY - mes.y;
+									if(h < mes.h) {
+										h = mes.h;
 									}
 									box.style.height = h + 'px';
 								}
 								//往左
 								if(dir.indexOf('w') != -1) {
-									var w = mes.w + mes.x - ev.clientX;
-									var l = mes.l - (mes.x - ev.clientX);
-									if(w < 100) {
-										w = 100;
-										l = mes.r - 100;
+									let w = mes.w + mes.x - ev.clientX;
+									let l = mes.l - (mes.x - ev.clientX);
+									if(w < mes.w) {
+										w = mes.w;
+										l = mes.r - mes.w;
 									}
 									box.style.left = l + 'px';
 									box.style.width = w + 'px';
 								}
 								//往上
 								if(dir.indexOf('n') != -1) {
-									var h = mes.h + mes.y - ev.clientY;
-									var t = mes.t - (mes.y - ev.clientY);
-									if(h < 100) {
-										h = 100;
-										t = mes.b - 100;
+									let h = mes.h + mes.y - ev.clientY;
+									let t = mes.t - (mes.y - ev.clientY);
+									if(h < mes.h) {
+										h = mes.h;
+										t = mes.b - mes.h;
 									}
 									box.style.top = t + 'px';
 									box.style.height = h + 'px';
