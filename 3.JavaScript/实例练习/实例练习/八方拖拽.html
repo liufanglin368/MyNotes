@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
 		<style type="text/css">
-			#box{
+			#box {
 				width: 100px;
 				height: 100px;
 				background: #FF0000;
 				position: absolute;
-				top: 100px;
-				left: 200px;
+				top: 200px;
+				left: 300px;
 			}
 			/*
 			 *
@@ -28,12 +29,123 @@
 			 * 上下	ns-resize
 			 * 
 			 * cursor
-			 */ 
-			 
+			 */
 		</style>
 	</head>
-	
+	<script type="text/javascript">
+		window.onload = function() {
+
+			(function() {
+				var box = document.getElementById('box');
+				var isDown = false;
+				var mes = {};
+
+				var app = {
+					init: function() {
+						app.down();
+						app.move();
+						app.up();
+					},
+					down: function() {
+						box.onmousedown = function(ev) {
+							isDown = true;
+							mes = {
+								y: ev.clientY,
+								x: ev.clientX,
+								w: app.get(this).width,
+								h: app.get(this).height,
+								l: app.get(this).left,
+								r: app.get(this).right,
+								t: app.get(this).top,
+								b: app.get(this).bottom
+							};
+						};
+					},
+					move: function() {
+						let dir = '';
+						document.onmousemove = function(ev) {
+							if(!isDown) {
+								box.style.cursor = 'auto';
+								dir = '';
+								//上
+								if(ev.clientY < app.get(box).top + 10) {
+									dir += 'n';
+								}
+								//下
+								if(ev.clientY > app.get(box).bottom - 10) {
+									dir += 's';
+								}
+								//左
+								if(ev.clientX < app.get(box).left + 10) {
+									dir += 'w';
+								}
+								//右
+								if(ev.clientX > app.get(box).right - 10) {
+									dir += 'e';
+								};
+
+								box.style.cursor = dir + '-resize';
+							} else {
+
+								//往右
+								if(dir.indexOf('e') != -1) {
+									var w = mes.w + ev.clientX - mes.x;
+									if(w < 100) {
+										w = 100;
+									}
+									box.style.width = w + 'px';
+								}
+								//往下
+								if(dir.indexOf('s') != -1) {
+									var h = mes.h + ev.clientY - mes.y;
+									if(h < 100) {
+										h = 100;
+									}
+									box.style.height = h + 'px';
+								}
+								//往左
+								if(dir.indexOf('w') != -1) {
+									var w = mes.w + mes.x - ev.clientX;
+									var l = mes.l - (mes.x - ev.clientX);
+									if(w < 100) {
+										w = 100;
+										l = mes.r - 100;
+									}
+									box.style.left = l + 'px';
+									box.style.width = w + 'px';
+								}
+								//往上
+								if(dir.indexOf('n') != -1) {
+									var h = mes.h + mes.y - ev.clientY;
+									var t = mes.t - (mes.y - ev.clientY);
+									if(h < 100) {
+										h = 100;
+										t = mes.b - 100;
+									}
+									box.style.top = t + 'px';
+									box.style.height = h + 'px';
+								};
+							}
+
+							return false;
+						}
+					},
+					up: function() {
+						document.onmouseup = function() {
+							isDown = false;
+						};
+					},
+					get: function(obj) {
+						return obj.getBoundingClientRect();
+					}
+				}
+				app.init();
+			})();
+		};
+	</script>
+
 	<body>
 		<div id="box"></div>
 	</body>
+
 </html>
