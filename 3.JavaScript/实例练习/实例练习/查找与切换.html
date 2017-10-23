@@ -154,7 +154,7 @@
 
 				function $(element) {
 					return document.querySelector(element);
-				}
+				};
 
 				(function() {
 					var demo = {
@@ -188,7 +188,7 @@
 							close.onclick = function() {
 								bottom.style.display = 'none';
 								dds.forEach(function(iem) {
-									iem.style.display = 'none'
+									iem.style.display = 'none';
 								});
 							}
 						},
@@ -249,14 +249,14 @@
 									let cancel = confirm('你确定要删除么')
 									if(!cancel) {
 										inputs[0].value = '';
-										console.log(cancel)
+										console.log(cancel);
 										return;
-									}
+									};
 
 								};
 								demo.removeSpan();
 								let result = content.innerHTML.split(val0);
-								content.innerHTML = result.join(val1)
+								content.innerHTML = result.join(val1);
 								inputs[0].value = inputs[1].value = '';
 							}
 						},
@@ -268,7 +268,7 @@
 							}
 
 							let deletArr = content.innerHTML.split('<span>');
-							deletArr = deletArr.join('')
+							deletArr = deletArr.join('');
 
 							deletArr = deletArr.split('</span>');
 							deletArr = deletArr.join('');
@@ -276,7 +276,7 @@
 						}
 
 					}
-					
+
 					demo.init()
 				}());
 			}
