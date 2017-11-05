@@ -101,6 +101,7 @@
 						};
 						var This = this;
 						dd.innerHTML = this.innerHTML;
+						
 						var span = document.createElement("a");
 						span.innerHTML = 'x';
 						span.onclick = function() {
@@ -108,6 +109,7 @@
 							This.className = '';
 							parent.mark = false;
 						};
+						
 						dd.appendChild(span);
 						parent.mark = true;
 					};
