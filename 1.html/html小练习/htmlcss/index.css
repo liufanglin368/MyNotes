@@ -1,0 +1,1573 @@
+/*公共样式*/
+
+/*居中*/
+.center{
+	width: 998px;
+	margin: 0 174px;
+}
+/*更多*/
+.more{
+	color: #666666;
+	font-size: 12px;
+	line-height: 27px;
+	float: right;
+	margin-right: 10px;
+}
+/*清除浮动*/
+.clearfix:after{
+     content:``;
+     display:block;
+     clear:both;
+}
+                   
+a{
+	font-size: 12px;
+	color: #3b5998;
+}
+
+/*头部*/
+header{
+	width: 100%;
+	height: 116px;
+}
+
+header .message{
+	width: 100%;
+	height: 30px;
+	font-size: 12px;
+	color: #989899;
+	background: #333333;
+	position: relative;
+}
+
+header .message p:nth-child(1){
+	display: inline-block;
+	width: 180px;
+	margin-left: 180px;
+	line-height: 30px;
+}
+.message a{
+	color: #989899;
+}
+
+.message a:hover{
+	color: #ff6600;
+	text-decoration: underline;
+}
+
+.message p:nth-child(1) a:nth-child(1){
+	color: #ff6600;
+}
+
+.message p:nth-child(2){
+	line-height: 30px;
+	float: right;
+	margin-right: 16px;
+}
+
+.message .register{
+	color: #FFFFFF;
+	margin: 0 12px;
+}
+
+.message .lookBbs,.message .lookBbs:hover{
+	display: inline-block;
+	width: 76px;
+	height: 20px;
+	margin: 0px 28px 0px 18px;
+	color: #FFFFFF;
+	line-height: 20px;
+	text-align: center;
+	background: #ff6600;
+	text-decoration: none;
+}
+
+
+.message ul{
+	position: absolute;
+	top: 30px;
+	right: 190px;
+	width: 60px;
+	height: 180px;
+	color: #000000;
+	border: 1px solid #19DCCC;
+	padding: 10px 10px;
+	display: none;
+	z-index: 1;
+}
+
+.message ul li{
+	width: 100%;
+	height: 20px;
+}
+/*弹出层问题?????*/
+.message .app:hover + #list{
+	display: block;
+}
+
+/*导航*/
+header .nav{
+	width: 100%;
+	height: 35px;
+	background: #3b5998;
+}
+
+header .nav h3{
+	width: 170px;
+	height: 90px;
+	position: absolute;
+	top: 25px;
+	background: #FFFFFF;
+	text-align: center;
+}
+header .nav h3 a{
+	width: 100%;
+	height: 90px;
+	display: inline-block;
+}
+.nav h3 span:nth-child(1){
+	font-size: 36px;
+	color: #003c89;
+	line-height: 55px;
+}
+
+.nav h3 span:nth-child(2){
+	font-size: 18px;
+	color: #ff6200;
+	display: inline-block;
+}
+
+.nav .TotalNav {
+	height: 35px;
+	margin-left: 170px;
+	font-size: 0;
+}
+
+.nav .TotalNav a{
+	display: inline-block;
+	font: bold 14px/35px "微软雅黑";
+	padding: 0px 7px;
+	color: #FFFFFF;
+	z-index: 2;
+}
+/*hover后上方要多1像素???*/
+.nav .TotalNav a:hover{
+	background: #003C89;
+}
+/*车型导航*/
+header .carTypeNav{
+	width: 100%;
+	height: 50px;
+	background: #efefef;
+}
+
+header .carTypeNav ul{
+	margin-left: 170px;
+}
+
+.carTypeNav ul li{
+	width: 62px;
+	float: left;
+	text-align: center;
+}
+
+.carTypeNav ul li:nth-child(1){
+	margin-left: 6px;
+}
+.carTypeNav ul li a{
+	width: 62px;
+	display: inline-block;
+	height: 50px;
+	color: #666666;
+	font-size: 12px;
+}
+.carTypeNav ul li a:hover{
+	background: #FFFFFF;
+}
+.carTypeNav ul li img{
+	display: inline-block;
+	margin: 8px 0px 5px 0px;
+	vertical-align: bottom;
+}
+.carTypeNav ul li span{
+	display: inline-block;
+}
+
+/*车型分类导航*/
+.classify .center{
+	margin-top: 20px;
+	position: relative;
+	font-size: 0;
+}
+.classify .center .rec{
+	border-bottom: 1px solid #ccd3e4;
+}
+.classify .center ul{
+	display: inline-block;
+	height: 32px;
+}
+.classify .center ul li{
+	float: left;
+	border-top: 2px solid #3b5998;
+}
+.classify .center ul li:hover{
+	border-top: 2px solid #ff7700;
+	background: #FFFFFF;
+	z-index: 5;
+}
+.classify .center ul li:last-child span{
+	border-right:1px solid #ccd3e4 ;
+}
+.classify .center ul li span{
+	display: inline-block;
+	padding: 0 14px;
+	color: #333333;
+	font: 14px/29px "微软雅黑";
+	border-left: 1px solid #ccd3e4;
+	background: #fafbfc;
+}
+.classify .center .search{
+	position: absolute;
+	top: -2px;
+	right: 0;
+	font-size: 0;
+}
+
+ .search input{
+ 	width: 258px;
+ 	height: 30px;
+ 	border: 2px solid #ff7700;
+ 	vertical-align:top ;
+ }
+.search a:nth-child(2){
+ 	display: inline-block;
+ 	padding: 0 22px;
+ 	font: bold 19px/34px "微软雅黑";
+ 	color: #FFFFFF;
+ 	background:#ff7700 ;
+ 	vertical-align:middle ;
+ }
+.search a:nth-child(3){
+	font:bold 14px/34px "微软雅黑";
+	margin-left: 10px;
+	vertical-align: middle;
+}
+.search img{
+	vertical-align: middle;
+}
+.classify .center table{
+	border-collapse: collapse;
+	vertical-align: top;
+	border: none;
+}
+
+.classify .center table tr{
+	height: 45px;
+	border-bottom: 1px dashed #ccd3e4;
+}
+
+.table1 tr td:nth-child(1){
+	width: 100px;
+	font:bold 12px/45px "微软雅黑";
+	color: #956666;
+}
+.suv{
+	color: #666666;
+	margin-left: 15px;
+}
+
+.table1 tr .ico,#ico1{
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+	color: #efefef;
+	font-size: 16px;
+	text-align: center;
+	line-height: 30px;
+	font-weight: 1000;
+	margin-left: 25px;
+	border: 1px solid #efefef;
+}
+
+.table1 tr td p,.table1 tr td p a{
+	text-align: center;
+	font-size: 12px;
+	color: #999999;
+	word-spacing: 7px;
+}
+
+.linhang{
+	width: 105px;
+	font-size: 12px;
+	color: #3b5998;
+	text-align: center;
+	display: inline-block;
+}
+.classify .center table tr:nth-child(3){
+	border-bottom: none;
+}
+.classify .center table tr:nth-last-child(1){
+	height: 50px;
+	border-bottom: 1px solid #ccd3e4;
+	border-top: 1px solid #ccd3e4;
+	text-align: left;
+}
+#principal{
+	margin-left: 15px;
+}
+.classify .center table tr td a:hover{
+	color: red;
+	text-decoration: underline;
+}
+#ico1:hover{
+	background: #0D76CF;
+	text-decoration: none;
+}
+
+/*主版块*/
+section .center{
+	margin-top: 11px;
+}
+section .center .tool{
+	width: 400px;
+	display: inline-block;
+	vertical-align: top;
+}
+.center .tool .todayFocus,
+.center .tool .seeCar
+{
+	width: 398px;
+	border: 1px solid #ccd3e4;
+}
+.tool .todayFocus h4{
+	width: 100%;
+	height: 29px;
+	border-bottom: 1px solid #ccd3e4;
+	background: #fafbfc;
+}
+.tool .todayFocus h4 span{
+	height: 28px;
+	width: 90px;
+	font: bold 14px/29px "微软雅黑";
+	text-align: center;
+	border-top: 2px solid #ff6600;
+	border-right: 1px solid #ccd3e4;
+	background: #FFFFFF;
+	display: inline-block;
+}
+.tool .todayFocus .slidePic{
+	width: 368px;
+	height: 184px;
+	margin: 15px 10px 0px 10px;
+	overflow: hidden;
+	position: relative;
+}
+.todayFocus .slidePic ul{
+	width: 2208px;
+	height: 184px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	animation: 4s move linear infinite;
+}
+.todayFocus .slidePic ul li{
+	width: 368px;
+	height: 184px;
+	float: left;
+	box-sizing: border-box;
+	border: 1px solid #000000;
+}
+/*关键帧*/
+@keyframes move{
+	0%{
+		left: 0;
+	}
+	100%{
+		left: -368px;
+	}
+}
+.todayFocus p{
+	width: 100%;
+	text-align: center;
+}
+.todayFocus p a{
+	font: bold 19px/45px "微软雅黑";
+	color: #333333;
+}
+.todayFocus p a:hover{
+	color: darkgreen;
+}
+/*看车*/
+.center .tool .seeCar{
+	width: 398px;
+	margin-top: 10px;
+	border-bottom: none;
+	font-size: 0;
+}
+.tool .seeCar h4{
+	width: 100%;
+	height: 34px;
+	position: relative;
+}
+.tool .seeCar h4 a{
+	display: inline-block;
+	width: 96px;
+	font: 14px/34px "微软雅黑";
+	border-right: 1px solid #ccd3e4;
+	border-bottom: 1px solid #ccd3e4;
+	border-top: 2px solid #3b5998;
+	background: #fafbfc;
+	text-align: center;
+}
+.tool .seeCar h4 a:nth-child(4){
+	border-right: none;
+	width: 97px;
+}
+.tool .seeCar h4 a:hover{
+	color: red;
+	text-decoration: underline;
+	background: #FFFFFF;
+	border-bottom: none;
+	border-top: 2px solid #ff6600;
+}
+.tool .seeCar ul{
+	width: 373px;
+	padding-left: 15px;
+}
+.tool .seeCar ul li:nth-child(1){
+	width: 100%;
+	margin-top: 24px;
+	font-size: 14px;
+	color: #333333;
+}
+.tool .seeCar ul li:nth-child(1) input{
+	margin-right: 10px;
+	
+}
+.tool .seeCar ul li:nth-child(1) span{
+	margin-right: 46px;
+}
+.tool .seeCar ul li:nth-child(2) select,
+.tool .seeCar ul li:nth-child(3) select,
+.tool .seeCar ul li:nth-child(4) select{
+	width: 237px;
+	height: 22px;
+	border: 1px solid #ccd3e4;
+	margin-top: 26px;
+}
+.seeCar ul li select option{
+	font-size: 12px;
+	color: #666666;
+}
+
+.tool .seeCar ul li:nth-child(3) select,
+.tool .seeCar ul li:nth-child(4) select
+{
+	margin-top: 10px;
+}
+.tool .seeCar ul li:nth-child(4) select
+{
+	margin-right: 11px;
+}
+.tool .seeCar ul li:nth-child(4) a
+{
+	display: inline-block;
+	width: 90px;
+	height: 20px;
+	color: #FFFFFF;
+	font: 12px/20px "微软雅黑";
+	text-align: center;
+	border: 1px solid #00194d;
+	background: #3b5998;
+}
+.tool .price,.tool .rank{
+	margin-top: 13px;
+}
+.price dl,.rank dl{
+	width: 100%;
+	height: 12px;
+	font-size: 0;
+}
+.price dl dt,.rank dl dt{
+	font: 12px/12px "微软雅黑";
+	color: #999999;
+	display: inline-block;
+	float: left;
+	vertical-align: middle;
+}
+.price dl dd,.rank dl dd{
+	float: left;
+	font: 12px/12px "微软雅黑";
+	color: #3b5998;
+	border-right: 1px solid #999999;
+	padding: 0px 10px 0px 8px;
+	vertical-align: middle;
+	
+}
+.price dl dd:nth-child(6),
+.price dl dd:nth-child(7),
+.rank dl dd:nth-child(6),
+.rank dl dd:nth-child(7)
+{
+	margin-left: 10px;
+	border: none;
+}
+.rank dl dd:nth-child(7){
+	margin-left: 21px;
+}
+.price dl dd:nth-child(7) a,
+.rank dl dd:nth-child(7) a
+{
+	color: #666666;
+	border-right: none;
+}
+.tool .seeCar h5{
+	width: 100%;
+	height: 38px;
+	margin-top: 15px;
+	border-top: 1px solid #ccd3e4;
+	
+}
+.tool .seeCar h5 a{
+	font: 14px/38px "微软雅黑";
+	color: #666666;
+	margin-right: 10px;
+	float: right;
+}
+.tool .seeCar h5 a:nth-child(1){
+	font:bold 14px/38px "微软雅黑";
+	color: #3b59b1;
+	margin-left: 10px;
+	float: left;
+}
+.tool .seeCar p{
+	width: 100%;
+	height: 60px;
+	color: #000000;
+	font-size: 16px;
+	background: #0D76CF;
+}
+/*直播*/
+.tool .live,
+.tool .traveller
+{
+	width: 398px;
+	border: 1px solid #ccd3e4;
+	border-top: 2px solid #3b5998;
+	margin-top: 10px;
+}
+.tool .live h4 , 
+.tool .traveller h4{
+	width: 100%;
+	height: 27px;
+	border-bottom: 1px solid #ccd3e4;
+	background: #fafbfc;
+}
+.tool .live h4 a:nth-child(1),
+.tool .traveller h4 a:nth-child(1)
+{
+	font: bold 14px/27px "微软雅黑";
+	color: #3b5998;
+	margin-left: 10px;
+}
+.tool .live h4 a:hover,
+.tool .traveller h4 a:hover
+{
+	color: red;
+	text-decoration: underline;
+}
+.tool .live .slideshow{
+	width: 100%;
+	font-size:0 ;
+}
+.live .slideshow a:nth-child(1){
+	line-height: 290px;
+	width: 16px;
+	height: 32px;
+	display: inline-block;
+	margin-left: 10px;
+	margin-top: 135px;
+
+}
+.live .slideshow .btn2{
+	vertical-align: top;
+}
+.live .slideshow .picShow{
+	width: 308px;
+	height: 290px;
+	vertical-align: top;
+	font-size: 0;
+	margin-left: 10px;
+	overflow: hidden;
+	display: inline-block;
+	position: relative;
+}
+.live .slideshow .picShow ul{
+	width:1280px;
+	height: 290px;
+	position: absolute;
+	top:0;
+	left: 0;
+	animation: 9s move1 ease-in infinite;
+}
+.slideshow .picShow ul li{
+	width: 320px;
+	height: 290px;
+	float: left;
+}
+.slideshow .picShow ul li dl{
+	width: 320px;
+	height: 290px;
+}
+.picShow ul li dl dd{
+	width: 149px;
+	height: 84px;
+	display: inline-block;
+	position: relative;
+	margin: 12px 10px 0 0;
+	vertical-align: top;
+}
+.picShow ul li dl dd a:nth-child(2){
+	display: inline-block;
+	width: 149px;
+	height: 84px;
+	background: #19DCCC;
+}
+.picShow ul li dl dd span{
+	width: 40px;
+	height: 20px;
+	color: #FFFFFF;
+	font: 12px/20px "微软雅黑";
+	text-align: center;
+	background: #999999;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.picShow ul li dl dd a:nth-child(3){
+	width: 100%;
+	color: #FFFFFF;
+	font: 14px/20px "微软雅黑";
+	text-align: center;
+	opacity: .6;
+	background: #000000;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+.live .slideshow .btn3{
+	line-height: 290px;
+	width: 16px;
+	height: 32px;
+	display: inline-block;
+	margin-left: 10px;
+	margin-top: 135px;
+}
+.live .slideshow .btn4{
+	vertical-align: top;
+	transform: rotate(180deg);
+}
+/*关键帧2*/
+@keyframes move1{
+	0%{
+		left: 0;
+	}
+	33%{
+		left: -320px
+	}
+	66%{
+		left: -640px;
+	}
+	100%{
+		left: -960px;
+	}
+}
+
+.live p{
+	text-align: center;
+	height: 34px;
+}
+.live p a{
+	width: 40px;
+	height: 5px;
+	line-height: 34px;
+	text-align: center;
+	margin-right: 10px;
+	background: #ccd3e4;
+	display: inline-block;
+}
+.live p a:hover{
+	background: #ff6600;
+}
+/*旅行家*/
+.tool .traveller{
+	width: 398px;
+	margin-top: 10px;
+}
+.tool .traveller .listBox{
+	width: 100%;
+}
+.traveller .listBox .picText,
+.synthesis .bbs .experience .picText
+{
+	width: 120px;
+	padding-left: 10px;
+	display: inline-block;
+}
+.listBox .picText li,
+.bbs .experience .picText li
+{
+	width: 120px;
+	height: 90px;
+	margin-top: 14px;
+	position: relative;
+}
+.listBox .picText li a:nth-child(1),
+.bbs .experience .picText li a:nth-child(1)
+{
+	display: inline-block;
+	width: 120px;
+	height: 90px;
+}
+.listBox .picText li a:nth-child(2),
+.bbs .experience .picText li a:nth-child(2)
+{
+	width: 100%;
+	color: #FFFFFF;
+	font: 12px/19px "微软雅黑";
+	text-align: center;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	background: #000000;
+	opacity: .8;
+}
+.listBox .list,
+.bbs .experience .list,
+.synthesis .carMarket ul
+{
+	margin: 6px 0px 0px 5px;
+	display: inline-block;
+	vertical-align: top;
+}
+.listBox .list li,
+.bbs .experience .list li,
+.synthesis .carMarket ul li
+{
+	height: 26px;
+}
+.listBox .list li:before,
+.synthesis .synthesisMes ul li:before,
+.bbs .experience .list li:before,
+.synthesis .carMarket ul li:before
+{
+	content: '▪';
+	color: #989899;
+	margin-right: 5px;
+	text-align: center;
+}
+.listBox .list li a,
+.synthesis .synthesisMes ul li a,
+.bbs .experience .list li a,
+.synthesis .carMarket ul li a
+{
+	font: 14px/26px "微软雅黑";
+	color: #3b5998;
+}
+.listBox .list li a:hover,
+.bbs .experience .list li a:hover,
+.synthesis .carMarket ul li a:hover
+{
+	color: red;
+	text-decoration: underline;
+}
+.traveller p{
+	width: 368px;
+	height: 50px;
+	border-top: 1px dashed #ccd3e4;
+	line-height: 50px;
+	margin: 0 10px;
+	font-size: 0;
+}
+.traveller p input{
+	width: 142px;
+	height: 22px;
+	color: #ccd3e4;
+	border: 1px solid #ccd3e4;
+	border-right: none;
+	vertical-align: middle;
+}
+.traveller p a:nth-child(2), 
+.traveller p a:nth-child(3), 
+.traveller p a:nth-child(4)
+{
+	width: 53px;
+	height: 24px;
+	color: #FFFFFF;
+	font: 11px/22px "微软雅黑";
+	text-align: center;
+	background: #3b5998;
+	display: inline-block;
+	vertical-align: middle;
+}
+.traveller p a:nth-child(3), 
+.traveller p a:nth-child(4){
+	width: 66px;
+	color: #3b5b98;
+	border: 1px solid #ccd3e4;
+	border-radius: 8%;
+	background: #fafbfc;
+	margin-left: 16px;
+}
+/*主板块中部*/
+section .center .synthesis{
+	width: 360px;
+	margin-left: 20px;
+	display: inline-block;
+}
+
+section .center .synthesis .synthesisMes{
+	width: 100%;
+	
+}
+
+.synthesis .synthesisMes h4{
+	width: 100%;
+	text-align: center;
+	font-size: 12px;
+}
+.synthesis .synthesisMes h4 .title{
+	color: #d60000;
+	font: bold 20px/33px "微软雅黑";
+}
+
+.synthesisMes h4 a{
+	color: #666666;
+	padding: 0px 7px 0px 5px;
+	font: 12px/12px "微软雅黑";
+	vertical-align: middle;
+}
+
+.synthesis .synthesisMes ul{
+	width: 100%;
+	margin-top: 25px;
+}
+.synthesis .synthesisMes ul li{
+	width: 100%;
+	height: 26px;
+}
+.synthesis .synthesisMes ul li a{
+	display: inline-block;
+	border-bottom: 1px dashed #5577bb;
+	height: 20px;
+	font-size: 14px;
+	line-height: 26px;
+	/*vertical-align: baseline;*/
+}
+.synthesis .synthesisMes ul li a:hover{
+	color: red;
+}
+.synthesis .bbs{
+	width: 100%;
+	margin-top: 19px;
+}
+.synthesis .bbs h4{
+	width: 100%;
+	position: relative;
+}
+.synthesis .bbs h4 span{
+	font-size: 14px;
+	font-weight: 700;
+	color: #905998;
+}
+.synthesis .bbs h4 i{
+	color: #b29999;
+	font-style: normal;
+	margin: 0 6px;
+}
+.synthesis .bbs h4 a:nth-child(3){
+	font-size: 14px;
+	color: #ff6600;
+}
+.synthesis .bbs h4 a:nth-child(4){
+	display: inline-block;
+	margin-left: 42px;
+	margin-right: 12px;
+	font-size: 12px;
+	color: #d60000;
+}
+.synthesis .bbs h4 a:nth-child(5){
+	display: inline-block;
+	padding: 0 12px 0 10px;
+	border-left: 1px solid #999999;
+	border-right: 1px solid #999999;
+	font-size: 12px;
+	color: #d60000;
+}
+.synthesis .bbs h4 a:nth-child(6){
+	position: absolute;
+	top: 0;
+	right: -39px;
+}
+.synthesis .bbs h4 a:hover{
+	text-decoration: underline;
+}
+.synthesis .bbs .experience{
+	width: 100%;
+}
+.synthesis .bbs .experience .picText{
+	padding: 0;
+	margin-top: 18px;
+}
+.synthesis .bbs .experience .list{
+	float: right;
+	margin: 27px 0 0 3px;
+}
+
+.synthesis .carMarket{
+	width: 100%;
+}
+.synthesis .carMarket h4{
+	width: 100%;
+	margin-top: 15px;
+	position: relative;
+}
+.synthesis .carMarket h4 a:nth-child(1){
+	color: #3b5998;
+	font-size: 14px;
+	font-weight: 600;
+}
+.synthesis .carMarket h4 a:nth-child(2){
+	color: #3b5998;
+	font-size: 12px;
+	margin-left: 6px;
+	display: inline-block;
+}
+.synthesis .carMarket h4 a:nth-child(3){
+	color: #3b5998;
+	font-size: 12px;
+	margin-left: 96px;
+}
+.synthesis .carMarket h4 a:nth-child(4){
+	color: #3b5998;
+	font-size: 12px;
+	position: absolute;
+	top: 4px;
+	right: -9px;
+	word-break: break-all;
+}
+.synthesis .carMarket h4 i{
+	font-size: 10px;
+	color: #666666;
+	font-style: normal;
+	padding: 0 10px 0 11px;
+	display: inline-block;
+}
+.synthesis .carMarket ul{
+	width: 100%;
+	margin: 25px 0 0 0;
+}
+.synthesis .carMarket ul li a:nth-child(1){
+	margin-right: 27px;
+}
+/*主板右侧开始*/
+section .campaign{
+	width: 198px;
+	float: right;
+}
+section .campaign .advertising{
+	width: 198px;
+	height: 322px;
+	border: 1px solid #c8cfe0;
+	border-top: 2px  solid #3b5998;
+	position: relative;
+}
+section .campaign .advertising span{
+	color: #FFFFFF;
+	font-size: 12px;
+	background: #c8cfe0;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+section .campaign .Activity{
+	width: 198px;
+	height: 498px;
+	margin-top: 6px;
+	border: 1px solid #c8cfe0;
+	border-top: none;
+}
+.campaign .Activity h4{
+	width: 100%;
+	height: 27px;
+	background: #fafbfc;
+	border-bottom: 1px solid #c8cfe0;
+	border-top: 2px solid #3b5998;
+	text-indent: 10px;
+}
+.Activity h4 a:nth-child(1){
+	color: #3b5998;
+	font-size: 14px;
+	font-weight: 600px;
+	vertical-align: middle;
+}
+.Activity h4 a:hover{
+	color: red;
+	text-decoration: underline;
+}
+.Activity ul li:before{
+	content: '▪';
+	color: #989899;
+	margin-right: 5px;
+	text-align: center;
+}
+
+/*资讯开始*/
+.information .center{
+	margin-top: 20px;
+}
+.information .center h4{
+	width: 100%;
+	height: 29px;
+}
+.information .center h4 a{
+	display: inline-block;
+	color: #333333;
+	font: 14px/26px "微软雅黑";
+	padding: 0px 23px;
+	border-bottom: 1px solid #c8cfe0;
+	border-right: 1px solid #c8cfe0;
+	border-top: 2px solid #3b5998;
+	background: #fafbfc;
+	vertical-align: top;
+}
+.information .center h4 a:hover{
+	background: #FFFFFF;
+	border-top:2px solid #ff6600;
+	border-bottom: none;
+}
+.information .center h4 .header{
+	font: bold 16px/27px "微软雅黑";
+	color: #FFFFFF;
+	border: none;
+	border-top: 2px solid #3b5998;
+	background: #3b5998;
+	
+}
+.information .center .news{
+	width: 100%;
+	margin-top: 20px;
+	font-size: 0;
+}
+.information .center .news .evaluating{
+	display: inline-block;
+	width: 698px;
+}
+.news .evaluating ul{
+	width: 100%;
+}
+.news .evaluating ul li{
+	width: 100%;
+	height: 88px;
+	margin-top: 20px;
+	position: relative;
+}
+.news .evaluating ul li :nth-child(1){
+	margin-top: 0;
+}
+.evaluating ul li a:nth-child(1){
+	display: inline-block;
+	width: 155px;
+	height: 88px;
+	margin-right: 10px;
+}
+.news .evaluating ul li h5{
+	display: inline-block;
+	width: 500px;
+	vertical-align: top;
+}
+.news .evaluating ul li h5 a{
+	display: inline-block;
+	width: 100%;
+	height: 31px;
+	font: bold 17px/31px "微软雅黑";
+	color: #3b5998;
+	background: #FFFFFF;
+	font-weight: normal;
+}
+
+.news .evaluating ul li p{
+	width: 200px;
+	font-size: 12px;
+	color: #999999;
+	position: absolute;
+	left: 165px;
+	bottom: 10px;
+}
+.news .newCarNews{
+	display: inline-block;
+	width: 298px;
+	vertical-align: top;
+}
+.news .newCarNews .immediately,
+.news .newCarNews .hotNews
+{
+	width: 100%;
+	border: 1px solid #ccd3e4;
+	border-bottom: none;
+}
+.newCarNews .immediately h5,
+.news .newCarNews .hotNews h4{
+	width: 100%;
+	height: 28px;
+	border-bottom: 1px solid #ccd3e4;
+	background: #fafbfc;
+	text-indent: 10px;
+}
+.immediately h5 span,
+.news .newCarNews .hotNews h4 span
+{
+	font: bold 14px/28px "微软雅黑";
+	color: #333333;
+}
+.immediately h5 a{
+	color: #3b5998;
+}
+.immediately ul{
+	width: 265px;
+	margin: 16px 16px;
+	margin-bottom: 0;
+	border-left: 1px solid #ccd3e4;
+}
+.immediately ul li{
+	width: 100%;
+	height: 34px;
+	text-indent: 14px;
+	position: relative;
+}
+.immediately ul li:nth-child(1){
+	margin-top: 5px;
+}
+.immediately ul li span:nth-child(1){
+	width: 5px;
+	height: 5px;
+	border: 1px solid #ccd3e4;
+	border-radius: 50%;
+	position: absolute;
+	top:13px;
+	left: -4px;
+	background: #FFFFFF;
+}
+.immediately ul li span:nth-child(2){
+	font: 12px/18px "微软雅黑";
+	color: #333333;
+	text-align: center;
+	width: 96px;
+	height: 18px;
+	border: 1px solid #ccd3e4;
+	display: inline-block;
+	text-indent: 0;
+	margin: 7px 7px 0 0;
+}
+/*热点新闻*/
+.news .newCarNews .hotNews h5{
+	width: 242px;
+	height: 32px;
+	margin: 9px 0 0 28px;
+}
+.news .newCarNews .hotNews h5 span{
+	font: bold 14px/32px "微软雅黑";
+	color: #333333;
+}
+.news .newCarNews .hotNews h5 a{
+	color: #3B5998;
+}
+.news .newCarNews .hotNews ul{
+	width: 242px;
+	margin: 8px 0 15px 28px;
+}
+.news .newCarNews .hotNews ul li{
+	width: 100%;
+	height: 27px;
+}
+.hotNews ul li:before{
+	content: '▪';
+	color: #989899;
+	margin-right: 5px;
+	text-align: center;
+}
+.news .clickLoad a{
+	display: inline-block;
+	width: 100%;
+	height: 42px;
+	color: #ccd3e4;
+	font: bold 18px/42px "微软雅黑";
+	text-align: center;
+	border: 1px solid #ccd3e4;
+}
+
+/*上海二手车*/
+.usedCar .center{
+	margin-top: 20px;
+	font-size: 0;
+}
+.usedCar .center h4{
+	width: 100%;
+	height: 29px;
+	border-top: 2px solid #3b5998;
+}
+
+.usedCar .center h4 a{
+	display: inline-block;
+	width: 38px;
+	height: 29px;
+	font: 12px/29px "微软雅黑";
+	text-align: center;
+	color: #3b5998;
+}
+.usedCar .center h4 a:hover{
+	color: red;
+	text-decoration: underline;
+}
+.usedCar .center h4 a:nth-child(1){
+	display: inline-block;
+	width: 126px;
+	height: 29px;
+	margin-right: 17px;
+	font:bold 16px/29px "微软雅黑";
+	text-align: center;
+	color: #FFFFFF;
+	background: #3b5998;
+}
+.usedCar .center h4 a:nth-child(1):hover{
+	text-decoration: none
+}
+.usedCar .center .buyCar{
+	display: inline-block;
+	width: 378px;
+	margin-top: 10px;
+	border: 1px solid #ccd3e4;
+	border-top: none;
+}
+.usedCar .center .buyCar h4{
+	width: 100%;
+	height: 49px;
+	border-bottom: 1px dashed #ccd3e4;
+	background: #f9f9f9;
+	text-indent: 17px;
+}
+.center .buyCar h4 span{
+	font: bold 16px/49px "微软雅黑";
+	color: #999999;
+	vertical-align: top;
+}
+.center .buyCar h4 a{
+	
+	width: 100px;
+	line-height: 49px;
+	float: right;
+}
+.center .buyCar .brand,
+.center .buyCar .price1,
+.center .buyCar .carSeries
+{
+	width: 360px;
+	margin: 12px 0 0 17px;
+	font-size: 0;
+}
+.center .buyCar .brand dt,
+.center .buyCar .price1 dt,
+.center .buyCar .carSeries dt
+{
+	width: 100%;
+	font: bold 12px/28px "微软雅黑";
+	color: #999999;
+}
+.center .buyCar .brand dd{
+	display: inline-block;
+	width: 45px;
+	height: 52px;
+	margin: 6px 14px 0 0;
+	text-align: center;
+}
+.brand dd a:nth-child(1),
+{
+	display: inline-block;
+	width: 33px;
+	height: 33px;
+	margin-left: 6px;
+}
+.brand dd a:nth-child(2){
+	display: inline-block;
+	font-size: 12px;
+	color: #666666;
+	margin-top: 6px;
+}
+.price1 dd,
+.carSeries dd
+{
+	display: inline-block;
+	margin-top: 13px;
+	width: 72px;
+	border-right: 1px solid #bfbfbf;
+	text-align: center;
+}
+.price1 dd:nth-child(2),
+.price1 dd:nth-child(7),
+.carSeries dd:nth-child(2),
+.carSeries dd:nth-child(7)
+{
+	width: 55px;
+}
+.price1 dd:nth-child(6),
+.price1 dd:nth-child(11),
+.carSeries dd:nth-child(6),
+.carSeries dd:nth-child(11)
+{
+	border: none;
+}
+.buyCar p{
+	margin-top: 20px;
+	width: 100%;
+	height: 48px;
+	text-align: center;
+	border-top: 1px solid #ccd3e4;
+	background: #f9f9f9;
+}
+.buyCar p a{
+	font: 14px/48px "微软雅黑";
+}
+
+.usedCar .center .synopsis{
+	display: inline-block;
+	width: 610px;
+	vertical-align: top;
+	font-size: 0;
+}
+.center .synopsis ul{
+	width: 100%;
+	margin-left: 10px;
+}
+.center .synopsis ul li{
+	display: inline-block;
+	width: 187px;
+	height: 214px;
+	border: 1px solid #ccd3e4;
+	margin: 10px 0px 0px 10px;
+	padding: 2px 2px;
+	vertical-align: top;
+}
+.synopsis ul li p{
+	width: 182px;
+	padding-left: 5px;
+}
+.synopsis ul li p a:nth-child(1){
+	font: 12px/22px "微软雅黑";
+	color: #333333;
+	display: inline-block;
+}
+.synopsis ul li p span{
+	width: 100%;
+	font: 12px/22px "微软雅黑";
+	color: #a2a7b2;
+	display: inline-block;
+}
+.synopsis ul li p a:nth-child(3){
+	font: 14px/22px "微软雅黑";
+	font-weight: bold;
+	color: #dd0000;
+	display: inline-block;
+}
+.synopsis ul li p a:nth-child(4){
+	font: 12px/22px "微软雅黑";
+	color: #666666;
+	margin-left: 40px;
+}
+.synopsis ul li p i{
+	color: red;
+	font-style: normal;
+}
+
+/*排行榜*/
+.top .center{
+	margin-top: 20px;
+	font-size: 0;
+}
+.top .center h4{
+	width: 100%;
+	height: 28px;
+	border-top: 2px solid #3b5998;
+}
+.top .center h4 span{
+	display: inline-block;
+	width: 142px;
+	color: #FFFFFF;
+	font:bold 16px/28px "微软雅黑" ;
+	text-align: center;
+	background: #3b5998;
+}
+.top .center .bestHot,
+.top .center .recommend,
+.top .center .bestText
+{
+	display: inline-block;
+	width: 320px;
+	margin-top: 10px;
+	border: 1px solid #ccd3e4;
+	border-top: 2px solid #3b5998;
+}
+.top .center .recommend{
+	margin: 10px 16px 0 16px;
+}
+.top .center .bestHot dt,
+.top .center .recommend dt,
+.top .center .bestText dt{
+	width: 100%;
+	height: 27px;
+	color: #333333;
+	font: bold 14px/27px "微软雅黑";
+	border-bottom: 1px solid #ccd3e4;
+	background: #fafbfc;
+	text-indent: 10px;
+}
+.top .center .bestHot dd,
+.top .center .recommend dd,
+.top .center .bestText dd
+{
+	width: 300px;
+	height: 32px;
+	margin: 0 10px;
+	border-bottom: 1px dashed #ccd3e4;
+}
+.bestHot dd i,
+.recommend dd i,
+.bestText dd i
+{
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin: 8px 8px 0 0;;
+	font: 10px/16px "微软雅黑";
+	color: #FFFFFF;
+	text-align: center;
+	font-style: normal;
+	background: #FF0000;
+}
+.bestHot dd span,
+.recommend dd span,
+.bestText dd span
+{
+	float: right;
+	font: 12px/32px "微软雅黑";
+	color: #999999;
+}
+.bestHot dd img,
+.recommend dd img,
+.bestText dd img
+{
+	float: right;
+	margin-top: 10px;
+}
+.top .center .bestHot dd.end,
+.top .center .recommend dd.end,
+.top .center .bestText dd.end
+{
+	border: none;
+}
+/*友情链接*/
+.friendship .center{
+	margin-top: 20px;
+	border: 1px solid #ccd3e4;
+	font-size: 0;
+}
+.friendship .center h4{
+	width: 100%;
+	height: 25px;
+	border-bottom: 1px solid #ccd3e4;
+	background: #f2f5f8;
+}
+.friendship .center h4 span{
+	display: inline-block;
+	color: #333333;
+	padding: 0 12px;
+	font: 14px/26px "微软雅黑";
+	border-right: 1px solid #ccd3e4 ;
+	border-top: 2px solid #3b5998;
+	background: #FFFFFF;
+	position: relative;
+	top: -2px;
+}
+.friendship .center .friendshipLink{
+	width: 100%;
+	height: 64px;
+	border-bottom: 1px dashed #ccd3e4;
+}
+.friendshipLink span{
+	display: inline-block;
+	font-size: 12px;
+	color: #999999;
+	margin: 14px 2px 38px 22px;
+}
+.friendshipLink a,
+.thank a
+{
+	display: inline-block;
+	font-size: 12px;
+	color: #666666;
+	padding: 0 10px;
+	border-right: 1px solid #999999;
+}
+.thank span{
+	display: inline-block;
+	font: 12px/40px "微软雅黑";
+	color: #999999;
+	margin-left: 22px;
+}
+/*底部*/
+footer .center{
+	margin-top: 10px;
+	height: 168px;
+	border-top: 2px solid #3b5998;
+}
+footer .center p{
+	width: 100%;
+	margin-top: 12px;
+	font-size: 12px;
+	color: #7c7c7c;
+	text-align: center;
+}
+footer .center p a{
+	display: inline-block;
+	color: #7c7c7c;
+	padding: 0 7px;
+}
+footer .center p span{
+	font-size: 12px;
+	color: #7c7c7c;
+}
+footer .center ul{
+	width: 100%;
+	height: 72px;
+}
+footer .center ul li{
+	float: left;
+	border: 1px solid #ccd3e4;
+	margin: 10px 8px;
+}
+footer .center ul li:nth-child(1){
+	margin-left: 41px;
+}
+/*侧边栏*/
+.function ul{
+	width: 48px;
+	height: 100%;
+	border-left: 1px solid #e7e7e7;
+	background: #FFFFFF;
+	text-align: center;
+	position: fixed;
+	top: 0;
+	right: 0;
+}
+.function ul li{
+	margin-top: 30px;
+}

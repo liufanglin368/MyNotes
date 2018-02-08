@@ -1,0 +1,21 @@
+/*2015/2/2
+ *liuganglin368@163.com
+ */
+body,h3,h4,h5,p,ul,li,dl,dt,dd,input,th,td{
+	margin: 0;
+	padding: 0;
+}
+table{
+	border-collapse: collapse;
+}
+li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+	color: #000000;
+}
+
+img{
+	border: none;
+}

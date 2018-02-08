@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				background: #000000;
+			}
+			
+			ul,li{
+				margin: 0;
+				padding: 0;
+			}
+			
+			#app{
+				perspective: 800px;
+			}
+			
+			ul{
+				width: 200px;
+				height: 200px;
+				margin: 200px 400px;
+				position: relative;
+				transform-style: preserve-3d;
+				animation: 10s move linear infinite;
+			}
+			
+			li{
+				list-style: none;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 200px;
+				height: 200px;
+				color: #FFFFFF;
+				border: 4px solid #0D76CF;
+				box-sizing: border-box;
+				box-shadow: 0 0 50px #19DCCC;
+				text-align: center;
+				font: 100px/200px "微软雅黑";
+			}
+			li:nth-child(1){
+				transform: translateZ(100px);
+			}
+			li:nth-child(2){
+				transform: translateZ(-100px);
+			}
+			li:nth-child(3){
+				transform: translateX(100px) rotateY(90deg);
+			}
+			li:nth-child(4){
+				transform: translateX(-100px) rotateY(90deg);
+			}
+			li:nth-child(5){
+				transform: translateY(-100px) rotateX(90deg);
+			}
+			li:nth-child(6){
+				transform: translateY(100px) rotateX(90deg);
+			}
+			
+			@keyframes move{
+				100%{
+					transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+			</ul>
+		</div>
+	</body>
+</html>

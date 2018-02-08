@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			
+			div{
+				width: 100px;
+				height: 200px;
+				overflow: hidden;
+				padding: 0;
+				position: relative;
+			}
+			ul{
+				width: 600px;
+				height: 200px;
+				border: 1px solid #000000;
+				position: absolute;
+				top: 0;
+				left: 0;
+				animation:6s move  ease-in infinite;
+			}
+			
+			div:hover ul{
+				animation-play-state: paused;
+			}
+			
+			li{
+				width: 100px;
+				height: 200px;
+				list-style: none;
+				position: absolute;
+				top: 0;
+				left: 0;
+				margin: 0;
+				padding: 0;
+				
+			}
+			
+			@keyframes move{
+				0%{
+					left: 0;
+				}
+				20%{
+					left: -100px;
+				}
+				40%{
+					left: -200px;
+				}
+				60%{
+					left: -300px;
+				}
+				80%{
+					left: -400px;
+				}
+				100%{
+					left: -500px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<ul>
+				<li style="background: #000000;">1</li>
+				<li style="background: #0D76CF; left: 100px;">2</li>
+				<li style="background: #252525; left: 200px;">3</li>
+				<li style="background: #333333; left: 300px;">4</li>
+				<li style="background: #35B558; left: 400px;">5</li>
+				<li style="background: #000000; left: 500px;"">1</li>
+			</ul>
+		</div>
+		
+	</body>
+</html>

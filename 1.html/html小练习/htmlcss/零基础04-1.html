@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			/*
+			 * 设置表格间的间距border-spacing:18px;
+			 */
+			
+			th,td{
+				padding: 0;
+			}
+			
+			h4,p{
+				padding: 0;
+				margin: 0;
+			}
+			
+			table{
+				border-collapse: collapse;
+				width: 100%;
+				border: none;
+			}
+			
+			#app {
+				width: 936px;
+				height: 532px;
+				border: 1px solid #fd6620;
+			}
+			
+			.title {
+				position: relative;
+				width: 936px;
+				height: 81px;
+				border-bottom: 1px solid #EEEEEE;
+			}
+			
+			.rec {
+				width: 44px;
+				height: 42px;
+				border: none;
+				vertical-align: top;
+			}
+			
+			.log {
+				position: absolute;
+				top: 23px;
+				left: 30px;
+				width: 49px;
+				height: 43px;
+				border: none;
+			}
+			
+			.title h4 {
+				position: absolute;
+				top: 26px;
+				left: 96px;
+				width: 180px;
+				height: 18px;
+				font-size: 18px;
+				font-weight: 300;
+				
+			}
+			
+			.title h4 span {
+				float: right;
+				width: 66px;
+				height: 16px;
+				color: #FFFFFF;
+				font: 11px/16px "微软雅黑";
+				background: #ffc600;
+				text-align: center;
+				vertical-align: text-bottom;
+				margin-top: 2px;
+			}
+			
+			h4 i {
+				font-style: normal;
+				margin:0 4px;
+				vertical-align: sub;
+			}
+			
+			.title p{
+				position: absolute;
+				top: 52px;
+				left: 96px;
+				font-size: 11px;
+				color: #333333;
+			}
+			
+			thead tr th {
+				height: 98px;
+				border: none;
+			}
+			
+			.collapse {
+				width: 18px;
+				border: none;
+			}
+			 
+			.item {
+				width: 211px;
+				border-bottom: 1px solid #EEEEEE;
+			}
+			
+			.item h4 {
+				display: inline-block;
+				width: 100%;
+				margin-top: 42px;
+				font-size: 18px;
+				font-weight: 300;
+				text-align: center;
+			}
+			
+			.item span{
+				font: 12px/20px "微软雅黑";
+				color: #a5a5a5;
+				text-align: center;
+			}
+			tbody,tr,td {
+				border: none;
+			} 
+			
+			.top {
+				height: 18px;
+				border: none;
+			}
+			
+			.left {
+				width: 18px;
+				border: none;
+			}
+			
+			.agm{
+				height: 50px;
+			}
+			
+			.line {
+				border-right: 1px dashed #EEEEEE;
+			}
+			
+			tbody td span {
+				display: inline-block;
+				width: 100%;
+				margin-top: 9;
+				color: #7c7874;
+				font-size: 11px;
+				text-align: center;
+			}
+			
+			tbody td strong {
+				display: inline-block;
+				width: 100%;
+				font: 11px/24px "微软雅黑";
+				text-align: center;
+			}
+			
+			tfoot tr {
+				width: 100%;
+				height: 30px;
+			}
+			
+			tfoot .month {
+				text-align: center;
+			}
+			
+			tfoot .month p {
+				color: #7c7874;
+				font: 11px/30px "微软雅黑";
+			}
+			
+			tfoot .month span,tfoot .year span{
+				font: 12px/30px "微软雅黑";
+				color: #fd6620;
+			}
+			
+			tfoot .year p{
+				color: #7c7874;
+				font: 11px/30px "微软雅黑";
+				text-align: center;
+			}
+			
+			tfoot .dis p{
+				width: 63px;
+				font: 12px/30px "微软雅黑";
+				color: #fd6620;
+				text-align: center;
+				border: 1px solid #fd6620;
+			}
+			
+			tfoot .btn{
+				height: 64px;
+				text-align: center;
+			}
+			
+			tfoot .btn a{
+				display: inline-block;
+				width: 140px;
+				height: 36px;
+				color: #FFFFFF;
+				font: 12px/36px "微软雅黑";
+				text-align: center;
+				background: #fd6620;
+				text-decoration: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="title">
+				<img src="img/ico-04-1.png" class="rec"/>
+				<img src="img/ico-04-2.png" class="log"/>
+				<h4>独享虚拟主机<span>标准<i>|</i>高效</span></h4>
+				<p>独享IP、不限流量、独享服务器资源、易推广、更快速</p>
+			</div>
+			<table border="" cellspacing="" cellpadding="">
+				<thead>
+					<tr>
+						<th class="collapse"></th>
+						<th class="item" colspan="2">
+							<h4>独享惠普版</h4>
+							<span>适合初创型中小企业网站</span>
+						</th>
+						<th class="collapse"></th>
+						<th class="item" colspan="2">
+							<h4>独享惠普版</h4>
+							<span>适合初创型中小企业网站</span>
+						</th>
+						<th class="collapse"></th>
+						<th class="item" colspan="2">
+							<h4>独享惠普版</h4>
+							<span>适合初创型中小企业网站</span>
+						</th>
+						<th class="collapse"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td colspan="10" class="top"></td>
+					</tr>
+					<tr class="agm">
+						<td class="left"></td>
+						<td class="line">
+							<span>网页空间</span>
+							<strong>20G</strong>
+						</td>
+						<td >
+							<span>数据库</span>
+							<strong>1G</strong>
+						</td>
+						<td class="left"></td>
+						<td class="line">
+							<span>网页空间</span>
+							<strong>20G</strong>
+						</td>
+						<td >
+							<span>数据库</span>
+							<strong>1G</strong>
+						</td>
+						<td class="left"></td>
+						<td class="line">
+							<span>网页空间</span>
+							<strong>20G</strong>
+						</td>
+						<td >
+							<span>数据库</span>
+							<strong>1G</strong>
+						</td>
+						<td class="left"></td>
+					</tr>
+					<tr>
+						<td colspan="10" class="top"></td>
+					</tr>
+					<tr class="agm">
+						<td class="left"></td>
+						<td class="line">
+							<span>网页空间</span>
+							<strong>20G</strong>
+						</td>
+						<td >
+							<span>数据库</span>
+							<strong>1G</strong>
+						</td>
+						<td class="left"></td>
+						<td class="line">
+							<span>网页空间</span>
+							<strong>20G</strong>
+						</td>
+						<td >
+							<span>数据库</span>
+							<strong>1G</strong>
+						</td>
+						<td class="left"></td>
+						<td class="line">
+							<span>网页空间</span>
+							<strong>20G</strong>
+						</td>
+						<td >
+							<span>数据库</span>
+							<strong>1G</strong>
+						</td>
+						<td class="left"></td>
+					</tr>
+					<tr>
+						<td colspan="10" class="top"></td>
+					</tr>
+					<tr class="agm">
+						<td class="left"></td>
+						<td class="line">
+							<span>网页空间</span>
+							<strong>20G</strong>
+						</td>
+						<td >
+							<span>数据库</span>
+							<strong>1G</strong>
+						</td>
+						<td class="left"></td>
+						<td class="line">
+							<span>网页空间</span>
+							<strong>20G</strong>
+						</td>
+						<td >
+							<span>数据库</span>
+							<strong>1G</strong>
+						</td>
+						<td class="left"></td>
+						<td class="line">
+							<span>网页空间</span>
+							<strong>20G</strong>
+						</td>
+						<td >
+							<span>数据库</span>
+							<strong>1G</strong>
+						</td>
+						<td class="left"></td>
+					</tr>
+					<tr>
+						<td colspan="10" class="top"></td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td></td>
+						<td colspan="2" class="month">
+							<p><span>75</span>元/月起</p>
+						</td>
+						<td></td>
+						<td colspan="2" class="month">
+							<p><span>75</span>元/月起</p>
+						</td>
+						<td></td>
+						<td colspan="2" class="month">
+							<p><span>75</span>元/月起</p>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td class="year"><p><span>1173</span>元/年起</p></td>
+						<td class="dis"><p>年付8.5折</p></td>
+						<td></td>
+						<td class="year"><p><span>1173</span>元/年起</p></td>
+						<td class="dis"><p>年付8.5折</p></td>
+						<td></td>
+						<td class="year"><p><span>1173</span>元/年起</p></td>
+						<td class="dis"><p>年付8.5折</p></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td colspan="2" class="btn">
+							<a href="#">立即购买</a>
+						</td>
+						<td></td>
+						<td colspan="2" class="btn">
+							<a href="#">立即购买</a>
+						</td>
+						<td></td>
+						<td colspan="2" class="btn">
+							<a href="#">立即购买</a>
+						</td>
+						<td></td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+		
+		
+		<!--<table border="" cellspacing="" cellpadding="">
+			<thead>787</thead>
+			<tbody>
+				<tr><th>Header</th></tr>
+				<tr><td>Data</td></tr>
+			</tbody>
+		</table>
+		
+		<div id="app">
+			建
+		</div>-->
+	</body>
+</html>

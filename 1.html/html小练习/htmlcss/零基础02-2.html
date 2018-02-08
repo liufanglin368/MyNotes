@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			/*
+			 * 分割竖线丨 可以用边框 背景图片  也可以用文字打出来
+			 * 编辑器代码换行,给父级字体为0. 不行的话就在编辑器里消除代码换行
+			 */
+			p{
+				margin: 0;
+			}
+			#app{
+				width: 525px;
+				height: 361px;
+				border: 1px solid #e6e6e6;
+				padding: 20px;
+			}
+			p{
+				width: 100%;
+				height: 25px;
+				color: #371f1f;
+				font: normal 12px/25px "微软雅黑";
+			}
+			p:nth-child(2){
+				margin: 6px 0px 20px 0px;
+			}
+			em{
+				height: 100%;
+				padding: 0px 4px;
+				font-style: normal;
+				display: inline-block
+			}
+			span{
+				font-size: 12px;
+				line-height: 12px;
+				padding: 7px 14px;
+				display: inline-block;
+			}
+			section{
+				width: 100%;
+				height: 284px;
+				border-top: 1px solid #e6e6e6;
+			}
+			.item{
+				width: 155px;
+				height: 254px;
+				text-align: center;
+				float: left;
+				margin: 30px 30px 0px 0px;
+			}
+			.img{
+				width: 155px;
+				height: 155px;
+				border: none;
+				display: inline-block;
+			}
+			.name,i{
+				width: 100%;
+				color: #3f3f3f;
+				font: normal 11px/20px "微软雅黑";
+				text-decoration: none;
+				display: inline-block;
+			}
+			i{
+				color: #f96459;
+				font-style: normal;
+				border: none;
+				padding: 0;
+			}
+			.con{
+				width: 80px;
+				height: 30px;
+				color: #FFFFFF;
+				font: normal 11px/30px "微软雅黑";
+				background: #0d76cf;
+				margin-top: 9px;
+				text-decoration: none;
+				display: inline-block;
+			}
+			.active{
+				color: #FFFFFF;
+				background:#0d76cf ;
+			}
+			span:hover{
+				color: #FFFFFF;
+				background:#0d76cf ;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<nav>
+				<p>排序方式：<em class="active">默认</em>|<span>按上架时间</span>|<span>按财富值</span>|<span>按兑换量</span></p>
+				<p>按财富值筛选：<em class="active">全部</em>|<span>0-5000</span>|<span>5001-10000</span>|<span>10001-50000</span>|<span>50000以上</span></p>
+			</nav>
+			<section>
+				<div class="item">
+					<a href="#" class="img"><img src="img/mer1.png"/></a>
+					<a href="" class="name">现代简约收纳书桌</a>
+					<i>999财富值</i>
+					<a href="#" class="con">立即兑换</a>
+				</div>
+				<div class="item">
+					<a href="#" class="img"><img src="img/mer1.png"/></a>
+					<a href="" class="name">现代简约收纳书桌</a>
+					<i>999财富值</i>
+					<a href="#" class="con">立即兑换</a>
+				</div>
+				<div class="item" style="margin-right: 0;">
+					<a href="#" class="img"><img src="img/mer1.png"/></a>
+					<a href="" class="name">现代简约收纳书桌</a>
+					<i>999财富值</i>
+					<a href="#" class="con">立即兑换</a>
+				</div>
+			</section>
+		</div>
+	</body>
+</html>

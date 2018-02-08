@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				background: #000000;
+			}
+			#demo{
+				perspective: 800px;
+			}
+			/*#demo:hover #app{
+				transform: rotateZ(360deg);
+				transform-origin: 100px 100px ;
+				
+			}*/
+			
+			#app{
+				width: 200px;
+				height: 200px;
+				margin: 200px 400px;
+				position: relative;
+				transform-style:preserve-3d;
+				animation: 10s move linear infinite;
+				/*transform: rotateY(45deg);*/
+				/*transition: 4s all linear; 
+				animation: 10s move linear infinite;*/
+			}
+			
+			#app div{
+				width: 200px;
+				height: 200px;
+				color: #FFFFFF;
+				opacity: .7;
+				box-shadow: 0 0 50px #19DCCC;
+				box-sizing: border-box;
+				font: 100px/200px "微软雅黑";
+				border: 4px solid #19dccc;
+				text-align: center;
+				background: #000000;
+				margin: auto auto;
+				transition: 5s transform;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				
+			}
+			
+			.box1{
+				
+				transform: translateZ(100px) rotateY(0deg);
+				/*transform: rotateY(90deg);
+				transform-origin: top right;*/
+			}
+			
+			.box2{
+			 	transform: translateZ(-100px) rotateY(0deg);
+				/*transform: rotateX(90deg);
+				transform-origin: bottom;
+				/*animation: 5s move linear;*/
+			}
+			 .box3{
+				transform: translateX(-100px) rotateY(90deg) ;
+			}
+			.box4{
+				transform: translateX(100px) rotateY(90deg) ;
+				/*transform: rotateY(270deg);
+				transform-origin: top;*/
+			}
+			 .box5{
+			 	transform: translateY(100px) rotateX(90deg) ;
+				/*transform: rotateY(270deg);
+				transform-origin: right;*/
+			}
+			.box6{
+				transform: translateY(-100px) rotateX(90deg) ;
+				/*transform: rotateY(90deg);
+				transform-origin: left;*/
+			}
+			
+			@keyframes move{
+				/*0%{
+					transform: rotateY(90deg);
+					transform-origin: 100PX 100PX;
+				}
+				50%{
+					transform: rotateX(45deg);
+					transform-origin: 100PX 100PX;
+				}
+				75%{
+					transform: rotateY(45deg);
+					transform-origin: 100PX 100PX ;
+				}*/
+				/*0%{
+					transform: rotateX(0deg) rotateY(0deg);
+				}*/
+				100%{
+					/*transform: rotateX(90deg);
+					transform-origin: 100PX 100PX ;*/
+					transform: rotateX(360deg) rotateY(360deg) rotateX(360deg);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="demo">
+			<div id="app">
+				<div class="box1">1</div>
+				<div class="box2">2</div>
+				<div class="box3">3</div>
+				<div class="box4">4</div>
+				<div class="box5">5</div>
+				<div class="box6">6</div>
+			</div>
+		</div>
+		
+	</body>
+</html>
