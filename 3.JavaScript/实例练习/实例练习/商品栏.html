@@ -83,13 +83,14 @@
 		window.onload = function() {
 			var ul = document.querySelectorAll("ul");
 			var jia = document.querySelector(".jia");
-			for(var i = 0; i < ul.length; i++) {
+			for(i = 0; i < ul.length; i++) {
 				ul[i].mark = false;
 				cap(i);
 			};
-
+			
 			function cap(n) {
 				var lis = ul[n].querySelectorAll('li:not(p)')
+				
 				var dd = null;
 				for(var i = 0; i < lis.length; i++) {
 					lis[i].onclick = function() {
